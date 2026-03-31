@@ -39,10 +39,6 @@ export function registerWalletTools(server: McpServer, client: LBClient) {
         .max(100)
         .optional()
         .describe("Results per page (default 50, max 100)"),
-      type: z
-        .enum(["credits", "usd"])
-        .optional()
-        .describe("Filter by transaction type: 'credits' or 'usd'"),
     },
     { readOnlyHint: true  },
     async (params) => {
@@ -51,8 +47,6 @@ export function registerWalletTools(server: McpServer, client: LBClient) {
         if (params.page !== undefined) query.page = String(params.page);
         if (params.per_page !== undefined)
           query.per_page = String(params.per_page);
-        if (params.type !== undefined) query.type = params.type;
-
         const res = await client.request<Transaction[]>(
           "GET",
           "/api/v1/wallet/transactions",

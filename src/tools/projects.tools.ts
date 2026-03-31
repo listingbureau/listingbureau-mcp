@@ -66,7 +66,7 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
         const res = await client.request<Project>("POST", "/api/v1/projects", {
           marketplace: "amazon",
           region: params.region,
-          product_id: params.asin,
+          asin: params.asin,
           keyword: params.keyword,
         });
         return formatResult(res.data);
