@@ -23,11 +23,11 @@ export interface PaginationMeta {
   total_pages: number;
 }
 
-/** POST /auth/token response -- includes both tokens + cid. */
+/** POST /auth/token response -- includes both tokens + optional cid. */
 export interface TokenResponse {
   access_token: string;
   refresh_token: string;
-  cid: string;
+  cid?: string;
 }
 
 /** POST /auth/refresh response -- access_token only, NO refresh_token. */
@@ -50,6 +50,7 @@ export interface Account {
   first_name: string;
   last_name: string;
   account_type: string;
+  company?: string;
 }
 
 export interface Subscription {

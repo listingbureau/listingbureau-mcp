@@ -59,16 +59,25 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
         .min(3)
         .max(200)
         .describe("Target keyword (3-200 characters)"),
+      expected_retail_price: z
+        .number()
+        .min(0)
+        .optional()
+        .describe("Expected retail price of the product in USD. Required for SFB cost estimation and holds."),
     },
     {},
     async (params) => {
       try {
-        const res = await client.request<Project>("POST", "/api/v1/projects", {
+        const body: Record<string, unknown> = {
           marketplace: "amazon",
           region: params.region,
           asin: params.asin,
           keyword: params.keyword,
-        });
+        };
+        if (params.expected_retail_price !== undefined) {
+          body.expected_retail_price = params.expected_retail_price;
+        }
+        const res = await client.request<Project>("POST", "/api/v1/projects", body);
         return formatResult(res.data);
       } catch (e) {
         return formatErrorResult(e);
