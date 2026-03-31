@@ -70,7 +70,8 @@ export function registerWalletTools(server: McpServer, client: LBClient) {
       amount: z
         .number()
         .min(5)
-        .describe("Top-up amount in USD (minimum $5)"),
+        .max(5000)
+        .describe("Top-up amount in USD (minimum $5, maximum $5,000)"),
     },
     {},
     async (params) => {
