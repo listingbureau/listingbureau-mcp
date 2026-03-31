@@ -46,23 +46,17 @@ export interface JwtState {
 // -- Account ------------------------------------------------------------------
 
 export interface Account {
-  cid: string;
   email: string;
   first_name: string;
   last_name: string;
-  company: string;
   account_type: string;
-  dt_created: string;
-  plan: string;
 }
 
 export interface Subscription {
   account_type: string;
-  use_wallet: boolean;
-  plansv3: boolean;
   plan_label: string;
+  use_wallet: boolean;
   subscription_fee: number;
-  plans_discount: number;
 }
 
 export interface ServiceRates {
@@ -72,21 +66,18 @@ export interface ServiceRates {
 // -- Wallet -------------------------------------------------------------------
 
 export interface WalletBalance {
-  credits: number;
-  usd: number;
-  warning?: string;
+  balance_usd: number;
+  held_usd: number;
 }
 
 export interface Transaction {
   id: string;
-  dt_utc: string;
-  name: string;
-  event: string;
-  credits: number;
-  credit_balance: number | null;
-  usd: number;
-  usd_balance: number | null;
-  source: string;
+  amount: number;
+  balance_after: number;
+  type: string;
+  description: string;
+  reference_id: string;
+  created_at: string;
 }
 
 export interface TopupResponse {
