@@ -1,0 +1,44 @@
+{
+  "name": "listingbureau-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Listing Bureau Amazon ranking services",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "listingbureau-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "listingbureau",
+    "amazon",
+    "ranking",
+    "ai-agent"
+  ],
+  "author": "Listing Bureau",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
