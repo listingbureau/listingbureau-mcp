@@ -74,10 +74,11 @@ export function registerCostTools(server: McpServer, client: LBClient) {
 
         // Wallet sustainability (clamp to zero for overdraft states)
         const availableUsd = Math.max(0, wallet.balance_usd - wallet.held_usd);
+        // null = unlimited (zero-cost schedule can run indefinitely)
         const daysAffordable =
           estimate.avg_daily_cost > 0
             ? Math.floor(availableUsd / estimate.avg_daily_cost)
-            : estimate.num_days;
+            : null;
 
         const warnings: string[] = [];
 
@@ -93,9 +94,11 @@ export function registerCostTools(server: McpServer, client: LBClient) {
 
         // Affordability warning
         if (availableUsd < estimate.totals.grand_total) {
+          const affordMsg = daysAffordable != null
+            ? `Can afford ~${daysAffordable} days at current rate.`
+            : "";
           warnings.push(
-            `Campaign cost ($${estimate.totals.grand_total.toFixed(2)}) exceeds available balance ($${availableUsd.toFixed(2)}). ` +
-              `Can afford ~${daysAffordable} days at current rate.`,
+            `Campaign cost ($${estimate.totals.grand_total.toFixed(2)}) exceeds available balance ($${availableUsd.toFixed(2)}). ${affordMsg}`.trim(),
           );
         }
 

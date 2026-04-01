@@ -102,7 +102,7 @@ export function mapScheduleEntries(
       continue;
     }
     dated.push({
-      date: e.date,
+      date: normalizeDateToIso(e.date),
       atc: e.atc,
       sfb: e.purchase,
       pgv: e.pageview,
@@ -121,6 +121,13 @@ export function getOngoingVolumes(
   const ongoing = entries.find((e) => e.id === "ongoing" || e.date === "ongoing");
   if (!ongoing) return null;
   return { atc: ongoing.atc, sfb: ongoing.purchase, pgv: ongoing.pageview };
+}
+
+/** Normalize backend date format (MM/DD/YYYY) to ISO (YYYY-MM-DD). Passes through other formats. */
+function normalizeDateToIso(date: string): string {
+  const match = date.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (match) return `${match[3]}-${match[1]}-${match[2]}`;
+  return date;
 }
 
 export function round2(n: number): number {
