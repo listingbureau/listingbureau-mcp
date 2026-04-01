@@ -106,7 +106,10 @@ export function mapScheduleEntries(
     }
     // Only include entries with a recognizable date format (MM/DD/YYYY or YYYY-MM-DD)
     const normalized = normalizeDateToIso(e.date);
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized)) continue;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized)) {
+      console.warn(`[cost] Skipping schedule entry with unrecognized date format: "${e.date}"`);
+      continue;
+    }
     dated.push({
       date: normalized,
       atc: e.atc,
