@@ -4,17 +4,42 @@ import { formatError } from "./errors.js";
 /**
  * Format a successful API response as an MCP tool result.
  * Handles both entity responses and message-only responses.
- * Surfaces `warning` fields (e.g., wallet balance warnings).
+ * Surfaces `warning` and `balance_warning` fields independently.
  */
 export function formatResult(data: unknown): CallToolResult {
-  let text: string;
+  const warnings: string[] = [];
+  let cleaned: Record<string, unknown> | unknown = data;
 
-  if (data && typeof data === "object" && "warning" in data) {
-    const { warning, ...rest } = data as Record<string, unknown>;
-    text = JSON.stringify(rest, null, 2);
-    text += `\n\n Warning: ${warning}`;
-  } else {
-    text = JSON.stringify(data, null, 2);
+  if (data && typeof data === "object") {
+    const obj = { ...(data as Record<string, unknown>) };
+
+    // Top-level warning string
+    if ("warning" in obj && typeof obj.warning === "string") {
+      warnings.push(obj.warning);
+      delete obj.warning;
+    }
+
+    // balance_warning object (independent of warning)
+    if ("balance_warning" in obj && obj.balance_warning && typeof obj.balance_warning === "object") {
+      const bw = obj.balance_warning as Record<string, unknown>;
+      const parts: string[] = [];
+      if (typeof bw.warning === "string") parts.push(bw.warning);
+      if (typeof bw.daily_cost_estimate === "number")
+        parts.push(`Daily cost estimate: $${bw.daily_cost_estimate.toFixed(2)}`);
+      if (typeof bw.balance === "number")
+        parts.push(`Balance: $${bw.balance.toFixed(2)}`);
+      if (typeof bw.days_remaining === "number")
+        parts.push(`Days remaining: ${bw.days_remaining.toFixed(1)}`);
+      if (parts.length > 0) warnings.push(parts.join(" | "));
+      delete obj.balance_warning;
+    }
+
+    cleaned = obj;
+  }
+
+  let text = JSON.stringify(cleaned, null, 2);
+  for (const w of warnings) {
+    text += `\n\n⚠️ Warning: ${w}`;
   }
 
   return {

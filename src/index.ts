@@ -9,6 +9,7 @@ import { registerProjectsTools } from "./tools/projects.tools.js";
 import { registerScheduleTools } from "./tools/schedule.tools.js";
 import { registerOrdersTools } from "./tools/orders.tools.js";
 import { registerFeedbackTools } from "./tools/feedback.tools.js";
+import { registerCostTools } from "./tools/cost.tools.js";
 
 const apiKey = process.env.LB_API_KEY;
 if (!apiKey) {
@@ -32,6 +33,7 @@ registerProjectsTools(server, client);
 registerScheduleTools(server, client);
 registerOrdersTools(server, client);
 registerFeedbackTools(server, client);
+registerCostTools(server, client);
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
