@@ -83,9 +83,16 @@ export function registerCostTools(server: McpServer, client: LBClient) {
 
         const warnings: string[] = [];
 
-        // SFB without retail_price warning
+        // Warn if schedule array was used but uniform params were also provided
+        if (hasSchedule && (hasVolume || params.num_days != null)) {
+          warnings.push(
+            "schedule array provided — num_days and uniform volumes (atc/sfb/pgv) were ignored.",
+          );
+        }
+
+        // SFB without retail_price warning (0 is effectively the same as omitting)
         const hasSfb = schedule.some((d) => d.sfb > 0);
-        if (hasSfb && params.retail_price == null) {
+        if (hasSfb && (params.retail_price == null || params.retail_price === 0)) {
           warnings.push(
             "SFB volumes provided without retail_price — estimate uses service fee only ($" +
               rates.sfb_service_fee.toFixed(2) +
@@ -104,6 +111,13 @@ export function registerCostTools(server: McpServer, client: LBClient) {
         }
 
         const sfbUnit = sfbUnitCost(rates, params.retail_price);
+
+        // Note rounding caveat when daily breakdown is present
+        if (estimate.daily_breakdown) {
+          warnings.push(
+            "daily_breakdown rows are rounded independently — their sum may differ from grand_total by a few cents. Trust grand_total for the accurate figure.",
+          );
+        }
 
         const result: Record<string, unknown> = {
           estimate,
