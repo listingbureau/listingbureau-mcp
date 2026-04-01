@@ -2,11 +2,11 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import type { LBClient } from "../client/lb-client.js";
 import type { ServiceRates, WalletBalance } from "../client/types.js";
-import { sfbUnitCost, estimateCost } from "../utils/cost.js";
+import { sfbUnitCost, estimateCost, round2 } from "../utils/cost.js";
 import { formatResult, formatErrorResult } from "../utils/response.js";
 
 const scheduleItemSchema = z.object({
-  date: z.string().describe("Date in YYYY-MM-DD format"),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be YYYY-MM-DD format").describe("Date in YYYY-MM-DD format"),
   atc: z.number().int().min(0).default(0).describe("Add-to-cart volume"),
   sfb: z.number().int().min(0).default(0).describe("Search-find-buy volume"),
   pgv: z.number().int().min(0).default(0).describe("Page view volume"),
@@ -61,8 +61,9 @@ export function registerCostTools(server: McpServer, client: LBClient) {
           schedule = params.schedule;
         } else {
           const numDays = params.num_days!;
-          schedule = Array.from({ length: numDays }, (_, i) => ({
-            date: `day_${i + 1}`,
+          // Uniform volumes — use "uniform" as date to signal these aren't real calendar dates
+          schedule = Array.from({ length: numDays }, () => ({
+            date: "uniform",
             atc: params.atc ?? 0,
             sfb: params.sfb ?? 0,
             pgv: params.pgv ?? 0,
@@ -71,8 +72,8 @@ export function registerCostTools(server: McpServer, client: LBClient) {
 
         const estimate = estimateCost(schedule, rates, params.retail_price);
 
-        // Wallet sustainability
-        const availableUsd = wallet.balance_usd - wallet.held_usd;
+        // Wallet sustainability (clamp to zero for overdraft states)
+        const availableUsd = Math.max(0, wallet.balance_usd - wallet.held_usd);
         const daysAffordable =
           estimate.avg_daily_cost > 0
             ? Math.floor(availableUsd / estimate.avg_daily_cost)
@@ -113,6 +114,7 @@ export function registerCostTools(server: McpServer, client: LBClient) {
             atc_per_action: rates.atc,
             pgv_per_action: rates.pgv,
             sfb_per_unit: round2(sfbUnit),
+            sfb_formula: rates.sfb_formula,
             sfb_retail_price_provided: params.retail_price != null,
           },
         };
@@ -129,6 +131,3 @@ export function registerCostTools(server: McpServer, client: LBClient) {
   );
 }
 
-function round2(n: number): number {
-  return Math.round(n * 100) / 100;
-}

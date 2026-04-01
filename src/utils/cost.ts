@@ -34,6 +34,14 @@ export function estimateCost(
   rates: ServiceRates,
   retailPrice?: number,
 ): CostEstimate {
+  if (schedule.length === 0) {
+    return {
+      num_days: 0,
+      totals: { atc: 0, pgv: 0, sfb: 0, grand_total: 0 },
+      avg_daily_cost: 0,
+    };
+  }
+
   const sfbUnit = sfbUnitCost(rates, retailPrice);
   const includeDailyBreakdown = schedule.length <= 14;
 
@@ -88,6 +96,7 @@ export function mapScheduleEntries(
   let hasOngoing = false;
 
   for (const e of entries) {
+    // Backend sets both id and date to "ongoing" for the perpetual entry — check both defensively
     if (e.id === "ongoing" || e.date === "ongoing") {
       hasOngoing = true;
       continue;
@@ -114,6 +123,6 @@ export function getOngoingVolumes(
   return { atc: ongoing.atc, sfb: ongoing.purchase, pgv: ongoing.pageview };
 }
 
-function round2(n: number): number {
+export function round2(n: number): number {
   return Math.round(n * 100) / 100;
 }
