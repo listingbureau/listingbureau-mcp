@@ -92,8 +92,8 @@ export function registerCostTools(server: McpServer, client: LBClient) {
           );
         }
 
-        // Affordability warning
-        if (availableUsd < estimate.totals.grand_total) {
+        // Affordability warning (skip for zero-cost schedules to avoid confusing "$0.00 exceeds" messages)
+        if (estimate.totals.grand_total > 0 && availableUsd < estimate.totals.grand_total) {
           const affordMsg = daysAffordable != null
             ? `Can afford ~${daysAffordable} days at current rate.`
             : "";
@@ -110,7 +110,9 @@ export function registerCostTools(server: McpServer, client: LBClient) {
             balance_usd: wallet.balance_usd,
             held_usd: wallet.held_usd,
             available_usd: round2(availableUsd),
+            // >= is intentional: exact-balance means campaign is affordable
             can_afford_campaign: availableUsd >= estimate.totals.grand_total,
+            // null = zero-cost schedule (unlimited days), number = finite affordability
             days_affordable: daysAffordable,
           },
           rates_used: {

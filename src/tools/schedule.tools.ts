@@ -5,11 +5,12 @@ import type { ScheduleResponse, ServiceRates } from "../client/types.js";
 import { formatResult, formatErrorResult } from "../utils/response.js";
 import { estimateCost, mapScheduleEntries, getOngoingVolumes } from "../utils/cost.js";
 
+// Write schema: only YYYY-MM-DD dates (backend manages 'ongoing' entries internally)
 const scheduleEntrySchema = z.object({
   date: z
     .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$|^ongoing$/, "Must be YYYY-MM-DD or 'ongoing'")
-    .describe("Date in YYYY-MM-DD format, or 'ongoing' for all future days until next update"),
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Must be YYYY-MM-DD format")
+    .describe("Date in YYYY-MM-DD format"),
   atc: z.number().int().min(0).describe("Add-to-cart volume"),
   sfb: z.number().int().min(0).describe("Search-find-buy volume"),
   pgv: z.number().int().min(0).describe("Page view volume"),
@@ -69,8 +70,9 @@ async function appendCostSummary(
         };
       }
     }
-  } catch {
-    // Best-effort: silently skip cost summary on failure
+  } catch (e) {
+    // Best-effort: skip cost summary on failure, log for debugging
+    console.error("[cost-summary]", e);
   }
   return result;
 }
