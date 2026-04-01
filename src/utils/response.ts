@@ -23,7 +23,7 @@ export function formatResult(data: unknown): CallToolResult {
     if ("balance_warning" in obj && obj.balance_warning && typeof obj.balance_warning === "object") {
       const bw = obj.balance_warning as Record<string, unknown>;
       const parts: string[] = [];
-      if (typeof bw.warning === "string") parts.push(bw.warning);
+      if (typeof bw.warning === "string" && bw.warning.trim()) parts.push(bw.warning);
       if (typeof bw.daily_cost_estimate === "number")
         parts.push(`Daily cost estimate: $${bw.daily_cost_estimate.toFixed(2)}`);
       if (typeof bw.balance === "number")

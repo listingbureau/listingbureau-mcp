@@ -77,6 +77,13 @@ export interface BalanceWarning {
   days_remaining?: number;
 }
 
+export interface CostSummary {
+  total_estimated_cost: number | null;
+  avg_daily_cost: number;
+  num_scheduled_days: number | null;
+  note: string;
+}
+
 // -- Wallet -------------------------------------------------------------------
 
 export interface WalletBalance {
