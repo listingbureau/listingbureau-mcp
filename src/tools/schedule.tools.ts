@@ -3,7 +3,7 @@ import { z } from "zod";
 import type { LBClient } from "../client/lb-client.js";
 import type { ScheduleResponse, ServiceRates } from "../client/types.js";
 import { formatResult, formatErrorResult } from "../utils/response.js";
-import { estimateCost, mapScheduleEntries, getOngoingVolumes } from "../utils/cost.js";
+import { estimateCost, mapScheduleEntries } from "../utils/cost.js";
 
 // Write schema: only YYYY-MM-DD dates (backend manages 'ongoing' entries internally)
 const scheduleEntrySchema = z.object({
@@ -28,20 +28,17 @@ async function appendCostSummary(
   try {
     const ratesRes = await client.request<ServiceRates>("GET", "/api/v1/account/service-rates");
     const rates = ratesRes.data;
-    const { dated, hasOngoing } = mapScheduleEntries(data.scheduling);
+    const { dated, ongoing } = mapScheduleEntries(data.scheduling);
 
-    if (dated.length === 0 && !hasOngoing) return result;
+    if (dated.length === 0 && !ongoing) return result;
 
     const sfbNote = "SFB costs use service fee only ($" + rates.sfb_service_fee.toFixed(2) +
       "), matching backend balance check behavior. Use lb_estimate_cost with retail_price for full SFB cost.";
 
-    if (dated.length > 0 && hasOngoing) {
+    if (dated.length > 0 && ongoing) {
       // Mixed: dated entries + ongoing
       const est = estimateCost(dated, rates);
-      const ongoing = getOngoingVolumes(data.scheduling);
-      const ongoingDailyCost = ongoing
-        ? estimateCost([{ date: "ongoing", ...ongoing }], rates).avg_daily_cost
-        : 0;
+      const ongoingDailyCost = estimateCost([{ date: "ongoing", ...ongoing }], rates).avg_daily_cost;
       result.cost_summary = {
         total_estimated_cost: est.totals.grand_total,
         avg_daily_cost: est.avg_daily_cost,
@@ -57,18 +54,15 @@ async function appendCostSummary(
         num_scheduled_days: est.num_days,
         note: sfbNote,
       };
-    } else {
+    } else if (ongoing) {
       // Ongoing only
-      const ongoing = getOngoingVolumes(data.scheduling);
-      if (ongoing) {
-        const dailyEst = estimateCost([{ date: "ongoing", ...ongoing }], rates);
-        result.cost_summary = {
-          total_estimated_cost: null,
-          avg_daily_cost: dailyEst.avg_daily_cost,
-          num_scheduled_days: null,
-          note: `Ongoing schedule — $${dailyEst.avg_daily_cost.toFixed(2)}/day with no fixed end date. ${sfbNote}`,
-        };
-      }
+      const dailyEst = estimateCost([{ date: "ongoing", ...ongoing }], rates);
+      result.cost_summary = {
+        total_estimated_cost: null,
+        avg_daily_cost: dailyEst.avg_daily_cost,
+        num_scheduled_days: null,
+        note: `Ongoing schedule — $${dailyEst.avg_daily_cost.toFixed(2)}/day with no fixed end date. ${sfbNote}`,
+      };
     }
   } catch (e) {
     // Best-effort: skip cost summary on failure, log for debugging

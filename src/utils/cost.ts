@@ -91,14 +91,17 @@ export function estimateCost(
  */
 export function mapScheduleEntries(
   entries: ScheduleEntry[],
-): { dated: { date: string; atc: number; sfb: number; pgv: number }[]; hasOngoing: boolean } {
+): {
+  dated: { date: string; atc: number; sfb: number; pgv: number }[];
+  ongoing: { atc: number; sfb: number; pgv: number } | null;
+} {
   const dated: { date: string; atc: number; sfb: number; pgv: number }[] = [];
-  let hasOngoing = false;
+  let ongoing: { atc: number; sfb: number; pgv: number } | null = null;
 
   for (const e of entries) {
     // Backend sets both id and date to "ongoing" for the perpetual entry — check both defensively
     if (e.id === "ongoing" || e.date === "ongoing") {
-      hasOngoing = true;
+      ongoing = { atc: e.atc, sfb: e.purchase, pgv: e.pageview };
       continue;
     }
     dated.push({
@@ -109,19 +112,9 @@ export function mapScheduleEntries(
     });
   }
 
-  return { dated, hasOngoing };
+  return { dated, ongoing };
 }
 
-/**
- * Get daily volumes from an ongoing entry (for per-day cost display).
- */
-export function getOngoingVolumes(
-  entries: ScheduleEntry[],
-): { atc: number; sfb: number; pgv: number } | null {
-  const ongoing = entries.find((e) => e.id === "ongoing" || e.date === "ongoing");
-  if (!ongoing) return null;
-  return { atc: ongoing.atc, sfb: ongoing.purchase, pgv: ongoing.pageview };
-}
 
 /** Normalize backend date format (MM/DD/YYYY) to ISO (YYYY-MM-DD). Passes through other formats. */
 function normalizeDateToIso(date: string): string {
