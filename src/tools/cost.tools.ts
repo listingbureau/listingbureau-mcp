@@ -61,7 +61,8 @@ export function registerCostTools(server: McpServer, client: LBClient) {
           schedule = params.schedule;
         } else {
           const numDays = params.num_days!;
-          // Uniform volumes — use "uniform" as date to signal these aren't real calendar dates
+          // Uniform volumes: "uniform" label signals these aren't real calendar dates.
+          // Daily breakdown (for <= 14 days) will show identical rows — this is intentional.
           schedule = Array.from({ length: numDays }, () => ({
             date: "uniform",
             atc: params.atc ?? 0,
@@ -72,8 +73,8 @@ export function registerCostTools(server: McpServer, client: LBClient) {
 
         const estimate = estimateCost(schedule, rates, params.retail_price);
 
-        // Wallet sustainability (clamp to zero for overdraft states)
-        const availableUsd = Math.max(0, wallet.balance_usd - wallet.held_usd);
+        // Wallet sustainability (clamp to zero for overdraft, round to match grand_total precision)
+        const availableUsd = round2(Math.max(0, wallet.balance_usd - wallet.held_usd));
         // null = unlimited (zero-cost schedule can run indefinitely)
         const daysAffordable =
           estimate.avg_daily_cost > 0
