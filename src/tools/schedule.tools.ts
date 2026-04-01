@@ -8,6 +8,7 @@ import { estimateCost, mapScheduleEntries, getOngoingVolumes } from "../utils/co
 const scheduleEntrySchema = z.object({
   date: z
     .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$|^ongoing$/, "Must be YYYY-MM-DD or 'ongoing'")
     .describe("Date in YYYY-MM-DD format, or 'ongoing' for all future days until next update"),
   atc: z.number().int().min(0).describe("Add-to-cart volume"),
   sfb: z.number().int().min(0).describe("Search-find-buy volume"),
@@ -31,7 +32,7 @@ async function appendCostSummary(
     if (dated.length === 0 && !hasOngoing) return result;
 
     const sfbNote = "SFB costs use service fee only ($" + rates.sfb_service_fee.toFixed(2) +
-      "). Use lb_estimate_cost with retail_price for full SFB cost.";
+      "), matching backend balance check behavior. Use lb_estimate_cost with retail_price for full SFB cost.";
 
     if (dated.length > 0 && hasOngoing) {
       // Mixed: dated entries + ongoing
@@ -53,7 +54,7 @@ async function appendCostSummary(
         total_estimated_cost: est.totals.grand_total,
         avg_daily_cost: est.avg_daily_cost,
         num_scheduled_days: est.num_days,
-        note: `${sfbNote} Matches backend balance check behavior.`,
+        note: sfbNote,
       };
     } else {
       // Ongoing only
