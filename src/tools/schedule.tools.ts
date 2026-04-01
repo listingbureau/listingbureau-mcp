@@ -78,7 +78,7 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
     {
       ui_id: z.string().describe("Project unique identifier"),
     },
-    { readOnlyHint: true  },
+    { readOnlyHint: true },
     async (params) => {
       try {
         const res = await client.request<ScheduleResponse>(
@@ -104,7 +104,7 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
         .max(365)
         .describe("Array of daily schedule entries"),
     },
-    { destructiveHint: true, idempotentHint: true  },
+    { destructiveHint: true, idempotentHint: true },
     async (params) => {
       try {
         const res = await client.request<ScheduleResponse>(
@@ -129,7 +129,7 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
       sfb: z.number().int().min(0).optional().describe("Search-find-buy volume per day (default 0)"),
       pgv: z.number().int().min(0).optional().describe("Page view volume per day (default 0)"),
     },
-    { destructiveHint: true, idempotentHint: true  },
+    { destructiveHint: true, idempotentHint: true },
     async (params) => {
       try {
         const body: Record<string, unknown> = {

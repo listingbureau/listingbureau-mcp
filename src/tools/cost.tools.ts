@@ -7,9 +7,9 @@ import { formatResult, formatErrorResult } from "../utils/response.js";
 
 const scheduleItemSchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be YYYY-MM-DD format").describe("Date in YYYY-MM-DD format"),
-  atc: z.number().int().min(0).default(0).describe("Add-to-cart volume"),
-  sfb: z.number().int().min(0).default(0).describe("Search-find-buy volume"),
-  pgv: z.number().int().min(0).default(0).describe("Page view volume"),
+  atc: z.number().int().min(0).optional().describe("Add-to-cart volume (default 0)"),
+  sfb: z.number().int().min(0).optional().describe("Search-find-buy volume (default 0)"),
+  pgv: z.number().int().min(0).optional().describe("Page view volume (default 0)"),
 });
 
 const estimateCostShape = {
@@ -58,7 +58,12 @@ export function registerCostTools(server: McpServer, client: LBClient) {
         // Build normalized schedule
         let schedule: { date: string; atc: number; sfb: number; pgv: number }[];
         if (params.schedule && params.schedule.length > 0) {
-          schedule = params.schedule;
+          schedule = params.schedule.map((s) => ({
+            date: s.date,
+            atc: s.atc ?? 0,
+            sfb: s.sfb ?? 0,
+            pgv: s.pgv ?? 0,
+          }));
         } else {
           const numDays = params.num_days!;
           // Uniform volumes: "uniform" label signals these aren't real calendar dates.
