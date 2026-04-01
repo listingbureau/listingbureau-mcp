@@ -104,8 +104,11 @@ export function mapScheduleEntries(
       ongoing = { atc: e.atc, sfb: e.purchase, pgv: e.pageview };
       continue;
     }
+    // Only include entries with a recognizable date format (MM/DD/YYYY or YYYY-MM-DD)
+    const normalized = normalizeDateToIso(e.date);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized)) continue;
     dated.push({
-      date: normalizeDateToIso(e.date),
+      date: normalized,
       atc: e.atc,
       sfb: e.purchase,
       pgv: e.pageview,
