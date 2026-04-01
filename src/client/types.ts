@@ -61,7 +61,20 @@ export interface Subscription {
 }
 
 export interface ServiceRates {
+  atc: number;
+  pgv: number;
+  sfb_service_fee: number;
+  sfb_tax_rate: number;
+  sfb_passthrough_rate: number;
+  sfb_formula: string;
   [key: string]: unknown;
+}
+
+export interface BalanceWarning {
+  warning: string;
+  daily_cost_estimate: number;
+  balance?: number;
+  days_remaining?: number;
 }
 
 // -- Wallet -------------------------------------------------------------------
@@ -146,6 +159,7 @@ export interface ScheduleResponse {
     pgv: number;
   };
   scheduling: ScheduleEntry[];
+  balance_warning?: BalanceWarning;
 }
 
 // -- Project Stats ------------------------------------------------------------
