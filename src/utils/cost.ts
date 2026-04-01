@@ -125,6 +125,7 @@ export function getOngoingVolumes(
 
 /** Normalize backend date format (MM/DD/YYYY) to ISO (YYYY-MM-DD). Passes through other formats. */
 function normalizeDateToIso(date: string): string {
+  // Groups: [1]=MM, [2]=DD, [3]=YYYY → reorder to YYYY-MM-DD
   const match = date.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
   if (match) return `${match[3]}-${match[1]}-${match[2]}`;
   return date;
