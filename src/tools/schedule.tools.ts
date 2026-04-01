@@ -30,48 +30,42 @@ async function appendCostSummary(
 
     if (dated.length === 0 && !hasOngoing) return result;
 
-    // Cost for dated entries
-    if (dated.length > 0) {
+    const sfbNote = "SFB costs use service fee only ($" + rates.sfb_service_fee.toFixed(2) +
+      "). Use lb_estimate_cost with retail_price for full SFB cost.";
+
+    if (dated.length > 0 && hasOngoing) {
+      // Mixed: dated entries + ongoing
+      const est = estimateCost(dated, rates);
+      const ongoing = getOngoingVolumes(data.scheduling);
+      const ongoingDailyCost = ongoing
+        ? estimateCost([{ date: "ongoing", ...ongoing }], rates).avg_daily_cost
+        : 0;
+      result.cost_summary = {
+        total_estimated_cost: est.totals.grand_total,
+        avg_daily_cost: est.avg_daily_cost,
+        num_scheduled_days: est.num_days,
+        note: `Includes ${dated.length} dated day(s) + ongoing at $${ongoingDailyCost.toFixed(2)}/day. ${sfbNote}`,
+      };
+    } else if (dated.length > 0) {
+      // Dated entries only
       const est = estimateCost(dated, rates);
       result.cost_summary = {
         total_estimated_cost: est.totals.grand_total,
         avg_daily_cost: est.avg_daily_cost,
         num_scheduled_days: est.num_days,
-        note: "SFB costs use service fee only ($" + rates.sfb_service_fee.toFixed(2) +
-          ") — matches backend balance check behavior. Use lb_estimate_cost with retail_price for full SFB cost including product price, tax, and passthrough.",
+        note: `${sfbNote} Matches backend balance check behavior.`,
       };
-    } else if (hasOngoing) {
-      // Only ongoing entries, no dated
+    } else {
+      // Ongoing only
       const ongoing = getOngoingVolumes(data.scheduling);
       if (ongoing) {
-        const dailyEst = estimateCost(
-          [{ date: "ongoing", ...ongoing }],
-          rates,
-        );
+        const dailyEst = estimateCost([{ date: "ongoing", ...ongoing }], rates);
         result.cost_summary = {
           total_estimated_cost: null,
           avg_daily_cost: dailyEst.avg_daily_cost,
           num_scheduled_days: null,
-          note: `Ongoing schedule — $${dailyEst.avg_daily_cost.toFixed(2)}/day with no fixed end date. ` +
-            "SFB costs use service fee only ($" + rates.sfb_service_fee.toFixed(2) +
-            "). Use lb_estimate_cost with retail_price for full SFB cost.",
+          note: `Ongoing schedule — $${dailyEst.avg_daily_cost.toFixed(2)}/day with no fixed end date. ${sfbNote}`,
         };
-      }
-    }
-
-    // If there are dated AND ongoing, add ongoing info to the note
-    if (dated.length > 0 && hasOngoing) {
-      const ongoing = getOngoingVolumes(data.scheduling);
-      if (ongoing) {
-        const dailyEst = estimateCost(
-          [{ date: "ongoing", ...ongoing }],
-          rates,
-        );
-        const summary = result.cost_summary as Record<string, unknown>;
-        summary.note =
-          `Includes ${dated.length} dated day(s) + ongoing at $${dailyEst.avg_daily_cost.toFixed(2)}/day. ` +
-          "SFB costs use service fee only ($" + rates.sfb_service_fee.toFixed(2) +
-          "). Use lb_estimate_cost with retail_price for full SFB cost.";
       }
     }
   } catch {
