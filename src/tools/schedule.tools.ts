@@ -1,7 +1,7 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import type { LBClient } from "../client/lb-client.js";
-import type { ScheduleResponse, ServiceRates } from "../client/types.js";
+import type { ScheduleResponse, ServiceRates, CostSummary } from "../client/types.js";
 import { formatResult, formatErrorResult } from "../utils/response.js";
 import { estimateCost, mapScheduleEntries } from "../utils/cost.js";
 
@@ -44,7 +44,7 @@ async function appendCostSummary(
         avg_daily_cost: est.avg_daily_cost,
         num_scheduled_days: est.num_days,
         note: `Includes ${dated.length} dated day(s) + ongoing at $${ongoingDailyCost.toFixed(2)}/day. ${sfbNote}`,
-      };
+      } satisfies CostSummary;
     } else if (dated.length > 0) {
       // Dated entries only
       const est = estimateCost(dated, rates);
@@ -53,7 +53,7 @@ async function appendCostSummary(
         avg_daily_cost: est.avg_daily_cost,
         num_scheduled_days: est.num_days,
         note: sfbNote,
-      };
+      } satisfies CostSummary;
     } else if (ongoing) {
       // Ongoing only
       const dailyEst = estimateCost([{ date: "ongoing", ...ongoing }], rates);
@@ -62,7 +62,7 @@ async function appendCostSummary(
         avg_daily_cost: dailyEst.avg_daily_cost,
         num_scheduled_days: null,
         note: `Ongoing schedule — $${dailyEst.avg_daily_cost.toFixed(2)}/day with no fixed end date. ${sfbNote}`,
-      };
+      } satisfies CostSummary;
     }
   } catch (e) {
     // Best-effort: skip cost summary on failure, log for debugging
