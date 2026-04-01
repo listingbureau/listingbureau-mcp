@@ -87,7 +87,7 @@ export function estimateCost(
 
 /**
  * Map backend ScheduleEntry (purchase/pageview) to cost-friendly shape (sfb/pgv).
- * Filters out "ongoing" entries since they have no fixed date for totaling.
+ * Separates dated entries from the ongoing entry for independent cost calculation.
  */
 export function mapScheduleEntries(
   entries: ScheduleEntry[],
