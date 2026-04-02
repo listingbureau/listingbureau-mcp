@@ -67,6 +67,8 @@ export interface ServiceRates {
   sfb_tax_rate: number;
   sfb_passthrough_rate: number;
   sfb_formula: string;
+  sfb_lock_days: number;
+  server_date: string;
   [key: string]: unknown;
 }
 
