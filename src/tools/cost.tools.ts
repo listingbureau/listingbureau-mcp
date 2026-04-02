@@ -159,10 +159,10 @@ export function registerCostTools(server: McpServer, client: LBClient) {
           // Filter locked SFB units based on schedule type
           let totalLockedSfb = 0;
           if (schedule.some((d) => d.date === "uniform")) {
-            // Uniform schedule: first lockDays entries represent the lock window
+            // Uniform schedule: first lockDays entries fall within the freeze period
             totalLockedSfb = schedule.slice(0, lockDays).reduce((sum, d) => sum + d.sfb, 0);
           } else if (serverDate) {
-            // Dated schedule: filter entries whose date falls within the lock window
+            // Dated schedule: filter entries whose date falls within the freeze period
             const boundary = new Date(serverDate + "T00:00:00Z");
             boundary.setUTCDate(boundary.getUTCDate() + lockDays);
             const boundaryStr = boundary.toISOString().split("T")[0];
