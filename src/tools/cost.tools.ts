@@ -147,19 +147,32 @@ export function registerCostTools(server: McpServer, client: LBClient) {
         // SFB lock commitment info
         const lockDays = rates.sfb_lock_days ?? 0;
         if (hasSfb && lockDays > 0) {
-          const lockedSchedule = schedule.slice(0, lockDays);
-          const totalLockedSfb = lockedSchedule.reduce((sum, d) => sum + d.sfb, 0);
+          // Compute earliest SFB date from server date
+          const serverDate = rates.server_date;
+          let earliestSfbDate: string | undefined;
+          if (serverDate) {
+            const d = new Date(serverDate + "T00:00:00Z");
+            d.setUTCDate(d.getUTCDate() + lockDays);
+            earliestSfbDate = d.toISOString().split("T")[0];
+          }
+
+          // Filter locked SFB units based on schedule type
+          let totalLockedSfb = 0;
+          if (schedule.some((d) => d.date === "uniform")) {
+            // Uniform schedule: first lockDays entries represent the lock window
+            totalLockedSfb = schedule.slice(0, lockDays).reduce((sum, d) => sum + d.sfb, 0);
+          } else if (serverDate) {
+            // Dated schedule: filter entries whose date falls within the lock window
+            const boundary = new Date(serverDate + "T00:00:00Z");
+            boundary.setUTCDate(boundary.getUTCDate() + lockDays);
+            const boundaryStr = boundary.toISOString().split("T")[0];
+            totalLockedSfb = schedule
+              .filter((d) => d.date < boundaryStr)
+              .reduce((sum, d) => sum + d.sfb, 0);
+          }
+
           if (totalLockedSfb > 0) {
             const lockCost = round2(totalLockedSfb * sfbUnit);
-
-            // Compute earliest SFB date from server date
-            const serverDate = rates.server_date as string | undefined;
-            let earliestSfbDate: string | undefined;
-            if (serverDate) {
-              const d = new Date(serverDate);
-              d.setDate(d.getDate() + lockDays);
-              earliestSfbDate = d.toISOString().split("T")[0];
-            }
 
             result.sfb_lock = {
               lock_days: lockDays,
