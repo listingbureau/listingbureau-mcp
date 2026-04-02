@@ -10,6 +10,7 @@ import { registerScheduleTools } from "./tools/schedule.tools.js";
 import { registerOrdersTools } from "./tools/orders.tools.js";
 import { registerFeedbackTools } from "./tools/feedback.tools.js";
 import { registerCostTools } from "./tools/cost.tools.js";
+import { validateBaseUrl } from "./utils/validate-url.js";
 
 const apiKey = process.env.LB_API_KEY;
 if (!apiKey) {
@@ -17,8 +18,15 @@ if (!apiKey) {
   process.exit(1);
 }
 
-const baseUrl =
-  process.env.LB_BASE_URL || "https://listingbureau.com";
+let baseUrl = "https://listingbureau.com";
+if (process.env.LB_BASE_URL) {
+  try {
+    baseUrl = validateBaseUrl(process.env.LB_BASE_URL);
+  } catch (e) {
+    console.error((e as Error).message);
+    process.exit(1);
+  }
+}
 
 const client = new LBClient(apiKey, baseUrl);
 

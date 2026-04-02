@@ -23,11 +23,34 @@ function decodeJwtExp(token: string): number {
 export class LBClient {
   private jwt: JwtState | null = null;
   private authInProgress: Promise<void> | null = null;
+  private consecutiveAuthFailures = 0;
+  private lastAuthFailureTime = 0;
 
   constructor(
     private readonly apiKey: string,
     private readonly baseUrl: string,
   ) {}
+
+  /** Exponential backoff delay: 1s, 2s, 4s, ... capped at 60s, plus 0-25% jitter. */
+  private authBackoffMs(): number {
+    const base = Math.min(
+      1000 * Math.pow(2, this.consecutiveAuthFailures - 1),
+      60_000,
+    );
+    const jitter = base * 0.25 * Math.random();
+    return base + jitter;
+  }
+
+  /** Wait for remaining backoff window (no-op if period already elapsed). */
+  private async waitForBackoff(): Promise<void> {
+    if (this.consecutiveAuthFailures === 0) return;
+    const elapsed = Date.now() - this.lastAuthFailureTime;
+    const delay = this.authBackoffMs();
+    const remaining = delay - elapsed;
+    if (remaining > 0) {
+      await new Promise((resolve) => setTimeout(resolve, remaining));
+    }
+  }
 
   /**
    * Ensure we have a valid access token.
@@ -70,37 +93,46 @@ export class LBClient {
 
   /** Exchange API key for JWT tokens. */
   private async authenticate(): Promise<void> {
-    const res = await fetch(`${this.baseUrl}/api/v1/auth/token`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ api_key: this.apiKey }),
-    });
+    await this.waitForBackoff();
 
-    let json: ApiResponse<TokenResponse>;
     try {
-      json = (await res.json()) as ApiResponse<TokenResponse>;
-    } catch {
-      throw new LBApiError(
-        res.status,
-        "PARSE_ERROR",
-        `Auth server returned non-JSON response (HTTP ${res.status})`,
-      );
-    }
+      const res = await fetch(`${this.baseUrl}/api/v1/auth/token`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ api_key: this.apiKey }),
+      });
 
-    if (json.status === "error") {
-      throw new LBApiError(
-        res.status,
-        json.error.code,
-        json.error.message,
-      );
-    }
+      let json: ApiResponse<TokenResponse>;
+      try {
+        json = (await res.json()) as ApiResponse<TokenResponse>;
+      } catch {
+        throw new LBApiError(
+          res.status,
+          "PARSE_ERROR",
+          `Auth server returned non-JSON response (HTTP ${res.status})`,
+        );
+      }
 
-    const { access_token, refresh_token } = json.data;
-    this.jwt = {
-      access_token,
-      refresh_token,
-      expires_at: decodeJwtExp(access_token),
-    };
+      if (json.status === "error") {
+        throw new LBApiError(
+          res.status,
+          json.error.code,
+          json.error.message,
+        );
+      }
+
+      const { access_token, refresh_token } = json.data;
+      this.jwt = {
+        access_token,
+        refresh_token,
+        expires_at: decodeJwtExp(access_token),
+      };
+      this.consecutiveAuthFailures = 0;
+    } catch (e) {
+      this.consecutiveAuthFailures++;
+      this.lastAuthFailureTime = Date.now();
+      throw e;
+    }
   }
 
   /**
