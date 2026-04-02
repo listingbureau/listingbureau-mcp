@@ -3,7 +3,7 @@ import { z } from "zod";
 import type { LBClient } from "../client/lb-client.js";
 import type { ScheduleResponse, ServiceRates, CostSummary } from "../client/types.js";
 import { formatResult, formatErrorResult } from "../utils/response.js";
-import { estimateCost, mapScheduleEntries } from "../utils/cost.js";
+import { sfbUnitCost, estimateCost, mapScheduleEntries, round2 } from "../utils/cost.js";
 
 // Write schema: only YYYY-MM-DD dates (backend manages 'ongoing' entries internally)
 const scheduleEntrySchema = z.object({
@@ -63,6 +63,44 @@ async function appendCostSummary(
         num_scheduled_days: null,
         note: `Ongoing schedule — $${dailyEst.avg_daily_cost.toFixed(2)}/day with no fixed end date. ${sfbNote}`,
       } satisfies CostSummary;
+    }
+    // SFB lock info (best-effort, appended when schedule has SFBs)
+    const lockDays = rates.sfb_lock_days ?? 0;
+    const allEntries = [...dated, ...(ongoing ? [{ date: "ongoing", ...ongoing }] : [])];
+    const hasSfb = allEntries.some((d) => d.sfb > 0);
+
+    if (hasSfb && lockDays > 0) {
+      const serverDate = rates.server_date;
+      if (serverDate) {
+        const boundary = new Date(serverDate + "T00:00:00Z");
+        boundary.setUTCDate(boundary.getUTCDate() + lockDays);
+        const earliestSfbDate = boundary.toISOString().split("T")[0];
+
+        // Count locked SFB units
+        let lockedSfb = 0;
+        const boundaryStr = earliestSfbDate;
+        const ongoingSfb = ongoing?.sfb ?? 0;
+
+        if (ongoingSfb > 0) {
+          lockedSfb += ongoingSfb * lockDays;
+        }
+        for (const d of dated) {
+          if (d.sfb > 0 && d.date < boundaryStr) {
+            lockedSfb += d.sfb;
+          }
+        }
+
+        if (lockedSfb > 0) {
+          const unit = sfbUnitCost(rates);
+          result.sfb_lock_info = {
+            lock_days: lockDays,
+            locked_sfb_units: lockedSfb,
+            lock_commitment_usd: round2(lockedSfb * unit),
+            earliest_sfb_date: earliestSfbDate,
+            note: `${lockedSfb} SFB units across the next ${lockDays} days are locked and cannot be cancelled or changed. Uses service fee only; actual cost may be higher with retail price.`,
+          };
+        }
+      }
     }
   } catch (e) {
     // Best-effort: skip cost summary on failure, log for debugging
