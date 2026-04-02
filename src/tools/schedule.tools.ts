@@ -97,7 +97,7 @@ async function appendCostSummary(
             locked_sfb_units: lockedSfb,
             lock_commitment_usd: round2(lockedSfb * unit),
             earliest_sfb_date: earliestSfbDate,
-            note: `${lockedSfb} SFB units across the next ${lockDays} days are locked and cannot be cancelled or changed. Uses service fee only; actual cost may be higher with retail price.`,
+            note: `${lockedSfb} SFB units across the next ${lockDays} days are locked and cannot be cancelled or changed. Cost shown uses service fee only ($${rates.sfb_service_fee.toFixed(2)}/unit); use lb_estimate_cost with retail_price for full cost.`,
           };
         }
       }
