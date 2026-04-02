@@ -70,6 +70,7 @@ export class LBClient {
 
     // Proactive refresh: 30 seconds before expiry
     if (this.jwt.expires_at - nowSec < 30) {
+      // Both refresh and fallback re-auth run inside the same authInProgress mutex window
       this.authInProgress = this.refresh().catch(() => {
         // Refresh failed and cleared jwt -- re-authenticate from scratch
         return this.authenticate();
