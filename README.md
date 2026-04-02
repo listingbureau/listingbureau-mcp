@@ -45,7 +45,7 @@ Add to your project's `.mcp.json`:
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
 | `LB_API_KEY` | Yes | - | Listing Bureau API key |
-| `LB_BASE_URL` | No | `https://listingbureau.com` | API base URL (override for staging/dev) |
+| `LB_BASE_URL` | No | `https://listingbureau.com` | API base URL (override for staging/dev). Must use `https://`; `http://` is only allowed for localhost. |
 
 ## Tools
 
