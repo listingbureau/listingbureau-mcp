@@ -144,6 +144,39 @@ export function registerCostTools(server: McpServer, client: LBClient) {
           },
         };
 
+        // SFB lock commitment info
+        const lockDays = rates.sfb_lock_days ?? 0;
+        if (hasSfb && lockDays > 0) {
+          const lockedSchedule = schedule.slice(0, lockDays);
+          const totalLockedSfb = lockedSchedule.reduce((sum, d) => sum + d.sfb, 0);
+          if (totalLockedSfb > 0) {
+            const lockCost = round2(totalLockedSfb * sfbUnit);
+
+            // Compute earliest SFB date from server date
+            const serverDate = rates.server_date as string | undefined;
+            let earliestSfbDate: string | undefined;
+            if (serverDate) {
+              const d = new Date(serverDate);
+              d.setDate(d.getDate() + lockDays);
+              earliestSfbDate = d.toISOString().split("T")[0];
+            }
+
+            result.sfb_lock = {
+              lock_days: lockDays,
+              locked_sfb_units: totalLockedSfb,
+              lock_commitment_usd: lockCost,
+              earliest_sfb_date: earliestSfbDate,
+              note: `First ${lockDays} days of SFB (${totalLockedSfb} units, $${lockCost.toFixed(2)}) are locked once scheduled and cannot be cancelled or changed.`,
+            };
+
+            if (lockCost > availableUsd) {
+              warnings.push(
+                `SFB lock commitment ($${lockCost.toFixed(2)}) exceeds available balance ($${availableUsd.toFixed(2)}). Schedule will be rejected.`,
+              );
+            }
+          }
+        }
+
         if (warnings.length > 0) {
           result.warnings = warnings;
         }
