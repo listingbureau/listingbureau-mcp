@@ -24,8 +24,8 @@ export function validateBaseUrl(raw: string): string {
     parsed.hostname === "localhost" ||
     parsed.hostname === "127.0.0.1" ||
     parsed.hostname === "[::1]" ||
-    // IPv4-mapped IPv6 loopback (e.g. [::ffff:127.0.0.1] → normalized to [::ffff:7f00:1])
-    parsed.hostname === "[::ffff:7f00:1]";
+    // IPv4-mapped IPv6 loopback — Node normalizes 127.x.y.z to [::ffff:7fXX:XXXX]
+    parsed.hostname.startsWith("[::ffff:7f");
 
   if (parsed.protocol === "http:" && !isLocalhost) {
     throw new Error(
@@ -33,6 +33,5 @@ export function validateBaseUrl(raw: string): string {
     );
   }
 
-  // Strip trailing slash for consistent path concatenation
-  return parsed.origin.replace(/\/$/, "");
+  return parsed.origin;
 }
