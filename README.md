@@ -122,7 +122,7 @@ Create an account at [listingbureau.com](https://listingbureau.com). Your API ke
 
 | Tool | Description |
 |------|-------------|
-| `lb_account_get` | Get account info (email, name, company, plan) |
+| `lb_account_get` | Get account info (email, name, account status, wallet balance) |
 | `lb_account_update_profile` | Update profile fields (first_name, last_name, company) |
 | `lb_account_get_service_rates` | Get current service pricing rates |
 | `lb_account_get_subscription` | Get subscription info (plan, fee, discount) |
