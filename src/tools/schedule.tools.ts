@@ -12,7 +12,7 @@ const scheduleEntrySchema = z.object({
     .regex(/^\d{4}-\d{2}-\d{2}$/, "Must be YYYY-MM-DD format")
     .describe("Date in YYYY-MM-DD format"),
   atc: z.number().int().min(0).describe("Add-to-cart volume"),
-  sfb: z.number().int().min(0).describe("Search-find-buy volume"),
+  sfb: z.number().int().min(0).describe("Search Find Buy (SFB) volume"),
   pgv: z.number().int().min(0).describe("Page view volume"),
 });
 
@@ -97,7 +97,7 @@ async function appendCostSummary(
             locked_sfb_units: lockedSfb,
             lock_commitment_usd: round2(lockedSfb * unit),
             earliest_sfb_date: earliestSfbDate,
-            note: `${lockedSfb} SFB units across the next ${lockDays} days are locked and cannot be cancelled or changed. Cost shown uses service fee only ($${rates.sfb_service_fee.toFixed(2)}/unit); use lb_estimate_cost with retail_price for full cost.`,
+            note: `${lockedSfb} SFB units across the next ${lockDays} days fall within the freeze period once scheduled and cannot be cancelled or changed. Cost shown uses service fee only ($${rates.sfb_service_fee.toFixed(2)}/unit); use lb_estimate_cost with retail_price for full cost.`,
           };
         }
       }
@@ -164,7 +164,7 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
     {
       ui_id: z.string().describe("Project unique identifier"),
       atc: z.number().int().min(0).optional().describe("Add-to-cart volume per day (default 0)"),
-      sfb: z.number().int().min(0).optional().describe("Search-find-buy volume per day (default 0)"),
+      sfb: z.number().int().min(0).optional().describe("Search Find Buy (SFB) volume per day (default 0)"),
       pgv: z.number().int().min(0).optional().describe("Page view volume per day (default 0)"),
     },
     { destructiveHint: true, idempotentHint: true  },

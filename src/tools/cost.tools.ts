@@ -8,13 +8,13 @@ import { formatResult, formatErrorResult } from "../utils/response.js";
 const scheduleItemSchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be YYYY-MM-DD format").describe("Date in YYYY-MM-DD format"),
   atc: z.number().int().min(0).optional().describe("Add-to-cart volume (default 0)"),
-  sfb: z.number().int().min(0).optional().describe("Search-find-buy volume (default 0)"),
+  sfb: z.number().int().min(0).optional().describe("Search Find Buy (SFB) volume (default 0)"),
   pgv: z.number().int().min(0).optional().describe("Page view volume (default 0)"),
 });
 
 const estimateCostShape = {
   atc: z.number().int().min(0).optional().describe("Uniform daily add-to-cart volume"),
-  sfb: z.number().int().min(0).optional().describe("Uniform daily search-find-buy volume"),
+  sfb: z.number().int().min(0).optional().describe("Uniform daily Search Find Buy (SFB) volume"),
   pgv: z.number().int().min(0).optional().describe("Uniform daily page view volume"),
   num_days: z.number().int().min(1).max(365).optional().describe("Number of days for uniform volumes"),
   schedule: z
@@ -179,12 +179,12 @@ export function registerCostTools(server: McpServer, client: LBClient) {
               locked_sfb_units: totalLockedSfb,
               lock_commitment_usd: lockCost,
               earliest_sfb_date: earliestSfbDate,
-              note: `First ${lockDays} days of SFB (${totalLockedSfb} units, $${lockCost.toFixed(2)}) are locked once scheduled and cannot be cancelled or changed.`,
+              note: `First ${lockDays} days of SFB (${totalLockedSfb} units, $${lockCost.toFixed(2)}) fall within the freeze period once scheduled and cannot be cancelled or changed.`,
             };
 
             if (lockCost > availableUsd) {
               warnings.push(
-                `SFB lock commitment ($${lockCost.toFixed(2)}) exceeds available balance ($${availableUsd.toFixed(2)}). Schedule will be rejected.`,
+                `SFB freeze period cost ($${lockCost.toFixed(2)}) exceeds available balance ($${availableUsd.toFixed(2)}). Schedule will be rejected.`,
               );
             }
           }
