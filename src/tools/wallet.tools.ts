@@ -73,7 +73,7 @@ export function registerWalletTools(server: McpServer, client: LBClient) {
         .max(5000)
         .describe("Top-up amount in USD (minimum $5, maximum $5,000)"),
     },
-    {},
+    { destructiveHint: true },
     async (params) => {
       try {
         const res = await client.request<TopupResponse>(

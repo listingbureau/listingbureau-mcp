@@ -65,7 +65,7 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
         .optional()
         .describe("Expected retail price of the product in USD. Required for SFB cost estimation and holds."),
     },
-    {},
+    { idempotentHint: false },
     async (params) => {
       try {
         const body: Record<string, unknown> = {

@@ -73,7 +73,7 @@ export function registerOrdersTools(server: McpServer, client: LBClient) {
         .max(1000)
         .describe("Issue description (1-1000 characters)"),
     },
-    {},
+    { idempotentHint: false },
     async (params) => {
       try {
         const res = await client.request<MessageResponse>(

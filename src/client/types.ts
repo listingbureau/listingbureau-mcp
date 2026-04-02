@@ -49,8 +49,7 @@ export interface Account {
   email: string;
   first_name: string;
   last_name: string;
-  account_type: string;
-  company?: string;
+  account_status: string;  // "active" | "inactive"
 }
 
 export interface Subscription {

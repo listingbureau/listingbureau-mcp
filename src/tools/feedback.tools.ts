@@ -15,7 +15,7 @@ export function registerFeedbackTools(server: McpServer, client: LBClient) {
         .max(5000)
         .describe("Feedback text (10-5000 characters)"),
     },
-    {},
+    { idempotentHint: false },
     async (params) => {
       try {
         const res = await client.request<MessageResponse>(
