@@ -6,6 +6,10 @@ The only ranking-focused Amazon MCP server. Create ranking campaigns, set veloci
 
 Built on the same infrastructure that moved 1,700+ products to page one. Median time: 48 days.
 
+<p align="center">
+  <img src="assets/demo.gif" alt="listingbureau-mcp demo" width="800" />
+</p>
+
 ## What it does
 
 This MCP server connects your AI assistant to [Listing Bureau](https://listingbureau.com)'s Amazon ranking infrastructure. Three signal types drive organic rank improvement:
