@@ -26,7 +26,7 @@ export function registerAccountTools(server: McpServer, client: LBClient) {
         if (account.account_status === "inactive") {
           status = "Inactive";
           note = "Account disabled. Contact hello@listingbureau.com";
-        } else if (wallet.balance_usd < 1) {
+        } else if ((wallet.balance_usd - wallet.held_usd) < 1) {
           status = "No funds";
         } else {
           status = "Active";
