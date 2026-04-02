@@ -22,7 +22,7 @@ export function validateBaseUrl(raw: string): string {
 
   const isLocalhost =
     parsed.hostname === "localhost" ||
-    parsed.hostname === "127.0.0.1" ||
+    parsed.hostname.startsWith("127.") ||
     parsed.hostname === "[::1]" ||
     // IPv4-mapped IPv6 loopback — Node normalizes 127.x.y.z to [::ffff:7fXX:XXXX]
     (parsed.hostname.startsWith("[::ffff:7f") && parsed.hostname.endsWith("]"));
