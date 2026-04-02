@@ -24,29 +24,20 @@ export class LBClient {
   private jwt: JwtState | null = null;
   private authInProgress: Promise<void> | null = null;
   private consecutiveAuthFailures = 0;
-  private lastAuthFailureTime = 0;
+  private authBackoffDeadline = 0;
 
   constructor(
     private readonly apiKey: string,
     private readonly baseUrl: string,
   ) {}
 
-  /** Exponential backoff delay: 1s, 2s, 4s, ... capped at 60s, plus 0-25% jitter. */
-  private authBackoffMs(): number {
-    const base = Math.min(
-      1000 * Math.pow(2, this.consecutiveAuthFailures - 1),
-      60_000,
-    );
-    const jitter = base * 0.25 * Math.random();
-    return base + jitter;
-  }
-
-  /** Wait for remaining backoff window (no-op if period already elapsed). */
+  /**
+   * Wait until the backoff window has elapsed (no-op if already past deadline).
+   * Must only be called while authInProgress is set (ensureAuth holds the mutex).
+   */
   private async waitForBackoff(): Promise<void> {
     if (this.consecutiveAuthFailures === 0) return;
-    const elapsed = Date.now() - this.lastAuthFailureTime;
-    const delay = this.authBackoffMs();
-    const remaining = delay - elapsed;
+    const remaining = this.authBackoffDeadline - Date.now();
     if (remaining > 0) {
       await new Promise((resolve) => setTimeout(resolve, remaining));
     }
@@ -130,7 +121,12 @@ export class LBClient {
       this.consecutiveAuthFailures = 0;
     } catch (e) {
       this.consecutiveAuthFailures++;
-      this.lastAuthFailureTime = Date.now();
+      const base = Math.min(
+        1000 * Math.pow(2, this.consecutiveAuthFailures - 1),
+        60_000,
+      );
+      const jitter = base * 0.25 * Math.random();
+      this.authBackoffDeadline = Date.now() + base + jitter;
       throw e;
     }
   }
