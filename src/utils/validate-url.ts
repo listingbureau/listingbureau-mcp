@@ -23,7 +23,9 @@ export function validateBaseUrl(raw: string): string {
   const isLocalhost =
     parsed.hostname === "localhost" ||
     parsed.hostname === "127.0.0.1" ||
-    parsed.hostname === "[::1]";
+    parsed.hostname === "[::1]" ||
+    // IPv4-mapped IPv6 loopback (e.g. [::ffff:127.0.0.1] → normalized to [::ffff:7f00:1])
+    parsed.hostname === "[::ffff:7f00:1]";
 
   if (parsed.protocol === "http:" && !isLocalhost) {
     throw new Error(
