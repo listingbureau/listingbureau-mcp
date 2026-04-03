@@ -11,6 +11,10 @@ import { registerOrdersTools } from "./tools/orders.tools.js";
 import { registerFeedbackTools } from "./tools/feedback.tools.js";
 import { registerCostTools } from "./tools/cost.tools.js";
 import { validateBaseUrl } from "./utils/validate-url.js";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+const pkg = require("../package.json") as { version: string };
 
 const apiKey = process.env.LB_API_KEY;
 if (!apiKey) {
@@ -32,7 +36,7 @@ const client = new LBClient(apiKey, baseUrl);
 
 const server = new McpServer({
   name: "listingbureau",
-  version: "0.1.0",
+  version: pkg.version,
 });
 
 registerAccountTools(server, client);
