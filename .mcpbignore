@@ -1,0 +1,13 @@
+src/
+*.test.ts
+tsconfig.json
+vitest.config.ts
+.github/
+.gitignore
+.npmignore
+.env*
+CLAUDE.md
+*.tsbuildinfo
+*.d.ts
+*.d.ts.map
+*.js.map

@@ -14,7 +14,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install mcpb CLI
+        run: npm install -g @anthropic-ai/mcpb
+
+      - name: Validate manifest
+        run: mcpb validate .
+
+      - name: Pack .mcpb extension
+        run: mcpb pack . listingbureau-mcp.mcpb
+
       - name: Create GitHub Release
         run: gh release create "${{ github.ref_name }}" --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Attach .mcpb to release
+        run: gh release upload "${{ github.ref_name }}" listingbureau-mcp.mcpb
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
