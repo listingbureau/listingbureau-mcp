@@ -1,5 +1,10 @@
-import { describe, it, expect, beforeEach } from "vitest";
-import { isNewerVersion, getUpdateNotice, resetForTesting } from "./update-check.js";
+import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
+import {
+  isNewerVersion,
+  getUpdateNotice,
+  checkForUpdate,
+  resetForTesting,
+} from "./update-check.js";
 
 describe("isNewerVersion", () => {
   it("returns true when latest major is greater", () => {
@@ -44,12 +49,101 @@ describe("isNewerVersion", () => {
   });
 });
 
-describe("getUpdateNotice", () => {
+describe("checkForUpdate + getUpdateNotice", () => {
   beforeEach(() => {
     resetForTesting();
   });
 
-  it("returns null when no update is available", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("returns null when no update check has run", () => {
+    expect(getUpdateNotice()).toBeNull();
+  });
+
+  it("sets notice when npm returns a newer version", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ version: "2.0.0" }),
+      }),
+    );
+
+    await checkForUpdate("1.0.0");
+
+    const notice = getUpdateNotice();
+    expect(notice).toContain("Update available: v1.0.0 → v2.0.0");
+    expect(notice).toContain("npx listingbureau-mcp@latest");
+    expect(notice).toContain("releases/latest");
+  });
+
+  it("consumes notice on first call, returns null on second", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ version: "2.0.0" }),
+      }),
+    );
+
+    await checkForUpdate("1.0.0");
+
+    expect(getUpdateNotice()).not.toBeNull();
+    expect(getUpdateNotice()).toBeNull();
+  });
+
+  it("stays null when fetch throws", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockRejectedValue(new Error("network error")),
+    );
+
+    await checkForUpdate("1.0.0");
+
+    expect(getUpdateNotice()).toBeNull();
+  });
+
+  it("stays null when response is not ok", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: false,
+        json: () => Promise.resolve({ error: "not found" }),
+      }),
+    );
+
+    await checkForUpdate("1.0.0");
+
+    expect(getUpdateNotice()).toBeNull();
+  });
+
+  it("stays null when npm version equals current", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ version: "1.0.0" }),
+      }),
+    );
+
+    await checkForUpdate("1.0.0");
+
+    expect(getUpdateNotice()).toBeNull();
+  });
+
+  it("stays null when npm returns malformed version", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ version: "not-a-version" }),
+      }),
+    );
+
+    await checkForUpdate("1.0.0");
+
     expect(getUpdateNotice()).toBeNull();
   });
 });
