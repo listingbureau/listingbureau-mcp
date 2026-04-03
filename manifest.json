@@ -1,0 +1,45 @@
+{
+  "manifest_version": "0.3",
+  "name": "listingbureau-mcp",
+  "display_name": "Listing Bureau",
+  "version": "0.1.2",
+  "description": "Amazon organic ranking MCP server. Run ranking campaigns, track keyword positions, and monitor rank movement.",
+  "author": {
+    "name": "Listing Bureau",
+    "email": "admin@listingbureau.com",
+    "url": "https://listingbureau.com"
+  },
+  "license": "MIT",
+  "homepage": "https://listingbureau.com/mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/listingbureau/listingbureau-mcp"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"],
+      "env": {
+        "LB_API_KEY": "${user_config.LB_API_KEY}"
+      }
+    }
+  },
+  "user_config": {
+    "LB_API_KEY": {
+      "type": "string",
+      "title": "API Key",
+      "description": "Your Listing Bureau API key. Get it at https://listingbureau.com/auth/dashboard",
+      "required": true,
+      "sensitive": true
+    }
+  },
+  "compatibility": {
+    "platforms": ["darwin", "win32"],
+    "runtimes": {
+      "node": ">=20.0.0"
+    }
+  },
+  "tools": "dynamic"
+}
