@@ -151,6 +151,37 @@ describe("checkForUpdate + getUpdateNotice", () => {
     expect(getUpdateNotice()).toBeNull();
   });
 
+  it("stays null when json() throws", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.reject(new Error("invalid json")),
+      }),
+    );
+
+    await checkForUpdate("1.0.0");
+
+    expect(getUpdateNotice()).toBeNull();
+  });
+
+  it("stays null when version is empty, null, or non-string", async () => {
+    for (const version of ["", null, undefined, 0, 123]) {
+      resetForTesting();
+      vi.stubGlobal(
+        "fetch",
+        vi.fn().mockResolvedValue({
+          ok: true,
+          json: () => Promise.resolve({ version }),
+        }),
+      );
+
+      await checkForUpdate("1.0.0");
+
+      expect(getUpdateNotice()).toBeNull();
+    }
+  });
+
   it("stays null when npm returns malformed version", async () => {
     vi.stubGlobal(
       "fetch",
