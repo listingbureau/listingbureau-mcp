@@ -5,3 +5,4 @@ dist/
 .env.*
 specs/
 *.mcpb
+CLAUDE.md
