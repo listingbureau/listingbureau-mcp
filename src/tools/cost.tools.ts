@@ -27,7 +27,7 @@ const estimateCostShape = {
     .number()
     .min(0)
     .optional()
-    .describe("Product retail price in USD — needed for accurate SFB cost including product price, tax, and passthrough"),
+    .describe("Product retail price in USD — needed for accurate SFB cost including product price and fees"),
 };
 
 export function registerCostTools(server: McpServer, client: LBClient) {
@@ -101,7 +101,7 @@ export function registerCostTools(server: McpServer, client: LBClient) {
           warnings.push(
             "SFB volumes provided without retail_price — estimate uses service fee only ($" +
               rates.sfb_service_fee.toFixed(2) +
-              "/unit). Provide retail_price for full cost including product price, tax, and passthrough.",
+              "/unit). Provide retail_price for full cost including product price and fees.",
           );
         }
 

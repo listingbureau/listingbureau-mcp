@@ -63,9 +63,9 @@ export interface ServiceRates {
   atc: number;
   pgv: number;
   sfb_service_fee: number;
-  sfb_tax_rate: number;
-  sfb_passthrough_rate: number;
+  sfb_fee_rate: number;
   sfb_formula: string;
+  sfb_description: string;
   sfb_lock_days: number;
   server_date: string;
   [key: string]: unknown;

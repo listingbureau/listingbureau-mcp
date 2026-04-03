@@ -15,14 +15,13 @@ export interface CostEstimate {
   daily_breakdown?: DailyCost[];
 }
 
-/** Full SFB per-unit cost including product price, tax, and passthrough. */
+/** Full SFB per-unit cost including product price and 11% fees. */
 export function sfbUnitCost(rates: ServiceRates, retailPrice?: number): number {
   if (retailPrice == null) {
     return rates.sfb_service_fee;
   }
-  const tax = retailPrice * rates.sfb_tax_rate;
-  const passthrough = (retailPrice + tax) * rates.sfb_passthrough_rate;
-  return rates.sfb_service_fee + retailPrice + tax + passthrough;
+  const fees = retailPrice * rates.sfb_fee_rate;
+  return rates.sfb_service_fee + retailPrice + fees;
 }
 
 /**
