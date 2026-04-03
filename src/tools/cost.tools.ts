@@ -48,8 +48,8 @@ export function registerCostTools(server: McpServer, client: LBClient) {
         }
 
         const [ratesRes, walletRes] = await Promise.all([
-          client.request<ServiceRates>("GET", "/api/v1/account/service-rates"),
-          client.request<WalletBalance>("GET", "/api/v1/wallet"),
+          client.request<ServiceRates>("GET", "/api/v1/account/service-rates", undefined, undefined, "lb_estimate_cost"),
+          client.request<WalletBalance>("GET", "/api/v1/wallet", undefined, undefined, "lb_estimate_cost"),
         ]);
 
         const rates = ratesRes.data;

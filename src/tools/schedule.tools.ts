@@ -26,7 +26,7 @@ async function appendCostSummary(
 ): Promise<Record<string, unknown>> {
   const result = { ...data } as Record<string, unknown>;
   try {
-    const ratesRes = await client.request<ServiceRates>("GET", "/api/v1/account/service-rates");
+    const ratesRes = await client.request<ServiceRates>("GET", "/api/v1/account/service-rates", undefined, undefined, undefined);
     const rates = ratesRes.data;
     const { dated, ongoing } = mapScheduleEntries(data.scheduling);
 
@@ -122,6 +122,9 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
         const res = await client.request<ScheduleResponse>(
           "GET",
           `/api/v1/projects/${encodeURIComponent(params.ui_id)}/schedule`,
+          undefined,
+          undefined,
+          "lb_schedule_get",
         );
         const augmented = await appendCostSummary(res.data, client);
         return formatResult(augmented);
@@ -149,6 +152,8 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
           "PUT",
           `/api/v1/projects/${encodeURIComponent(params.ui_id)}/schedule`,
           { schedule: params.schedule },
+          undefined,
+          "lb_schedule_set",
         );
         const augmented = await appendCostSummary(res.data, client);
         return formatResult(augmented);
@@ -180,6 +185,8 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
           "POST",
           `/api/v1/projects/${encodeURIComponent(params.ui_id)}/schedule/quick`,
           body,
+          undefined,
+          "lb_schedule_quick_set",
         );
         const augmented = await appendCostSummary(res.data, client);
         return formatResult(augmented);

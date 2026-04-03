@@ -36,6 +36,7 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
           "/api/v1/projects",
           undefined,
           query,
+          "lb_projects_list",
         );
         return formatResult(res.data);
       } catch (e) {
@@ -77,7 +78,7 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
         if (params.expected_retail_price !== undefined) {
           body.expected_retail_price = params.expected_retail_price;
         }
-        const res = await client.request<Project>("POST", "/api/v1/projects", body);
+        const res = await client.request<Project>("POST", "/api/v1/projects", body, undefined, "lb_projects_create");
         return formatResult(res.data);
       } catch (e) {
         return formatErrorResult(e);
@@ -97,6 +98,9 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
         const res = await client.request<Project>(
           "GET",
           `/api/v1/projects/${encodeURIComponent(params.ui_id)}`,
+          undefined,
+          undefined,
+          "lb_projects_get",
         );
         return formatResult(res.data);
       } catch (e) {
@@ -128,6 +132,8 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
           "PATCH",
           `/api/v1/projects/${encodeURIComponent(params.ui_id)}`,
           body,
+          undefined,
+          "lb_projects_update",
         );
         return formatResult(res.data);
       } catch (e) {
@@ -148,6 +154,9 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
         const res = await client.request<MessageResponse>(
           "DELETE",
           `/api/v1/projects/${encodeURIComponent(params.ui_id)}`,
+          undefined,
+          undefined,
+          "lb_projects_archive",
         );
         return formatResult(res.data);
       } catch (e) {
@@ -180,6 +189,7 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
           `/api/v1/projects/${encodeURIComponent(params.ui_id)}/stats`,
           undefined,
           query,
+          "lb_projects_get_stats",
         );
         return formatResult(res.data);
       } catch (e) {

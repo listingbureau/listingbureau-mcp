@@ -22,6 +22,8 @@ export function registerFeedbackTools(server: McpServer, client: LBClient) {
           "POST",
           "/api/v1/feedback",
           { feedback: params.feedback },
+          undefined,
+          "lb_feedback_submit",
         );
         return formatResult(res.data);
       } catch (e) {

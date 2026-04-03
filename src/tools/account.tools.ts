@@ -13,8 +13,8 @@ export function registerAccountTools(server: McpServer, client: LBClient) {
     async () => {
       try {
         const [accountRes, walletRes] = await Promise.all([
-          client.request<Account>("GET", "/api/v1/account"),
-          client.request<WalletBalance>("GET", "/api/v1/wallet"),
+          client.request<Account>("GET", "/api/v1/account", undefined, undefined, "lb_account_get"),
+          client.request<WalletBalance>("GET", "/api/v1/wallet", undefined, undefined, "lb_account_get"),
         ]);
 
         const account = accountRes.data;
@@ -76,6 +76,8 @@ export function registerAccountTools(server: McpServer, client: LBClient) {
           "PATCH",
           "/api/v1/account/profile",
           body,
+          undefined,
+          "lb_account_update_profile",
         );
         return formatResult(res.data);
       } catch (e) {
@@ -94,6 +96,9 @@ export function registerAccountTools(server: McpServer, client: LBClient) {
         const res = await client.request<ServiceRates>(
           "GET",
           "/api/v1/account/service-rates",
+          undefined,
+          undefined,
+          "lb_account_get_service_rates",
         );
         return formatResult(res.data);
       } catch (e) {
@@ -112,6 +117,9 @@ export function registerAccountTools(server: McpServer, client: LBClient) {
         const res = await client.request<Subscription>(
           "GET",
           "/api/v1/account/subscription",
+          undefined,
+          undefined,
+          "lb_account_get_subscription",
         );
         return formatResult(res.data);
       } catch (e) {

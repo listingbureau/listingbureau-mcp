@@ -19,6 +19,9 @@ export function registerWalletTools(server: McpServer, client: LBClient) {
         const res = await client.request<WalletBalance>(
           "GET",
           "/api/v1/wallet",
+          undefined,
+          undefined,
+          "lb_wallet_get_balance",
         );
         return formatResult(res.data);
       } catch (e) {
@@ -52,6 +55,7 @@ export function registerWalletTools(server: McpServer, client: LBClient) {
           "/api/v1/wallet/transactions",
           undefined,
           query,
+          "lb_wallet_get_transactions",
         );
         if (res.meta) {
           return formatPaginatedResult(res.data, res.meta);
@@ -80,6 +84,8 @@ export function registerWalletTools(server: McpServer, client: LBClient) {
           "POST",
           "/api/v1/wallet/topup",
           { amount: params.amount },
+          undefined,
+          "lb_wallet_topup",
         );
         return formatResult(res.data);
       } catch (e) {

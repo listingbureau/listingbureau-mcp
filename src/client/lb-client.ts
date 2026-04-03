@@ -190,15 +190,16 @@ export class LBClient {
     path: string,
     body?: Record<string, unknown>,
     query?: Record<string, string>,
+    toolName?: string,
   ): Promise<ApiSuccessResponse<T>> {
     await this.ensureAuth();
-    const response = await this.doRequest<T>(method, path, body, query);
+    const response = await this.doRequest<T>(method, path, body, query, toolName);
 
     // Single retry on 401
     if (response.status === "error" && response._statusCode === 401) {
       this.jwt = null;
       await this.ensureAuth();
-      const retry = await this.doRequest<T>(method, path, body, query);
+      const retry = await this.doRequest<T>(method, path, body, query, toolName);
       if (retry.status === "error") {
         throw new LBApiError(
           retry._statusCode ?? 500,
@@ -225,6 +226,7 @@ export class LBClient {
     path: string,
     body?: Record<string, unknown>,
     query?: Record<string, string>,
+    toolName?: string,
   ): Promise<ApiResponse<T> & { _statusCode?: number }> {
     let url = `${this.baseUrl}${path}`;
     if (query) {
@@ -237,6 +239,8 @@ export class LBClient {
 
     const headers: Record<string, string> = {
       Authorization: `Bearer ${this.jwt!.access_token}`,
+      "X-LB-Source": "mcp",
+      ...(toolName && { "X-LB-Tool": toolName }),
     };
 
     const options: RequestInit = { method, headers };
