@@ -1,8 +1,10 @@
 src/
 tsconfig.json
 .gitignore
+.npmrc
 .env
 .env.*
+specs/
 *.test.ts
 vitest.config.ts
 CLAUDE.md

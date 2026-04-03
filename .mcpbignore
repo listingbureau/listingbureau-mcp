@@ -6,7 +6,8 @@ vitest.config.ts
 .gitignore
 .npmignore
 .npmrc
-.env*
+.env
+.env.*
 CLAUDE.md
 specs/
 *.tsbuildinfo
