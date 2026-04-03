@@ -31,6 +31,7 @@ export function registerOrdersTools(server: McpServer, client: LBClient) {
           "/api/v1/orders",
           undefined,
           query,
+          "lb_orders_list",
         );
         if (res.meta) {
           return formatPaginatedResult(res.data, res.meta);
@@ -54,6 +55,9 @@ export function registerOrdersTools(server: McpServer, client: LBClient) {
         const res = await client.request<Order>(
           "GET",
           `/api/v1/orders/${encodeURIComponent(params.order_id)}`,
+          undefined,
+          undefined,
+          "lb_orders_get",
         );
         return formatResult(res.data);
       } catch (e) {
@@ -80,6 +84,8 @@ export function registerOrdersTools(server: McpServer, client: LBClient) {
           "POST",
           `/api/v1/orders/${encodeURIComponent(params.order_id)}/report-issue`,
           { description: params.description },
+          undefined,
+          "lb_orders_report_issue",
         );
         return formatResult(res.data);
       } catch (e) {
