@@ -24,6 +24,15 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Verify manifest version matches package.json
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          MAN_VERSION=$(node -p "require('./manifest.json').version")
+          if [ "$PKG_VERSION" != "$MAN_VERSION" ]; then
+            echo "::error::Version mismatch: package.json=$PKG_VERSION manifest.json=$MAN_VERSION"
+            exit 1
+          fi
+
       - name: Install mcpb CLI
         run: npm install -g @anthropic-ai/mcpb
 
