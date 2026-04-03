@@ -26,7 +26,8 @@ async function appendCostSummary(
 ): Promise<Record<string, unknown>> {
   const result = { ...data } as Record<string, unknown>;
   try {
-    const ratesRes = await client.request<ServiceRates>("GET", "/api/v1/account/service-rates", undefined, undefined, undefined);
+    // Internal enrichment fetch — no tool attribution in audit log
+    const ratesRes = await client.request<ServiceRates>("GET", "/api/v1/account/service-rates");
     const rates = ratesRes.data;
     const { dated, ongoing } = mapScheduleEntries(data.scheduling);
 
