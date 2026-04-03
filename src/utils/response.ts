@@ -1,5 +1,6 @@
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { formatError } from "./errors.js";
+import { getUpdateNotice } from "./update-check.js";
 
 /**
  * Format a successful API response as an MCP tool result.
@@ -42,6 +43,11 @@ export function formatResult(data: unknown): CallToolResult {
     text += `\n\n⚠️ Warning: ${w}`;
   }
 
+  const notice = getUpdateNotice();
+  if (notice) {
+    text += `\n\n${notice}`;
+  }
+
   return {
     content: [{ type: "text", text }],
   };
@@ -59,8 +65,15 @@ export function formatPaginatedResult(
     data,
     pagination: meta,
   };
+  let text = JSON.stringify(result, null, 2);
+
+  const notice = getUpdateNotice();
+  if (notice) {
+    text += `\n\n${notice}`;
+  }
+
   return {
-    content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+    content: [{ type: "text", text }],
   };
 }
 
