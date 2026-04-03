@@ -4,6 +4,7 @@ tsconfig.json
 .npmrc
 .env
 .env.*
+assets/
 specs/
 *.test.ts
 vitest.config.ts
