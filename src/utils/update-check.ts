@@ -24,6 +24,7 @@ export async function checkForUpdate(currentVersion: string): Promise<void> {
     const res = await fetch("https://registry.npmjs.org/listingbureau-mcp/latest", {
       signal: AbortSignal.timeout(5000),
     });
+    if (!res.ok) return;
     const json = (await res.json()) as { version?: string };
     const latest = json.version;
     if (!latest || !/^\d+\.\d+\.\d+$/.test(latest)) return;
