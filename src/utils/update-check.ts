@@ -1,4 +1,7 @@
-// Module-level state — reset via resetForTesting() in test files
+// Module-level state — reset via resetForTesting() in test files.
+// Once noticeConsumed is true, subsequent checkForUpdate calls still overwrite
+// updateNotice but getUpdateNotice will return null. This is intentional:
+// the notice is designed to fire once per process lifetime.
 let updateNotice: string | null = null;
 let noticeConsumed = false;
 
@@ -37,7 +40,7 @@ export async function checkForUpdate(currentVersion: string): Promise<void> {
         `  Desktop: Download from https://github.com/listingbureau/listingbureau-mcp/releases/latest`;
     }
   } catch {
-    // Silent failure — network errors, timeouts, bad JSON all swallowed
+    // Silent failure — network errors, TimeoutError, AbortError, bad JSON all swallowed
   }
 }
 

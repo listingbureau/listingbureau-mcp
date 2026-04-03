@@ -133,6 +133,24 @@ describe("checkForUpdate + getUpdateNotice", () => {
     expect(getUpdateNotice()).toBeNull();
   });
 
+  it("second checkForUpdate after consume still returns null (once-per-process)", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ version: "2.0.0" }),
+      }),
+    );
+
+    await checkForUpdate("1.0.0");
+    expect(getUpdateNotice()).not.toBeNull(); // consumed
+    expect(getUpdateNotice()).toBeNull(); // already consumed
+
+    // Second check overwrites updateNotice, but noticeConsumed stays true
+    await checkForUpdate("1.0.0");
+    expect(getUpdateNotice()).toBeNull();
+  });
+
   it("stays null when npm returns malformed version", async () => {
     vi.stubGlobal(
       "fetch",
