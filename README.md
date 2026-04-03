@@ -42,7 +42,14 @@ Your assistant handles the entire workflow: create a project for any ASIN and ke
 
 ## 📦 Quick start
 
-### Claude Desktop
+### Claude Desktop (one-click)
+
+Download the Desktop Extension and double-click to install. Claude Desktop will prompt for your API key.
+
+**[Download listingbureau-mcp.mcpb](https://github.com/listingbureau/listingbureau-mcp/releases/latest/download/listingbureau-mcp.mcpb)** (requires Claude Desktop 4.0+)
+
+<details>
+<summary>Manual config (alternative)</summary>
 
 Add to `claude_desktop_config.json`:
 
@@ -59,6 +66,8 @@ Add to `claude_desktop_config.json`:
   }
 }
 ```
+
+</details>
 
 ### Claude Code
 
