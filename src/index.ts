@@ -11,6 +11,7 @@ import { registerOrdersTools } from "./tools/orders.tools.js";
 import { registerFeedbackTools } from "./tools/feedback.tools.js";
 import { registerCostTools } from "./tools/cost.tools.js";
 import { validateBaseUrl } from "./utils/validate-url.js";
+import { checkForUpdate } from "./utils/update-check.js";
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
@@ -49,3 +50,5 @@ registerCostTools(server, client);
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
+
+checkForUpdate(pkg.version).catch(() => {});
