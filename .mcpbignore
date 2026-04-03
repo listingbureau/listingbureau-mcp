@@ -5,6 +5,7 @@ vitest.config.ts
 .github/
 .gitignore
 .npmignore
+.npmrc
 .env*
 CLAUDE.md
 specs/
