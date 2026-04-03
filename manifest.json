@@ -41,5 +41,27 @@
       "node": ">=20.0.0"
     }
   },
-  "tools": "dynamic"
+  "tools": [
+    { "name": "lb_projects_list", "description": "List Amazon projects with optional filters" },
+    { "name": "lb_projects_create", "description": "Create a new Amazon project (ASIN + keyword)" },
+    { "name": "lb_projects_get", "description": "Get detailed project info including schedule and SERP data" },
+    { "name": "lb_projects_update", "description": "Update project settings (pause/resume)" },
+    { "name": "lb_projects_archive", "description": "Archive (soft delete) a project" },
+    { "name": "lb_projects_get_stats", "description": "Get daily stats: rankings, service execution, analytics" },
+    { "name": "lb_schedule_get", "description": "Get current per-day schedule for a project" },
+    { "name": "lb_schedule_set", "description": "Set full per-day schedule (replaces existing)" },
+    { "name": "lb_schedule_quick_set", "description": "Quick-set uniform daily volumes for a project" },
+    { "name": "lb_estimate_cost", "description": "Estimate campaign cost, daily averages, and wallet sustainability" },
+    { "name": "lb_wallet_get_balance", "description": "Get wallet balance (credits and USD)" },
+    { "name": "lb_wallet_get_transactions", "description": "Get wallet transaction history (paginated)" },
+    { "name": "lb_wallet_topup", "description": "Generate a Stripe checkout URL to top up wallet" },
+    { "name": "lb_orders_list", "description": "List orders (paginated, newest first)" },
+    { "name": "lb_orders_get", "description": "Get detailed info for a specific order" },
+    { "name": "lb_orders_report_issue", "description": "Report an issue with an order" },
+    { "name": "lb_account_get", "description": "Get account info (email, name, status, balance)" },
+    { "name": "lb_account_update_profile", "description": "Update account profile fields" },
+    { "name": "lb_account_get_service_rates", "description": "Get current service pricing rates" },
+    { "name": "lb_account_get_subscription", "description": "Get subscription info (plan, fee, wallet usage)" },
+    { "name": "lb_feedback_submit", "description": "Submit feedback about the service" }
+  ]
 }
