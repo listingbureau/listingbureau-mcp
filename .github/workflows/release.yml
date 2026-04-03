@@ -24,12 +24,17 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Verify manifest version matches package.json
+      - name: Verify versions match (package.json, manifest.json, git tag)
         run: |
           PKG_VERSION=$(node -p "require('./package.json').version")
           MAN_VERSION=$(node -p "require('./manifest.json').version")
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
           if [ "$PKG_VERSION" != "$MAN_VERSION" ]; then
             echo "::error::Version mismatch: package.json=$PKG_VERSION manifest.json=$MAN_VERSION"
+            exit 1
+          fi
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error::Tag version mismatch: tag=$TAG_VERSION package.json=$PKG_VERSION"
             exit 1
           fi
 
