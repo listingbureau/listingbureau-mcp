@@ -30,7 +30,7 @@ export async function checkForUpdate(currentVersion: string): Promise<void> {
     if (!res.ok) return;
     const json = (await res.json()) as { version?: string };
     const latest = json.version;
-    if (!latest || !/^\d+\.\d+\.\d+$/.test(latest)) return;
+    if (typeof latest !== "string" || !/^\d+\.\d+\.\d+$/.test(latest)) return;
 
     if (isNewerVersion(latest, currentVersion)) {
       updateNotice =
