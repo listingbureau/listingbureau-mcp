@@ -14,20 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
       - name: Verify versions match (package.json, manifest.json, git tag)
         run: |
-          PKG_VERSION=$(node -p "require('./package.json').version")
-          MAN_VERSION=$(node -p "require('./manifest.json').version")
+          PKG_VERSION=$(jq -r .version package.json)
+          MAN_VERSION=$(jq -r .version manifest.json)
           TAG_VERSION="${GITHUB_REF_NAME#v}"
           if [ "$PKG_VERSION" != "$MAN_VERSION" ]; then
             echo "::error::Version mismatch: package.json=$PKG_VERSION manifest.json=$MAN_VERSION"
@@ -37,6 +27,16 @@ jobs:
             echo "::error::Tag version mismatch: tag=$TAG_VERSION package.json=$PKG_VERSION"
             exit 1
           fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
 
       - name: Install mcpb CLI
         run: npm install -g @anthropic-ai/mcpb

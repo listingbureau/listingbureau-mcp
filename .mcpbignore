@@ -9,6 +9,7 @@ vitest.config.ts
 .env
 .env.*
 CLAUDE.md
+assets/
 specs/
 *.tsbuildinfo
 *.d.ts
