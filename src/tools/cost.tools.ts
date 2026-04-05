@@ -52,14 +52,16 @@ export function registerCostTools(server: McpServer, client: LBClient) {
           );
         }
 
+        // Normalize region once for all downstream use
+        const normalizedRegion = params.region ? normalizeRegion(params.region) : undefined;
+
         // SFB region validation
         const hasSfbInput = params.schedule
           ? params.schedule.some((d) => (d.sfb ?? 0) > 0)
           : (params.sfb ?? 0) > 0;
-        if (params.region) {
-          const normalized = normalizeRegion(params.region);
+        if (normalizedRegion) {
           // Hard reject: region provided + non-US + has SFB
-          assertSfbAllowed(normalized, hasSfbInput);
+          assertSfbAllowed(normalizedRegion, hasSfbInput);
         }
 
         const [ratesRes, walletRes] = await Promise.all([

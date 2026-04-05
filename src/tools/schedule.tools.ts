@@ -3,7 +3,7 @@ import { z } from "zod";
 import type { LBClient } from "../client/lb-client.js";
 import type { ScheduleResponse, ServiceRates, CostSummary, Project } from "../client/types.js";
 import { formatResult, formatErrorResult } from "../utils/response.js";
-import { assertSfbAllowed } from "../utils/regions.js";
+import { assertSfbAllowed, SfbRegionError } from "../utils/regions.js";
 import { sfbUnitCost, estimateCost, mapScheduleEntries, round2 } from "../utils/cost.js";
 
 // Write schema: only YYYY-MM-DD dates (backend manages 'ongoing' entries internally)
@@ -164,7 +164,7 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
             assertSfbAllowed(projRes.data.region, true);
           } catch (fetchErr) {
             // If assertSfbAllowed threw, re-throw (it's a validation error, not a fetch failure)
-            if (fetchErr instanceof Error && fetchErr.message.includes("US-region")) {
+            if (fetchErr instanceof SfbRegionError) {
               throw fetchErr;
             }
             // Fetch failure: warn and proceed — backend enforces the real restriction

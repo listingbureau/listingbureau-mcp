@@ -3,6 +3,7 @@ import {
   VALID_REGIONS,
   ACCEPTED_REGIONS,
   SFB_REGIONS,
+  SfbRegionError,
   normalizeRegion,
   assertSfbAllowed,
 } from "./regions.js";
@@ -98,11 +99,8 @@ describe("assertSfbAllowed", () => {
     }
   });
 
-  it("error message includes the actual region code", () => {
-    try {
-      assertSfbAllowed("JP", true);
-    } catch (e) {
-      expect((e as Error).message).toContain("JP");
-    }
+  it("throws SfbRegionError with the actual region code in the message", () => {
+    expect(() => assertSfbAllowed("JP", true)).toThrow(SfbRegionError);
+    expect(() => assertSfbAllowed("JP", true)).toThrow("JP");
   });
 });
