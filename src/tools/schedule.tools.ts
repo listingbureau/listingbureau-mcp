@@ -215,7 +215,7 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
             );
             assertSfbAllowed(projRes.data.region, true);
           } catch (fetchErr) {
-            if (fetchErr instanceof Error && fetchErr.message.includes("US-region")) {
+            if (fetchErr instanceof SfbRegionError) {
               throw fetchErr;
             }
             regionWarning = "Could not verify project region for SFB eligibility. The backend will enforce region restrictions.";

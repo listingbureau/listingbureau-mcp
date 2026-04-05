@@ -103,4 +103,10 @@ describe("assertSfbAllowed", () => {
     expect(() => assertSfbAllowed("JP", true)).toThrow(SfbRegionError);
     expect(() => assertSfbAllowed("JP", true)).toThrow("JP");
   });
+
+  it("rejects GB-normalized-to-UK for SFB (GB is not US)", () => {
+    const normalized = normalizeRegion("GB");
+    expect(normalized).toBe("UK");
+    expect(() => assertSfbAllowed(normalized, true)).toThrow(SfbRegionError);
+  });
 });
