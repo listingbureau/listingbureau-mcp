@@ -4,6 +4,7 @@ import type { LBClient } from "../client/lb-client.js";
 import type { ServiceRates, WalletBalance } from "../client/types.js";
 import { sfbUnitCost, estimateCost, round2 } from "../utils/cost.js";
 import { formatResult, formatErrorResult } from "../utils/response.js";
+import { ACCEPTED_REGIONS, normalizeRegion, assertSfbAllowed } from "../utils/regions.js";
 
 const scheduleItemSchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be YYYY-MM-DD format").describe("Date in YYYY-MM-DD format"),
@@ -13,9 +14,13 @@ const scheduleItemSchema = z.object({
 });
 
 const estimateCostShape = {
-  atc: z.number().int().min(0).optional().describe("Uniform daily add-to-cart volume"),
-  sfb: z.number().int().min(0).optional().describe("Uniform daily Search Find Buy (SFB) volume"),
-  pgv: z.number().int().min(0).optional().describe("Uniform daily page view volume"),
+  region: z
+    .enum(ACCEPTED_REGIONS)
+    .optional()
+    .describe("Amazon region code — if provided with SFB volumes, validates SFB is allowed (US only). GB accepted as alias for UK."),
+  atc: z.number().int().min(0).optional().describe("Uniform daily add-to-cart volume (all regions; lower execution rate outside US)"),
+  sfb: z.number().int().min(0).optional().describe("Uniform daily Search Find Buy (SFB) volume (US-region projects only)"),
+  pgv: z.number().int().min(0).optional().describe("Uniform daily page view volume (all regions; lower execution rate outside US)"),
   num_days: z.number().int().min(1).max(365).optional().describe("Number of days for uniform volumes"),
   schedule: z
     .array(scheduleItemSchema)
@@ -33,7 +38,7 @@ const estimateCostShape = {
 export function registerCostTools(server: McpServer, client: LBClient) {
   server.tool(
     "lb_estimate_cost",
-    "Estimate campaign cost before committing. Fetches current rates and wallet balance, then computes total cost, daily averages, and wallet sustainability. Provide either uniform daily volumes (atc/sfb/pgv + num_days) or a per-day schedule array. Include retail_price for accurate SFB costs.",
+    "Estimate campaign cost before committing. Fetches current rates and wallet balance, then computes total cost, daily averages, and wallet sustainability. Provide either uniform daily volumes (atc/sfb/pgv + num_days) or a per-day schedule array. Include retail_price for accurate SFB costs. SFB is US-region only; ATC/PGV work in all regions (lower execution rate outside US). Pass region to validate SFB eligibility.",
     estimateCostShape,
     { readOnlyHint: true },
     async (params) => {
@@ -45,6 +50,16 @@ export function registerCostTools(server: McpServer, client: LBClient) {
           return formatErrorResult(
             new Error("Provide either a 'schedule' array, OR at least one volume (atc/sfb/pgv > 0) with 'num_days'"),
           );
+        }
+
+        // SFB region validation
+        const hasSfbInput = params.schedule
+          ? params.schedule.some((d) => (d.sfb ?? 0) > 0)
+          : (params.sfb ?? 0) > 0;
+        if (params.region) {
+          const normalized = normalizeRegion(params.region);
+          // Hard reject: region provided + non-US + has SFB
+          assertSfbAllowed(normalized, hasSfbInput);
         }
 
         const [ratesRes, walletRes] = await Promise.all([
@@ -95,8 +110,15 @@ export function registerCostTools(server: McpServer, client: LBClient) {
           );
         }
 
-        // SFB without retail_price warning (0 is effectively the same as omitting)
+        // SFB without region warning
         const hasSfb = schedule.some((d) => d.sfb > 0);
+        if (hasSfb && !params.region) {
+          warnings.push(
+            "SFB volumes provided without region — estimate assumes US pricing. Pass region to validate SFB eligibility.",
+          );
+        }
+
+        // SFB without retail_price warning (0 is effectively the same as omitting)
         if (hasSfb && (params.retail_price == null || params.retail_price === 0)) {
           warnings.push(
             "SFB volumes provided without retail_price — estimate uses service fee only ($" +

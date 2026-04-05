@@ -3,15 +3,7 @@ import { z } from "zod";
 import type { LBClient } from "../client/lb-client.js";
 import type { Project, ProjectListItem, MessageResponse, ProjectStatsResponse } from "../client/types.js";
 import { formatResult, formatErrorResult } from "../utils/response.js";
-
-// Valid Amazon region codes (validated against CONSTANTS['MARKETPLACES'] in backend)
-const VALID_REGIONS = [
-  "US", "CA", "MX",          // Americas
-  "UK", "DE", "FR", "IT",    // Europe
-  "ES", "NL", "SE", "TR",    // Europe cont.
-  "JP", "AU", "IN",          // Asia-Pacific
-  "AE", "BR", "SG", "SA",   // Rest of world
-] as const;
+import { ACCEPTED_REGIONS, normalizeRegion } from "../utils/regions.js";
 
 export function registerProjectsTools(server: McpServer, client: LBClient) {
   server.tool(
@@ -19,16 +11,16 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
     "List Listing Bureau Amazon projects with optional filters. Returns ASIN, keyword, active status, and current service volumes.",
     {
       region: z
-        .enum(VALID_REGIONS)
+        .enum(ACCEPTED_REGIONS)
         .optional()
-        .describe("Filter by Amazon region"),
+        .describe("Filter by Amazon region code (GB accepted as alias for UK)"),
       active: z.boolean().optional().describe("Filter by active status"),
     },
     { readOnlyHint: true  },
     async (params) => {
       try {
         const query: Record<string, string> = { marketplace: "amazon" };
-        if (params.region !== undefined) query.region = params.region;
+        if (params.region !== undefined) query.region = normalizeRegion(params.region);
         if (params.active !== undefined) query.active = String(params.active);
 
         const res = await client.request<ProjectListItem[]>(
@@ -50,8 +42,8 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
     "Create a new Listing Bureau Amazon project. If a project with the same ASIN+keyword+region was previously archived, it will be reactivated instead (returns 201). ASIN must be a valid Amazon ASIN. Keyword must be 3-200 characters.",
     {
       region: z
-        .enum(VALID_REGIONS)
-        .describe("Amazon region code"),
+        .enum(ACCEPTED_REGIONS)
+        .describe("Amazon region code (GB accepted as alias for UK)"),
       asin: z
         .string()
         .describe("Amazon ASIN (e.g. 'B01MTJK06C')"),
@@ -71,7 +63,7 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
       try {
         const body: Record<string, unknown> = {
           marketplace: "amazon",
-          region: params.region,
+          region: normalizeRegion(params.region),
           asin: params.asin,
           keyword: params.keyword,
         };

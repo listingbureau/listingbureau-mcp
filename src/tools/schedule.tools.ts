@@ -1,8 +1,9 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import type { LBClient } from "../client/lb-client.js";
-import type { ScheduleResponse, ServiceRates, CostSummary } from "../client/types.js";
+import type { ScheduleResponse, ServiceRates, CostSummary, Project } from "../client/types.js";
 import { formatResult, formatErrorResult } from "../utils/response.js";
+import { assertSfbAllowed } from "../utils/regions.js";
 import { sfbUnitCost, estimateCost, mapScheduleEntries, round2 } from "../utils/cost.js";
 
 // Write schema: only YYYY-MM-DD dates (backend manages 'ongoing' entries internally)
@@ -11,9 +12,9 @@ const scheduleEntrySchema = z.object({
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, "Must be YYYY-MM-DD format")
     .describe("Date in YYYY-MM-DD format"),
-  atc: z.number().int().min(0).describe("Add-to-cart volume"),
-  sfb: z.number().int().min(0).describe("Search Find Buy (SFB) volume"),
-  pgv: z.number().int().min(0).describe("Page view volume"),
+  atc: z.number().int().min(0).describe("Add-to-cart volume (all regions; lower execution rate outside US)"),
+  sfb: z.number().int().min(0).describe("Search Find Buy (SFB) volume (US-region projects only)"),
+  pgv: z.number().int().min(0).describe("Page view volume (all regions; lower execution rate outside US)"),
 });
 
 /**
@@ -113,7 +114,7 @@ async function appendCostSummary(
 export function registerScheduleTools(server: McpServer, client: LBClient) {
   server.tool(
     "lb_schedule_get",
-    "Get the current schedule for a Listing Bureau project. Shows per-day service volumes (atc, sfb, pgv).",
+    "Get the current schedule for a Listing Bureau project. Shows per-day service volumes (atc, sfb, pgv). Note: SFB is only available for US-region projects.",
     {
       ui_id: z.string().describe("Project unique identifier"),
     },
@@ -137,7 +138,7 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
 
   server.tool(
     "lb_schedule_set",
-    "Set the full per-day schedule for a Listing Bureau project. Replaces any existing schedule. Each entry represents one day with volumes for atc, sfb, and pgv. Max 365 entries.",
+    "Set the full per-day schedule for a Listing Bureau project. Replaces any existing schedule. Each entry represents one day with volumes for atc, sfb, and pgv. Max 365 entries. SFB is US-region only; ATC/PGV work in all regions (lower execution rate outside US).",
     {
       ui_id: z.string().describe("Project unique identifier"),
       schedule: z
@@ -149,6 +150,28 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
     { destructiveHint: true, idempotentHint: true  },
     async (params) => {
       try {
+        // SFB region gate: only fetch project when schedule contains SFB > 0
+        let regionWarning: string | undefined;
+        if (params.schedule.some((e) => e.sfb > 0)) {
+          try {
+            const projRes = await client.request<Project>(
+              "GET",
+              `/api/v1/projects/${encodeURIComponent(params.ui_id)}`,
+              undefined,
+              undefined,
+              "lb_schedule_set",
+            );
+            assertSfbAllowed(projRes.data.region, true);
+          } catch (fetchErr) {
+            // If assertSfbAllowed threw, re-throw (it's a validation error, not a fetch failure)
+            if (fetchErr instanceof Error && fetchErr.message.includes("US-region")) {
+              throw fetchErr;
+            }
+            // Fetch failure: warn and proceed — backend enforces the real restriction
+            regionWarning = "Could not verify project region for SFB eligibility. The backend will enforce region restrictions.";
+          }
+        }
+
         const res = await client.request<ScheduleResponse>(
           "PUT",
           `/api/v1/projects/${encodeURIComponent(params.ui_id)}/schedule`,
@@ -157,6 +180,9 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
           "lb_schedule_set",
         );
         const augmented = await appendCostSummary(res.data, client);
+        if (regionWarning) {
+          (augmented as Record<string, unknown>).region_warning = regionWarning;
+        }
         return formatResult(augmented);
       } catch (e) {
         return formatErrorResult(e);
@@ -166,16 +192,36 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
 
   server.tool(
     "lb_schedule_quick_set",
-    "Quick-set uniform daily volumes for a Listing Bureau project. WARNING: This clears any existing per-day schedule and replaces it with uniform values. All omitted fields default to 0.",
+    "Quick-set uniform daily volumes for a Listing Bureau project. WARNING: This clears any existing per-day schedule and replaces it with uniform values. All omitted fields default to 0. SFB is US-region only; ATC/PGV work in all regions (lower execution rate outside US).",
     {
       ui_id: z.string().describe("Project unique identifier"),
-      atc: z.number().int().min(0).optional().describe("Add-to-cart volume per day (default 0)"),
-      sfb: z.number().int().min(0).optional().describe("Search Find Buy (SFB) volume per day (default 0)"),
-      pgv: z.number().int().min(0).optional().describe("Page view volume per day (default 0)"),
+      atc: z.number().int().min(0).optional().describe("Add-to-cart volume per day (default 0) (all regions; lower execution rate outside US)"),
+      sfb: z.number().int().min(0).optional().describe("Search Find Buy (SFB) volume per day (default 0) (US-region projects only)"),
+      pgv: z.number().int().min(0).optional().describe("Page view volume per day (default 0) (all regions; lower execution rate outside US)"),
     },
     { destructiveHint: true, idempotentHint: true  },
     async (params) => {
       try {
+        // SFB region gate: only fetch project when SFB > 0
+        let regionWarning: string | undefined;
+        if ((params.sfb ?? 0) > 0) {
+          try {
+            const projRes = await client.request<Project>(
+              "GET",
+              `/api/v1/projects/${encodeURIComponent(params.ui_id)}`,
+              undefined,
+              undefined,
+              "lb_schedule_quick_set",
+            );
+            assertSfbAllowed(projRes.data.region, true);
+          } catch (fetchErr) {
+            if (fetchErr instanceof Error && fetchErr.message.includes("US-region")) {
+              throw fetchErr;
+            }
+            regionWarning = "Could not verify project region for SFB eligibility. The backend will enforce region restrictions.";
+          }
+        }
+
         const body: Record<string, unknown> = {
           atc: params.atc ?? 0,
           sfb: params.sfb ?? 0,
@@ -190,6 +236,9 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
           "lb_schedule_quick_set",
         );
         const augmented = await appendCostSummary(res.data, client);
+        if (regionWarning) {
+          (augmented as Record<string, unknown>).region_warning = regionWarning;
+        }
         return formatResult(augmented);
       } catch (e) {
         return formatErrorResult(e);
