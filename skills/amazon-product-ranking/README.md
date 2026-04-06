@@ -13,18 +13,18 @@ Whether you need an **Amazon rank tracker**, an **Amazon listing optimization to
 ## Quick Demo
 
 ```
-You:    Rank my product B01MTJK06C for "stainless steel water bottle"
+You:    Rank my product B08CS95K8L for "nonstick frying pan 10 inch"
 
 Agent:  Product Assessment
-        ASIN: B01MTJK06C | Hydro Flask 32oz | $44.95 | 12,847 reviews (4.7)
-        Position: #28 (page 3) for "stainless steel water bottle"
+        ASIN: B08CS95K8L | CAROTE Nonstick Frying Pan 10" | $24.99 | 16,897 reviews (4.6)
+        Position: #18 (page 2) for "nonstick frying pan 10 inch"
         [PASS] Reviews strong  [PASS] Rating above threshold
-        [WARNING] Price 50% above category avg
+        [PASS] Price competitive with category avg
 
-        Competition: HIGH (top 10 avg 8,234 reviews)
-        Strategy: Standard profile, 5 SFB/day peak, 14-day launch (~59 SFB)
-        Cost: ~$3,260 gross, ~$2,160 adjusted (after SFB sale proceeds)
-        ROI: ~$11,640/month organic revenue if page 1 achieved
+        Competition: MEDIUM (top 10 avg 3,500 reviews)
+        Strategy: Standard profile, 4 SFB/day peak, 14-day launch (~45 SFB)
+        Cost: ~$1,550 gross, ~$1,020 adjusted (after SFB sale proceeds)
+        ROI: ~$3,370/month organic revenue if page 1 achieved
 
         Ready to launch? [confirm to execute]
 
@@ -122,9 +122,9 @@ The skill runs 9 phases internally. The user invokes one command and the skill h
 
 ### Three Entry Points
 
-- **Full flow:** `"Rank my product B01MTJK06C for 'water bottle'"` -- all 9 phases
-- **Quick-start:** `"Quick campaign: B01MTJK06C, 'water bottle', 5 SFB, standard, 14 days"` -- skip assessment, go straight to strategy + execution
-- **Cost-only:** `"What would a ranking campaign cost for B01MTJK06C?"` -- assessment through cost, no execution
+- **Full flow:** `"Rank my product B08CS95K8L for 'nonstick frying pan'"` -- all 9 phases
+- **Quick-start:** `"Quick campaign: B08CS95K8L, 'nonstick frying pan', 4 SFB, standard, 14 days"` -- skip assessment, go straight to strategy + execution
+- **Cost-only:** `"What would a ranking campaign cost for B08CS95K8L?"` -- assessment through cost, no execution
 
 ### Funnel Profiles
 
