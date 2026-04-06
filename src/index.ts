@@ -35,10 +35,27 @@ if (process.env.LB_BASE_URL) {
 
 const client = new LBClient(apiKey, baseUrl);
 
-const server = new McpServer({
-  name: "listingbureau",
-  version: pkg.version,
-});
+const server = new McpServer(
+  {
+    name: "listingbureau",
+    version: pkg.version,
+  },
+  {
+    instructions: [
+      "Listing Bureau provides Amazon organic ranking services: SFB (Search Find Buy), ATC (Add to Cart), and PGV (page views).",
+      "SFB drives purchases that directly boost organic ranking. ATC and PGV support the funnel but alone rarely move ranking unless the keyword is very uncompetitive.",
+      "When a user schedules only ATC/PGV with no SFB, note that these are typically paired with SFB to maintain a healthy conversion ratio.",
+      "",
+      "When advising on service volumes, aim for a natural Amazon funnel with realistic conversion rates (10-15%). These are starting points — adjust based on the user's product, price point, and keyword competitiveness:",
+      "Default ratio per SFB: ~2 ATC, ~8-10 PGV.",
+      "Cheaper/high-intent keywords (e.g. branded): ~1-1.5 ATC, ~5-7 PGV per SFB.",
+      "Expensive/competitive keywords: ~2-3 ATC, ~10-15 PGV per SFB to reflect more browsing.",
+      "Avoid SFB-only schedules with near-100% conversion. Keep ratios consistent per keyword so traffic looks like natural shopper behavior.",
+      "",
+      "When the user asks about something outside current capabilities (other marketplaces, unsupported features), offer to submit their input as feedback via lb_feedback_submit.",
+    ].join("\n"),
+  },
+);
 
 registerAccountTools(server, client);
 registerWalletTools(server, client);

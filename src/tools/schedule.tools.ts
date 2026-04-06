@@ -183,6 +183,16 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
         if (regionWarning) {
           (augmented as Record<string, unknown>).region_warning = regionWarning;
         }
+        // Note when schedule has ATC/PGV but no SFB
+        const hasAtcOrPgv = params.schedule.some((e) => e.atc > 0 || e.pgv > 0);
+        const hasSfb = params.schedule.some((e) => e.sfb > 0);
+        if (hasAtcOrPgv && !hasSfb) {
+          (augmented as Record<string, unknown>).service_note =
+            "This schedule has ATC/page views but no SFB. " +
+            "These services alone rarely move ranking unless the keyword is very uncompetitive. " +
+            "They're typically paired with SFB to maintain a healthy organic conversion ratio. " +
+            "You can update the schedule to add SFB if needed.";
+        }
         return formatResult(augmented);
       } catch (e) {
         return formatErrorResult(e);
@@ -238,6 +248,16 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
         const augmented = await appendCostSummary(res.data, client);
         if (regionWarning) {
           (augmented as Record<string, unknown>).region_warning = regionWarning;
+        }
+        // Note when schedule has ATC/PGV but no SFB
+        const hasAtcOrPgv = (params.atc ?? 0) > 0 || (params.pgv ?? 0) > 0;
+        const hasSfb = (params.sfb ?? 0) > 0;
+        if (hasAtcOrPgv && !hasSfb) {
+          (augmented as Record<string, unknown>).service_note =
+            "This schedule has ATC/page views but no SFB. " +
+            "These services alone rarely move ranking unless the keyword is very uncompetitive. " +
+            "They're typically paired with SFB to maintain a healthy organic conversion ratio. " +
+            "You can update the schedule to add SFB if needed.";
         }
         return formatResult(augmented);
       } catch (e) {
