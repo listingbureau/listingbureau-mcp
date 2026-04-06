@@ -62,6 +62,6 @@
     { "name": "lb_account_update_profile", "description": "Update account profile fields" },
     { "name": "lb_account_get_service_rates", "description": "Get current service pricing rates" },
     { "name": "lb_account_get_subscription", "description": "Get subscription info (plan, fee, wallet usage)" },
-    { "name": "lb_feedback_submit", "description": "Submit feedback, feature requests, or suggestions (10-5000 chars)" }
+    { "name": "lb_feedback_submit", "description": "Submit feedback, feature requests, or suggestions (10-5000 characters)" }
   ]
 }
