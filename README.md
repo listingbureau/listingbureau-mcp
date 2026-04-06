@@ -71,22 +71,40 @@ Add to `claude_desktop_config.json`:
 
 ### Claude Code
 
+Install the plugin from the marketplace:
+
 ```bash
-claude mcp add listingbureau -- npx listingbureau-mcp
+/plugin install listingbureau@claude-plugins-official
 ```
 
-Then set your API key in the MCP config.
+This installs the MCP server + the campaign methodology skill. Set `LB_API_KEY` in the shell environment before starting Claude Code.
+
+<details>
+<summary>Manual setup (alternative)</summary>
+
+```bash
+claude mcp add listingbureau -e LB_API_KEY=your-api-key -- npx listingbureau-mcp
+```
+
+</details>
 
 ### Cursor
 
-Add to `.cursor/mcp.json`:
+[![Install in Cursor](https://img.shields.io/badge/Install_in-Cursor-blue?style=for-the-badge&logo=cursor&logoColor=white)](cursor://anysphere.cursor-deeplink/mcp/install?name=ListingBureau&config=eyJtY3BTZXJ2ZXJzIjp7Imxpc3RpbmdidXJlYXUiOnsiY29tbWFuZCI6Im5weCIsImFyZ3MiOlsiLXkiLCJsaXN0aW5nYnVyZWF1LW1jcCJdLCJlbnYiOnsiTEJfQVBJX0tFWSI6InlvdXItYXBpLWtleS1oZXJlIn19fX0=)
+
+After clicking, replace `your-api-key-here` with the actual API key in the dialog before confirming.
+
+<details>
+<summary>Manual config (alternative)</summary>
+
+Add to `.cursor/mcp.json` (project-scoped) or `~/.cursor/mcp.json` (global):
 
 ```json
 {
   "mcpServers": {
     "listingbureau": {
       "command": "npx",
-      "args": ["listingbureau-mcp"],
+      "args": ["-y", "listingbureau-mcp"],
       "env": {
         "LB_API_KEY": "your-api-key-here"
       }
@@ -94,6 +112,18 @@ Add to `.cursor/mcp.json`:
   }
 }
 ```
+
+</details>
+
+### Any MCP client
+
+Run the server via npx and configure your client to connect over stdio:
+
+```bash
+npx listingbureau-mcp
+```
+
+Set `LB_API_KEY` as an environment variable. See the [MCP specification](https://modelcontextprotocol.io) for client-specific config.
 
 ### 🔑 Get an API key
 
@@ -170,7 +200,9 @@ Create an account at [listingbureau.com](https://listingbureau.com/mcp?utm_sourc
 
 The MCP server ships with a companion skill at [`skills/amazon-product-ranking/`](skills/amazon-product-ranking/) that provides a guided 9-phase campaign workflow. The skill teaches the AI how to use the tools effectively: product assessment, competition analysis, funnel profile selection, ramp schedules, cost/ROI projections, execution, and monitoring.
 
-**Claude Code:** Copy or symlink the `skills/amazon-product-ranking/` folder into your `.claude/skills/` directory.
+**Claude Code (plugin):** The Claude Code plugin includes the skill automatically. Install via `/plugin install listingbureau@claude-plugins-official`.
+
+**Claude Code (manual):** Copy or symlink the `skills/amazon-product-ranking/` folder into your `.claude/skills/` directory.
 
 **Other platforms:** The server instructions reference the skill automatically. The AI can read the methodology from the GitHub link included in the instructions.
 

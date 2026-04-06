@@ -1,0 +1,9 @@
+{
+  "listingbureau": {
+    "command": "npx",
+    "args": ["-y", "listingbureau-mcp"],
+    "env": {
+      "LB_API_KEY": "${LB_API_KEY}"
+    }
+  }
+}

@@ -14,19 +14,40 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify versions match (package.json, manifest.json, git tag)
+      - name: Verify versions match (package.json, manifest.json, plugin.json, git tag)
         run: |
           PKG_VERSION=$(jq -r .version package.json)
           MAN_VERSION=$(jq -r .version manifest.json)
+          PLUGIN_VERSION=$(jq -r .version plugins/claude-code/.claude-plugin/plugin.json)
           TAG_VERSION="${GITHUB_REF_NAME#v}"
           if [ "$PKG_VERSION" != "$MAN_VERSION" ]; then
             echo "::error::Version mismatch: package.json=$PKG_VERSION manifest.json=$MAN_VERSION"
+            exit 1
+          fi
+          if [ "$PKG_VERSION" != "$PLUGIN_VERSION" ]; then
+            echo "::error::Version mismatch: package.json=$PKG_VERSION plugin.json=$PLUGIN_VERSION"
             exit 1
           fi
           if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
             echo "::error::Tag version mismatch: tag=$TAG_VERSION package.json=$PKG_VERSION"
             exit 1
           fi
+
+      - name: Validate skill sync (canonical vs plugin copy)
+        run: |
+          diff skills/amazon-product-ranking/SKILL.md plugins/claude-code/skills/amazon-product-ranking/SKILL.md
+          diff -r skills/amazon-product-ranking/references/ plugins/claude-code/skills/amazon-product-ranking/references/
+
+      - name: Validate plugin structure
+        run: |
+          for f in plugins/claude-code/.claude-plugin/plugin.json plugins/claude-code/.mcp.json; do
+            [ -f "$f" ] || { echo "::error::Missing required file: $f"; exit 1; }
+            jq empty "$f" || { echo "::error::Invalid JSON: $f"; exit 1; }
+          done
+          [ -f plugins/claude-code/skills/amazon-product-ranking/SKILL.md ] || {
+            echo "::error::Missing required file: plugins/claude-code/skills/amazon-product-ranking/SKILL.md"
+            exit 1
+          }
 
       - uses: actions/setup-node@v4
         with:

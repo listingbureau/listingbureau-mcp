@@ -1,0 +1,11 @@
+{
+  "name": "listingbureau",
+  "description": "Amazon organic ranking MCP server. Run ranking campaigns, track keyword positions, and monitor rank movement. 21 tools for projects, schedules, cost estimation, wallet, orders, and account management.",
+  "version": "0.1.10",
+  "author": {
+    "name": "Listing Bureau",
+    "url": "https://listingbureau.com"
+  },
+  "repository": "https://github.com/listingbureau/listingbureau-mcp",
+  "license": "MIT"
+}

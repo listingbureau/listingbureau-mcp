@@ -10,3 +10,4 @@ specs/
 vitest.config.ts
 CLAUDE.md
 skills/
+plugins/

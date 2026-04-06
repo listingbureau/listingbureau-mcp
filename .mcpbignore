@@ -13,3 +13,5 @@ assets/
 specs/
 *.tsbuildinfo
 *.d.ts
+plugins/
+skills/
