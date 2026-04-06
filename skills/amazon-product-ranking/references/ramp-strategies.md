@@ -108,7 +108,7 @@ Existing product with ranking history, targeting a new keyword. Partial honeymoo
 | Days 15-21 | 80% | Taper |
 | Day 22+ | 50% or stop | Maintenance based on results |
 
-**Total for 21-day expansion (5 SFB/day peak, Standard profile):** ~75 SFB, 150 ATC, 600 PGV
+**Total for 21-day expansion (5 SFB/day peak, Standard profile):** ~81 SFB, ~162 ATC, ~648 PGV
 
 ---
 

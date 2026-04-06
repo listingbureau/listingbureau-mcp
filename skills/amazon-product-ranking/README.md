@@ -22,8 +22,8 @@ Agent:  Product Assessment
         [WARNING] Price 50% above category avg
 
         Competition: HIGH (top 10 avg 8,234 reviews)
-        Strategy: Standard profile, 5 SFB/day, 14-day launch
-        Cost: $2,763 gross, ~$2,012 adjusted (after SFB sale proceeds)
+        Strategy: Standard profile, 5 SFB/day peak, 14-day launch (~59 SFB)
+        Cost: ~$3,260 gross, ~$2,160 adjusted (after SFB sale proceeds)
         ROI: ~$11,640/month organic revenue if page 1 achieved
 
         Ready to launch? [confirm to execute]
