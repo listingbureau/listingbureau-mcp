@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.listingbureau/listingbureau-mcp",
+  "title": "Listing Bureau - Amazon Organic Ranking MCP Server",
+  "description": "The only ranking-focused Amazon MCP server. Run organic ranking campaigns, track keyword positions, and monitor rank movement from Claude, Cursor, or any AI assistant. 21 tools across projects, scheduling, cost estimation, wallet, orders, and account management.",
+  "repository": {
+    "url": "https://github.com/listingbureau/listingbureau-mcp",
+    "source": "github"
+  },
+  "version": "0.1.11",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "listingbureau-mcp",
+      "version": "0.1.11",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "LB_API_KEY",
+          "description": "Listing Bureau API key. Create an account at listingbureau.com to get one.",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
