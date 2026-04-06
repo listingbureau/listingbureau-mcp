@@ -13,7 +13,7 @@ The only ranking-focused Amazon MCP server. Create ranking campaigns, set campai
 Built on the same infrastructure associated with 1,700+ products reaching page one. Median time: 48 days. Past performance does not predict future results.
 
 <p align="center">
-  <img src="assets/demo.gif" alt="listingbureau-mcp demo" width="800" />
+  <img src="https://raw.githubusercontent.com/listingbureau/listingbureau-mcp/main/assets/demo.gif" alt="listingbureau-mcp demo" width="800" />
 </p>
 
 <div align="center">
@@ -186,7 +186,7 @@ npm test
 ## 🔗 Links
 
 - [Landing page](https://listingbureau.com/mcp?utm_source=github&utm_medium=readme&utm_campaign=mcp-links)
-- [Create an account](https://listingbureau.com/mcp?utm_source=github&utm_medium=readme&utm_campaign=mcp-links-signup)
+- [Create an account](https://listingbureau.com/auth/signup?utm_source=github&utm_medium=readme&utm_campaign=mcp-links-signup)
 
 ## 📄 License
 
