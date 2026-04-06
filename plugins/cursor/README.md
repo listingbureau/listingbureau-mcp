@@ -8,7 +8,7 @@ Click the link below to add the Listing Bureau MCP server to Cursor:
 
 [![Install in Cursor](https://img.shields.io/badge/Install_in-Cursor-blue?style=for-the-badge&logo=cursor&logoColor=white)](cursor://anysphere.cursor-deeplink/mcp/install?name=ListingBureau&config=eyJtY3BTZXJ2ZXJzIjp7Imxpc3RpbmdidXJlYXUiOnsiY29tbWFuZCI6Im5weCIsImFyZ3MiOlsiLXkiLCJsaXN0aW5nYnVyZWF1LW1jcCJdLCJlbnYiOnsiTEJfQVBJX0tFWSI6InlvdXItYXBpLWtleS1oZXJlIn19fX0=)
 
-> **Important:** After clicking, Cursor will open a config dialog. Replace `your-api-key-here` with the actual API key from the [Listing Bureau dashboard](https://listingbureau.com/auth/dashboard) before confirming.
+> **Important:** After clicking, Cursor will open a config dialog. Replace `your-api-key-here` with the actual API key from the [Listing Bureau dashboard](https://listingbureau.com/auth/dashboard?utm_source=github&utm_medium=cursor-readme&utm_campaign=cursor) before confirming.
 
 ## Manual setup
 

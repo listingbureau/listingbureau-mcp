@@ -61,7 +61,7 @@ Agent:  Campaign live. Project created, schedule set.
 
 | Dependency | Purpose | Install |
 |-----------|---------|---------|
-| Listing Bureau account | Campaign infrastructure | Free signup at [listingbureau.com](https://listingbureau.com/mcp) |
+| Listing Bureau account | Campaign infrastructure | Free signup at [listingbureau.com](https://listingbureau.com/mcp?utm_source=github&utm_medium=skill-readme&utm_campaign=skill) |
 | `listingbureau-mcp` | MCP server for campaign management | See install below |
 
 ### Optional (Enhances Automation)
