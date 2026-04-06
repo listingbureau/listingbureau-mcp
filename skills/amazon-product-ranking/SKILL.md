@@ -1,19 +1,17 @@
 ---
 name: amazon-product-ranking
 description: >
-  Amazon ranking tool powered by Listing Bureau MCP server. Product
-  assessment, competition analysis, listing audit, campaign strategy
-  with optimal SFB:ATC:PGV ratios, ramp-up schedules, cost breakdown
-  with SFB sale proceeds, ROI projections, and execution. Covers new
-  launches (honeymoon phase), re-ranking (60-90 day recovery), keyword
-  expansion, budget-first planning, and international marketplaces.
-  Amazon rank tracker, Amazon SEO tool, Amazon seller tool, Amazon FBA
-  tools. Single or multi-keyword. Requires only listingbureau-mcp.
-  Triggers: "rank my product", "amazon ranking", "ranking campaign",
-  "rank this ASIN", "help me rank", "launch campaign", "set up ranking",
-  "re-rank my product", "amazon campaign", "campaign cost", "campaign ROI",
-  "amazon product ranking", "amazon rank tracker", "amazon seo tool".
-  Does NOT rewrite listing copy. Advisory only on listing issues.
+  Invoke for ANY Amazon seller query about organic search ranking or
+  product visibility in Amazon search results. Trigger signals: ASIN
+  (B0...) plus ranking intent, page 1 goals, search position tracking,
+  rank drops or recovery, ranking campaign setup, SFB (search-find-buy)
+  parameters, cost or budget estimates for ranking, new product launch
+  needing visibility, or expanding to international Amazon marketplaces
+  (.co.uk, .de, .co.jp). Covers product assessment, competition
+  analysis, campaign strategy with ramp schedules, cost/ROI projections,
+  execution via Listing Bureau MCP, and rank monitoring. NOT for:
+  PPC/sponsored ads, listing copy rewrites, FBA fees, brand registry,
+  or supplier sourcing.
 ---
 
 ## Context Needs
