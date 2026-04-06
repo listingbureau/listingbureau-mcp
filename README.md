@@ -58,7 +58,7 @@ Add to `claude_desktop_config.json`:
   "mcpServers": {
     "listingbureau": {
       "command": "npx",
-      "args": ["listingbureau-mcp"],
+      "args": ["-y", "listingbureau-mcp"],
       "env": {
         "LB_API_KEY": "your-api-key-here"
       }
@@ -83,7 +83,7 @@ This installs the MCP server + the campaign methodology skill. Set `LB_API_KEY` 
 <summary>Manual setup (alternative)</summary>
 
 ```bash
-claude mcp add listingbureau -e LB_API_KEY=your-api-key -- npx listingbureau-mcp
+claude mcp add listingbureau -e LB_API_KEY=your-api-key -- npx -y listingbureau-mcp
 ```
 
 </details>

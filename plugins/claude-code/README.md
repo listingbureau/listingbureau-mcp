@@ -24,7 +24,7 @@ claude plugin install --path ./plugins/claude-code
 ### Manual MCP setup (alternative)
 
 ```bash
-claude mcp add listingbureau -e LB_API_KEY=your-api-key -- npx listingbureau-mcp
+claude mcp add listingbureau -e LB_API_KEY=your-api-key -- npx -y listingbureau-mcp
 ```
 
 ## API key setup
