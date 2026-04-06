@@ -142,11 +142,11 @@ The skill selects from 5 scientifically-calibrated funnel profiles based on prod
 
 ## How to Rank on Amazon
 
-Amazon's ranking algorithm (commonly called A9, now updated to A10) ranks products based on keyword-level sales velocity, conversion rate, and click-through rate. Products that generate consistent purchase signals from keyword searches rank higher than products that don't.
+The Amazon A9 algorithm (now updated to A10) ranks products based on keyword-level sales velocity, conversion rate, and click-through rate. Products that generate consistent purchase signals from keyword searches rank higher than products that don't.
 
 The challenge: new products have no sales history. Products that lost rank need to overcome negative history. And the signal ratios (how many page views vs add-to-carts vs purchases) need to match natural shopping behavior for the product's category.
 
-This skill encodes that domain expertise into automated campaign design, so sellers don't need to figure out the science themselves.
+This skill encodes that domain expertise into automated campaign design to improve Amazon ranking, so sellers don't need to figure out the science themselves.
 
 ### What is the Amazon Honeymoon Phase?
 
