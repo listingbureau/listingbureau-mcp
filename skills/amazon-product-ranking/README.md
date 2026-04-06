@@ -78,7 +78,7 @@ Agent:  Campaign live. Project created, schedule set.
 
 1. **Install the Listing Bureau MCP server** (if not already):
    ```bash
-   claude mcp add listingbureau -e LB_API_KEY=your_key_here -- npx listingbureau-mcp
+   claude mcp add listingbureau -e LB_API_KEY=your_key_here -- npx -y listingbureau-mcp
    ```
 
 2. **Install the skill:**

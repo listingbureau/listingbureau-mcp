@@ -45,7 +45,7 @@ Detection: if the user provides explicit SFB count + profile name, treat as quic
 
 **0a. Connection check:** Call `lb_account_get`.
 - If connected: show account status + wallet balance. Proceed.
-- If fails: guide signup at listingbureau.com, show MCP install command: `claude mcp add listingbureau -e LB_API_KEY=<key> -- npx listingbureau-mcp`. Stop.
+- If fails: guide signup at listingbureau.com, show MCP install command: `claude mcp add listingbureau -e LB_API_KEY=<key> -- npx -y listingbureau-mcp`. Stop.
 
 **0b. Re-invocation check:** If ASIN provided, call `lb_projects_list`. Check for active projects matching the ASIN. If found, offer choices: check progress, add keyword, adjust volume, or start new campaign.
 

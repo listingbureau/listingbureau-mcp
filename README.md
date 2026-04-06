@@ -120,7 +120,7 @@ Add to `.cursor/mcp.json` (project-scoped) or `~/.cursor/mcp.json` (global):
 Run the server via npx and configure your client to connect over stdio:
 
 ```bash
-npx listingbureau-mcp
+npx -y listingbureau-mcp
 ```
 
 Set `LB_API_KEY` as an environment variable. See the [MCP specification](https://modelcontextprotocol.io) for client-specific config.
