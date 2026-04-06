@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.listingbureau/listingbureau-mcp",
   "title": "Listing Bureau - Amazon Organic Ranking MCP Server",
-  "description": "The only ranking-focused Amazon MCP server. Run organic ranking campaigns, track keyword positions, and monitor rank movement from Claude, Cursor, or any AI assistant. 21 tools across projects, scheduling, cost estimation, wallet, orders, and account management.",
+  "description": "Amazon organic ranking MCP server. Run campaigns, track positions, monitor rank movement.",
   "repository": {
     "url": "https://github.com/listingbureau/listingbureau-mcp",
     "source": "github"
