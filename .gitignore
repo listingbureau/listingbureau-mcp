@@ -6,3 +6,4 @@ dist/
 specs/
 *.mcpb
 CLAUDE.md
+.mcpregistry_*

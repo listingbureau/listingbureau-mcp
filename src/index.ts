@@ -17,11 +17,7 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 const pkg = require("../package.json") as { version: string };
 
-const apiKey = process.env.LB_API_KEY;
-if (!apiKey) {
-  console.error("LB_API_KEY environment variable is required");
-  process.exit(1);
-}
+const apiKey = process.env.LB_API_KEY ?? "";
 
 let baseUrl = "https://listingbureau.com";
 if (process.env.LB_BASE_URL) {
