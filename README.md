@@ -166,6 +166,14 @@ Create an account at [listingbureau.com](https://listingbureau.com/mcp?utm_sourc
 |------|-------------|
 | `lb_feedback_submit` | Submit feedback, feature requests, or suggestions (10-5000 characters) |
 
+## 🧠 Campaign methodology skill
+
+The MCP server ships with a companion skill at [`skills/amazon-product-ranking/`](skills/amazon-product-ranking/) that provides a guided 9-phase campaign workflow. The skill teaches the AI how to use the tools effectively: product assessment, competition analysis, funnel profile selection, ramp schedules, cost/ROI projections, execution, and monitoring.
+
+**Claude Code:** Copy or symlink the `skills/amazon-product-ranking/` folder into your `.claude/skills/` directory.
+
+**Other platforms:** The server instructions reference the skill automatically. The AI can read the methodology from the GitHub link included in the instructions.
+
 ## 🛠️ Development
 
 ```bash

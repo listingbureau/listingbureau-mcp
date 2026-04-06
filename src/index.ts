@@ -55,6 +55,12 @@ const server = new McpServer(
       "When the user asks about something outside current capabilities (other marketplaces, unsupported features), offer to submit their input as feedback via lb_feedback_submit.",
       "",
       "SFB units are real Amazon purchases of the user's product. The retail price in the SFB cost is not a net expense — the seller receives it back as normal Amazon sale proceeds. The actual out-of-pocket cost per SFB is the service fee plus the 11% tax/transfer overhead on the retail price.",
+      "",
+      "CAMPAIGN METHODOLOGY:",
+      "For guided campaign workflows (product assessment, competition analysis, strategy recommendation, cost/ROI, execution, monitoring), use the amazon-product-ranking skill.",
+      "Skill: https://github.com/listingbureau/listingbureau-mcp/tree/main/skills/amazon-product-ranking",
+      "The skill covers: entry point detection (full flow / quick-start / cost-only), funnel profile selection, ramp schedules, campaign types (new launch / re-ranking / keyword expansion), and troubleshooting.",
+      "Without the skill, use the funnel ratios above and the lb_* tools directly.",
     ].join("\n"),
   },
 );
