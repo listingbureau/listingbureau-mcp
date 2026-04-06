@@ -38,7 +38,7 @@ No brand_context needed. This skill works for any Amazon seller.
 Detect intent from how the user invokes the skill:
 
 - **Full guided flow (default):** User provides ASIN + keyword (or ASIN only). Run all 9 phases.
-- **Quick-start:** User provides ASIN + keyword + explicit volumes/profile/duration. Skip to Phase 5 confirmation + Phase 6-8.
+- **Quick-start:** User provides ASIN + keyword + explicit volumes/profile/duration. Run Phase 0a-0b (connection + existing campaign check), then skip to Phase 5 confirmation + Phase 6-8.
 - **Cost-only:** User asks about cost or estimates without asking to execute. Run Phases 0-6, stop before execution.
 
 Detection: if the user provides explicit SFB count + profile name, treat as quick-start. If they mention "cost", "estimate", "how much", "price" without "run" or "start" or "execute", treat as cost-only. Otherwise, full flow.
@@ -136,7 +136,7 @@ Ref: `references/cost-and-roi.md`.
 
 **6d. Agency comparison:** Only if adjusted net cost < $2,000, show typical agency pricing ($2,000-5,000+) for context.
 
-**6e. Wallet check:** Call `lb_wallet_get_balance`. Compare against required spend. If shortfall, offer: top up (Stripe link), switch to budget-first, or start with fewer keywords.
+**6e. Wallet check:** Call `lb_wallet_get_balance`. Compare against required spend. If shortfall, offer: top up (call `lb_wallet_topup` to generate Stripe checkout link), switch to budget-first, or start with fewer keywords.
 
 If cost-only mode: stop here and present the full analysis without executing.
 
@@ -157,7 +157,7 @@ After execution, show stock-out awareness note: running out of stock at a top po
 
 **8a. Monitoring plan:** Show checkpoint schedule (day 7, 14, 30, 56 for re-rank). Explain taper protocol (reduce 20%/week over 3-4 weeks, never stop cold). Tell user how to check: "Check my ranking campaign" or "show campaign stats".
 
-**8b. Progress framing:** When user checks stats later, frame results contextually:
+**8b. Progress framing:** When user checks stats, call `lb_projects_get_stats` to retrieve current position and execution data. Frame results contextually:
 - Position improving: show movement, confirm on-track
 - Position static early (<14 days): reassure, explain A10 needs sustained signals
 - Position static late (>14 days): flag, run diagnostic from troubleshooting reference

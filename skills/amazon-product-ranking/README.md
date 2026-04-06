@@ -30,7 +30,7 @@ Agent:  Product Assessment
 
 You:    Yes
 
-Agent:  Campaign live. 2 projects created, schedules set.
+Agent:  Campaign live. Project created, schedule set.
         Day 7 checkpoint: check position movement.
 ```
 
