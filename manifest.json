@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "listingbureau-mcp",
   "display_name": "Listing Bureau",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Amazon organic ranking MCP server. Run ranking campaigns, track keyword positions, and monitor rank movement.",
   "author": {
     "name": "Listing Bureau",
