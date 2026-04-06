@@ -30,7 +30,7 @@ Exploits the honeymoon phase. Front-loads signals while A10 is actively evaluati
 | 11-14 | 4 | 8 | 32 | 44 |
 | 15+ | 3 | 6 | 20 | 29 |
 
-**Total for 14-day launch (no maintenance):** 58 SFB, 112 ATC, 430 PGV
+**Total for 14-day launch (no maintenance):** ~59 SFB, ~118 ATC, ~458 PGV
 
 ### Launch Checkpoints
 
@@ -82,10 +82,10 @@ Prove the new ranking is sustainable. Gradually reduce signals while monitoring 
 | Calibration | 8-14 | 3 | 7 | 24 |
 | Calibration | 15-28 | 3 | 9 | 30 |
 | Acceleration | 29-56 | 4 | 12 | 40 |
-| Stabilization | 57-70 | 3 | 10 | 32 |
+| Stabilization | 57-70 | 3 | 9 | 30 |
 | Stabilization | 71-84 | 3 | 7 | 24 |
 
-**Total for 84-day re-rank:** ~280 SFB, 700 ATC, 2,300 PGV
+**Total for 84-day re-rank:** ~270 SFB, ~764 ATC, ~2,558 PGV
 
 ### Re-Ranking Checkpoints
 

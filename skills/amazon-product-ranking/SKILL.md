@@ -155,7 +155,7 @@ After execution, show stock-out awareness note: running out of stock at a top po
 
 ### Phase 8: Monitoring, Troubleshooting & Campaign Summary
 
-**8a. Monitoring plan:** Show checkpoint schedule (day 7, 14, 30, 56 for re-rank). Explain taper protocol (reduce 20%/week over 3-4 weeks, never stop cold). Tell user how to check: "Check my ranking campaign" or "show campaign stats".
+**8a. Monitoring plan:** Show checkpoint schedule (day 7, 14 for launch; day 14, 30, 56, 84 for re-rank). Explain taper protocol (reduce 20%/week over 3-4 weeks, never stop cold). Tell user how to check: "Check my ranking campaign" or "show campaign stats".
 
 **8b. Progress framing:** When user checks stats, call `lb_projects_get_stats` to retrieve current position and execution data. Frame results contextually:
 - Position improving: show movement, confirm on-track
