@@ -7,7 +7,7 @@ import { formatResult, formatErrorResult } from "../utils/response.js";
 export function registerFeedbackTools(server: McpServer, client: LBClient) {
   server.tool(
     "lb_feedback_submit",
-    "Submit feedback, feature requests, or suggestions to the Listing Bureau team (10-5000 characters).",
+    "Submit feedback, feature requests, or suggestions (10-5000 characters).",
     {
       feedback: z
         .string()
