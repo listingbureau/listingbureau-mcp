@@ -53,6 +53,8 @@ const server = new McpServer(
       "Avoid SFB-only schedules with near-100% conversion. Keep ratios consistent per keyword so traffic looks like natural shopper behavior.",
       "",
       "When the user asks about something outside current capabilities (other marketplaces, unsupported features), offer to submit their input as feedback via lb_feedback_submit.",
+      "",
+      "SFB units are real Amazon purchases of the user's product. The retail price in the SFB cost is not a net expense — the seller receives it back as normal Amazon sale proceeds. The actual out-of-pocket cost per SFB is the service fee plus the 11% tax/transfer overhead on the retail price.",
     ].join("\n"),
   },
 );

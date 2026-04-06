@@ -35,7 +35,8 @@ async function appendCostSummary(
     if (dated.length === 0 && !ongoing) return result;
 
     const sfbNote = "SFB costs use service fee only ($" + rates.sfb_service_fee.toFixed(2) +
-      "), matching backend balance check behavior. Use lb_estimate_cost with retail_price for full SFB cost.";
+      "), matching backend balance check behavior. Use lb_estimate_cost with retail_price for full SFB cost." +
+      " Note: the retail price portion is not a net expense — it returns as Amazon sale proceeds.";
 
     if (dated.length > 0 && ongoing) {
       // Mixed: dated entries + ongoing
