@@ -1,15 +1,2 @@
-# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
-
-startCommand:
-  type: stdio
-  configSchema:
-    type: object
-    required:
-      - lbApiKey
-    properties:
-      lbApiKey:
-        type: string
-        description: Listing Bureau API key from listingbureau.com
-  commandFunction:
-    |-
-      (config) => ({ command: 'npx', args: ['-y', 'listingbureau-mcp'], env: { LB_API_KEY: config.lbApiKey } })
+# Smithery configuration: https://smithery.ai/docs/config#smitheryyaml
+name: listingbureau-mcp
