@@ -7,15 +7,15 @@ Amazon's A10 algorithm determines organic search result ordering. Unlike Google 
 ## Key Ranking Factors (Weighted)
 
 ### Tier 1: Strongest Signals
-- **Sales velocity on the keyword** -- the number of purchases that originate from a specific keyword search. This is THE dominant factor. A10 tracks which keyword the buyer searched before purchasing.
+- **Sales volume on the keyword** -- the number of purchases that originate from a specific keyword search. This is THE dominant factor. A10 tracks which keyword the buyer searched before purchasing.
 - **Conversion rate (CVR)** -- purchases divided by page views for that keyword. High CVR tells Amazon the product satisfies search intent.
 - **Click-through rate (CTR)** -- clicks from search results divided by impressions. Driven by main image, title, price, rating, and review count.
 
 ### Tier 2: Strong Signals
 - **Add-to-cart rate** -- signals purchase intent even without immediate conversion. A10 treats this as a leading indicator of future sales.
-- **Page view velocity** -- increased browsing activity signals growing interest and relevance.
+- **Page view volume** -- increased browsing activity signals growing interest and relevance.
 - **External traffic** -- visits arriving from outside Amazon (social media, Google, direct links). A10 now weighs this positively as it brings net-new demand to the platform.
-- **Review velocity and rating** -- products accumulating positive reviews faster rank higher. Rating above 4.0 is baseline; above 4.5 is advantageous.
+- **Review accumulation rate and rating** -- products accumulating positive reviews faster rank higher. Rating above 4.0 is baseline; above 4.5 is advantageous.
 
 ### Tier 3: Supporting Signals
 - **Listing relevance** -- keyword presence in title, bullet points, backend search terms, and A+ content. Title keywords carry the most weight.
@@ -29,7 +29,7 @@ Amazon's A10 algorithm determines organic search result ordering. Unlike Google 
 When a new product is listed (or re-listed after extended absence), Amazon grants a **30-45 day temporary visibility boost**. During this window:
 
 - The product appears in search results at positions it hasn't "earned" through sales history
-- Amazon monitors CTR, CVR, and sales velocity more closely than usual
+- Amazon monitors CTR, CVR, and sales volume more closely than usual
 - Strong performance during the honeymoon leads to lasting organic rank
 - Weak performance during the honeymoon is difficult (not impossible) to recover from
 
@@ -64,7 +64,7 @@ A10 distinguishes between organic and artificial signals based on behavioral pat
 ### Ranking Momentum and Decay
 
 - **Momentum:** Consistent daily signals compound. Day 7 of a campaign is more effective than day 1 because A10 has accumulated evidence.
-- **Decay:** Sudden signal stops cause rank loss. The algorithm interprets a velocity drop as declining relevance. Always taper -- never stop cold.
+- **Decay:** Sudden signal stops cause rank loss. The algorithm interprets a volume drop as declining relevance. Always taper -- never stop cold.
 - **Recovery:** Regaining lost rank takes 2-3x the effort of the initial campaign because A10 has negative history to overcome.
 
 ## Position and Sales Relationship

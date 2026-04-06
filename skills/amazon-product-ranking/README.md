@@ -128,7 +128,7 @@ The skill runs 9 phases internally. The user invokes one command and the skill h
 
 ### Funnel Profiles
 
-The skill selects from 5 scientifically-calibrated funnel profiles based on product characteristics:
+The skill selects from 5 calibrated funnel profiles based on product characteristics:
 
 | Profile | SFB:ATC:PGV Ratio | Best For |
 |---------|:-----------------:|----------|
@@ -142,7 +142,7 @@ The skill selects from 5 scientifically-calibrated funnel profiles based on prod
 
 ## How to Rank on Amazon
 
-The Amazon A9 algorithm (now updated to A10) ranks products based on keyword-level sales velocity, conversion rate, and click-through rate. Products that generate consistent purchase signals from keyword searches rank higher than products that don't.
+The Amazon A9 algorithm (now updated to A10) ranks products based on keyword-level sales volume, conversion rate, and click-through rate. Products that generate consistent purchase signals from keyword searches rank higher than products that don't.
 
 The challenge: new products have no sales history. Products that lost rank need to overcome negative history. And the signal ratios (how many page views vs add-to-carts vs purchases) need to match natural shopping behavior for the product's category.
 

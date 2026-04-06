@@ -8,9 +8,9 @@
 
 Organic ranking campaigns for Amazon products, managed through your AI assistant.
 
-The only ranking-focused Amazon MCP server. Create ranking campaigns, set velocity schedules, track keyword positions, and monitor rank movement from Claude, Cursor, or any MCP-compatible client.
+The only ranking-focused Amazon MCP server. Create ranking campaigns, set campaign schedules, track keyword positions, and monitor rank movement from Claude, Cursor, or any MCP-compatible client.
 
-Built on the same infrastructure that moved 1,700+ products to page one. Median time: 48 days.
+Built on the same infrastructure associated with 1,700+ products reaching page one. Median time: 48 days. Past performance does not predict future results.
 
 <p align="center">
   <img src="assets/demo.gif" alt="listingbureau-mcp demo" width="800" />
@@ -35,10 +35,10 @@ Built on the same infrastructure that moved 1,700+ products to page one. Median 
 This MCP server connects your AI assistant to [Listing Bureau](https://listingbureau.com/mcp?utm_source=github&utm_medium=readme&utm_campaign=mcp)'s Amazon ranking infrastructure. Three signal types drive organic rank improvement:
 
 - **Search-Find-Buy (SFB)** signals the A10 algorithm that real shoppers searched for a keyword, found the product, and purchased it
-- **Add-to-Cart (ATC)** builds conversion velocity and purchase intent signals
+- **Add-to-Cart (ATC)** builds conversion intent and purchase intent signals
 - **Page Views (PGV)** generate session-level browsing behavior that supports organic discovery
 
-Your assistant handles the entire workflow: create a project for any ASIN and keyword, set a daily velocity schedule, estimate costs before committing, and pull position reports to track movement.
+Your assistant handles the entire workflow: create a project for any ASIN and keyword, set a daily campaign schedule, estimate costs before committing, and pull position reports to track movement.
 
 ## 📦 Quick start
 

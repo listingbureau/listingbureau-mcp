@@ -53,7 +53,7 @@ For every 1 SFB, send 1-1.5 ATC and 4-6 PGV.
 - Short-window campaigns (7-14 days) where speed matters
 - Categories with high natural conversion rates (consumables, low-cost items)
 
-**Why this ratio works:** Higher conversion ratio is sustainable for products with genuinely strong listings. During honeymoon, A10 is more forgiving of higher CVR because the product is new. This profile pushes maximum ranking velocity.
+**Why this ratio works:** Higher conversion ratio is sustainable for products with genuinely strong listings. During honeymoon, A10 is more forgiving of higher CVR because the product is new. This profile pushes maximum ranking impact.
 
 **Risk:** If the listing doesn't actually convert well organically, the high ratio will look artificial once campaign signals stop. Only use when the listing quality justifies the conversion rate.
 

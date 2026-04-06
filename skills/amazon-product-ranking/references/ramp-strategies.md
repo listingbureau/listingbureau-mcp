@@ -2,7 +2,7 @@
 
 ## Why Ramp?
 
-Starting a campaign at full volume on day 1 looks unnatural. Real products gain traction gradually -- word of mouth spreads, ads kick in, reviews accumulate. A10 expects velocity to build over time. Ramping mimics natural demand growth.
+Starting a campaign at full volume on day 1 looks unnatural. Real products gain traction gradually -- word of mouth spreads, ads kick in, reviews accumulate. A10 expects volume to build over time. Ramping mimics natural demand growth.
 
 Similarly, stopping cold looks unnatural. Products don't go from 10 sales/day to zero overnight unless something went wrong. Always taper down.
 
@@ -15,7 +15,7 @@ Exploits the honeymoon phase. Front-loads signals while A10 is actively evaluati
 | Day Range | Volume % | Purpose |
 |-----------|:--------:|---------|
 | Days 1-2 | 50% | Signal establishment -- introduce the product to the keyword |
-| Days 3-5 | 75% | Acceleration -- build velocity while honeymoon is active |
+| Days 3-5 | 75% | Acceleration -- build volume while honeymoon is active |
 | Days 6-10 | 100% | Peak -- maximum signals during the honeymoon evaluation window |
 | Days 11-14 | 80% | Begin taper -- start transitioning to organic momentum |
 | Day 15+ | 50-60% | Maintenance (optional) -- sustain gains while organic sales build |
@@ -46,7 +46,7 @@ No honeymoon available. A10 has existing (likely negative) history for this keyw
 
 ### Phase 1: Signal Calibration (Weeks 1-4)
 
-Rebuild baseline velocity. Show A10 that the product is generating consistent activity on this keyword again.
+Rebuild baseline volume. Show A10 that the product is generating consistent activity on this keyword again.
 
 | Day Range | Volume % | Purpose |
 |-----------|:--------:|---------|
@@ -124,7 +124,7 @@ Existing product with ranking history, targeting a new keyword. Partial honeymoo
 
 ## Taper Protocol
 
-**Rule: Never stop a campaign abruptly.** Sudden velocity drops signal to A10 that something went wrong.
+**Rule: Never stop a campaign abruptly.** Sudden volume drops signal to A10 that something went wrong.
 
 ### Standard Taper (3-4 Weeks)
 
