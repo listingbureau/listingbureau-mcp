@@ -112,7 +112,7 @@ export function registerProjectsTools(server: McpServer, client: LBClient) {
     async (params) => {
       try {
         const body: Record<string, unknown> = {};
-        if (params.active !== undefined) body.active = params.active;
+        if (params.active !== undefined) body.action = params.active ? "activate" : "pause";
 
         if (Object.keys(body).length === 0) {
           return formatErrorResult(
