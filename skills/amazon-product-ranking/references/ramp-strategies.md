@@ -154,6 +154,6 @@ When generating the actual per-day schedule for `lb_schedule_set`:
 
 1. **Round to whole numbers** -- signal counts must be integers
 2. **Minimum 1 of each type** -- never schedule 0 of any signal on an active day
-3. **Maintain ratio at peak; approximate at reduced volumes** -- at 100% volume, each day's SFB:ATC:PGV matches the profile ratio exactly. At reduced volumes (ramp-up and taper), apply the volume percentage to the peak values of each signal type independently, then round up. This produces slightly different daily ratios at non-peak levels, which is acceptable and adds natural variance
+3. **Maintain ratio at peak; approximate at reduced volumes** -- at 100% volume, each day's SFB:ATC:PGV matches the profile ratio exactly. At reduced volumes (ramp-up and taper), apply the volume percentage to the peak values of each signal type independently. Round fractional values to whole numbers. The worked examples in this file show the target values for each volume level
 4. **Add natural variance** -- vary daily volumes by +/-10-15% from the calculated amount (e.g., if target is 5 SFB, alternate between 4 and 6). Perfect consistency is itself a pattern.
 5. **Weekend adjustment** -- optionally reduce weekend volume by 10-20% (real shopping patterns show slight weekend dips in many categories). This is a refinement, not a requirement.
