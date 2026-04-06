@@ -164,7 +164,7 @@ Create an account at [listingbureau.com](https://listingbureau.com/mcp?utm_sourc
 
 | Tool | Description |
 |------|-------------|
-| `lb_feedback_submit` | Submit feedback (10-5000 characters) |
+| `lb_feedback_submit` | Submit feedback, feature requests, or suggestions (10-5000 characters) |
 
 ## 🛠️ Development
 
