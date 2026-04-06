@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>amazon-product-ranking — Skill Description Optimization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', Georgia, serif;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #faf9f5;
+            color: #141413;
+        }
+        h1 { font-family: 'Poppins', sans-serif; color: #141413; }
+        .explainer {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #e8e6dc;
+            color: #b0aea5;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+        .summary {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #e8e6dc;
+        }
+        .summary p { margin: 5px 0; }
+        .best { color: #788c5d; font-weight: bold; }
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+        }
+        table {
+            border-collapse: collapse;
+            background: white;
+            border: 1px solid #e8e6dc;
+            border-radius: 6px;
+            font-size: 12px;
+            min-width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #e8e6dc;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        th {
+            font-family: 'Poppins', sans-serif;
+            background: #141413;
+            color: #faf9f5;
+            font-weight: 500;
+        }
+        th.test-col {
+            background: #6a9bcc;
+        }
+        th.query-col { min-width: 200px; }
+        td.description {
+            font-family: monospace;
+            font-size: 11px;
+            word-wrap: break-word;
+            max-width: 400px;
+        }
+        td.result {
+            text-align: center;
+            font-size: 16px;
+            min-width: 40px;
+        }
+        td.test-result {
+            background: #f0f6fc;
+        }
+        .pass { color: #788c5d; }
+        .fail { color: #c44; }
+        .rate {
+            font-size: 9px;
+            color: #b0aea5;
+            display: block;
+        }
+        tr:hover { background: #faf9f5; }
+        .score {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .score-good { background: #eef2e8; color: #788c5d; }
+        .score-ok { background: #fef3c7; color: #d97706; }
+        .score-bad { background: #fceaea; color: #c44; }
+        .train-label { color: #b0aea5; font-size: 10px; }
+        .test-label { color: #6a9bcc; font-size: 10px; font-weight: bold; }
+        .best-row { background: #f5f8f2; }
+        th.positive-col { border-bottom: 3px solid #788c5d; }
+        th.negative-col { border-bottom: 3px solid #c44; }
+        th.test-col.positive-col { border-bottom: 3px solid #788c5d; }
+        th.test-col.negative-col { border-bottom: 3px solid #c44; }
+        .legend { font-family: 'Poppins', sans-serif; display: flex; gap: 20px; margin-bottom: 10px; font-size: 13px; align-items: center; }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-swatch { width: 16px; height: 16px; border-radius: 3px; display: inline-block; }
+        .swatch-positive { background: #141413; border-bottom: 3px solid #788c5d; }
+        .swatch-negative { background: #141413; border-bottom: 3px solid #c44; }
+        .swatch-test { background: #6a9bcc; }
+        .swatch-train { background: #141413; }
+    </style>
+</head>
+<body>
+    <h1>amazon-product-ranking — Skill Description Optimization</h1>
+    <div class="explainer">
+        <strong>Optimizing your skill's description.</strong> This page updates automatically as Claude tests different versions of your skill's description. Each row is an iteration — a new description attempt. The columns show test queries: green checkmarks mean the skill triggered correctly (or correctly didn't trigger), red crosses mean it got it wrong. The "Train" score shows performance on queries used to improve the description; the "Test" score shows performance on held-out queries the optimizer hasn't seen. When it's done, Claude will apply the best-performing description to your skill.
+    </div>
+
+    <div class="summary">
+        <p><strong>Original:</strong> Invoke for ANY Amazon seller query about organic search ranking or product visibility in Amazon search results. Trigger signals: ASIN (B0...) plus ranking intent, page 1 goals, search position tracking, rank drops or recovery, ranking campaign setup, SFB (search-find-buy) parameters, cost or budget estimates for ranking, new product launch needing visibility, or expanding to international Amazon marketplaces (.co.uk, .de, .co.jp). Covers product assessment, competition analysis, campaign strategy with ramp schedules, cost/ROI projections, execution via Listing Bureau MCP, and rank monitoring. NOT for: PPC/sponsored ads, listing copy rewrites, FBA fees, brand registry, or supplier sourcing.</p>
+        <p class="best"><strong>Best:</strong> Invoke this skill for Amazon ranking campaigns powered by Listing Bureau — organic product visibility via search-find-buy (SFB), not PPC. Use for: setting up a ranking campaign for any ASIN, checking or topping up wallet balance, troubleshooting a stalled campaign, recovering rank after a stockout or drop, launching in the honeymoon window, comparing keyword cost and ROI, budget-backward planning, or monitoring campaign progress. The skill handles SFB/ATC/PGV ratios, funnel profiles, and ramp schedules across all Amazon marketplaces. Skip for PPC optimization, listing copy rewrites, FBA costs, or brand registry.</p>
+        <p><strong>Best Score:</strong> 4/6 (test)</p>
+        <p><strong>Iterations:</strong> 5 | <strong>Train:</strong> 17 | <strong>Test:</strong> 6</p>
+    </div>
+
+    <div class="legend">
+        <span style="font-weight:600">Query columns:</span>
+        <span class="legend-item"><span class="legend-swatch swatch-positive"></span> Should trigger</span>
+        <span class="legend-item"><span class="legend-swatch swatch-negative"></span> Should NOT trigger</span>
+        <span class="legend-item"><span class="legend-swatch swatch-train"></span> Train</span>
+        <span class="legend-item"><span class="legend-swatch swatch-test"></span> Test</span>
+    </div>
+
+    <div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Iter</th>
+                <th>Train</th>
+                <th>Test</th>
+                <th class="query-col">Description</th>
+                <th class="positive-col">My ranking campaign for B004U3Y8OM has been running for 30 days but position hasn&#x27;t improved. The SFB:ATC:PGV ratio is 1:2:8 on standard profile. Can you run the troubleshooting diagnostic and check if I need to adjust the volume or switch profiles?</th>
+                <th class="positive-col">Compare the cost of ranking B08CS95K8L for 3 different keywords: &quot;nonstick frying pan&quot;, &quot;ceramic frying pan&quot;, and &quot;best frying pan for eggs&quot;. Give me individual cost breakdowns and a combined multi-keyword campaign estimate. I want to see which keyword gives the best ROI.</th>
+                <th class="positive-col">My wallet balance is running low and I have an active campaign on B0GKR3D7SZ with 5 days left. Check my current balance, calculate how much I need to finish the campaign, and generate a top-up link if there&#x27;s a shortfall.</th>
+                <th class="positive-col">I need to rank B0CF2DJHFQ for &quot;fabric shaver rechargeable&quot; on amazon.co.uk. I know SFB isn&#x27;t available in the UK so it&#x27;ll be ATC+PGV only. Set up the campaign with adjusted ratios for the UK marketplace.</th>
+                <th class="positive-col">I&#x27;m launching a new product B0D3RKXMQJ next week in the supplements category. It&#x27;s priced at $22 with zero reviews. Run the product assessment and tell me if there are any CRITICAL blockers before I start a ranking campaign, and what funnel profile makes sense.</th>
+                <th class="positive-col">I have a $300 budget for ranking B004U3Y8OM for &quot;vitamin d3 softgels&quot;. It&#x27;s a low-price consumable under $15. Work backward from my budget and show me 2-3 campaign options with different volume and duration tradeoffs.</th>
+                <th class="positive-col">I just launched B0GKR3D7SZ three days ago, it&#x27;s a leakproof tumbler in the Home &amp; Kitchen category. I need to capitalize on the honeymoon window before it closes. Can you run the full campaign setup with product assessment, competition analysis, and a ramp schedule for &quot;leakproof tumbler 40oz&quot;?</th>
+                <th class="positive-col">My product B085DVHQ57 was on page 1 for &quot;insulated water bottle with straw&quot; but dropped to page 4 last month after a stockout. I need a re-ranking campaign, probably conservative profile with the 60-90 day recovery timeline. Walk me through the full assessment and strategy.</th>
+                <th class="positive-col">I sell B09XS7JWHH (Sony headphones, ~$250) and want to know what it would cost to rank for &quot;noise canceling headphones&quot;. Don&#x27;t execute anything yet, just give me the full cost breakdown with SFB proceeds offset, ROI projection, and payback period.</th>
+                <th class="positive-col">I sell a seasonal product B0BXYZ1234 (Christmas ornaments). Peak season is November-December. It&#x27;s currently April. Should I start a ranking campaign now or wait? I want the full assessment with seasonality analysis and optimal timing recommendation.</th>
+                <th class="negative-col">How do I register a brand on Amazon?</th>
+                <th class="negative-col">Optimize my Amazon PPC advertising spend</th>
+                <th class="negative-col">Write a blog post about Amazon selling tips</th>
+                <th class="negative-col">Create a social media marketing plan</th>
+                <th class="negative-col">Help me write Amazon bullet points for my product</th>
+                <th class="negative-col">Analyze my website traffic</th>
+                <th class="negative-col">Write me a product listing for Amazon</th>
+                <th class="test-col positive-col">I want to expand B085DVHQ57 to a second keyword &quot;best water bottle for gym&quot;. I already have an active campaign on &quot;insulated water bottle with straw&quot;. Add this keyword with a separate ramp schedule, maybe weighted allocation since the first keyword is more important.</th>
+                <th class="test-col positive-col">Quick campaign setup needed: B08CS95K8L, &quot;nonstick frying pan 10 inch&quot;, 5 SFB per day, aggressive profile, 14 day launch. Skip the assessment and go straight to cost breakdown and execution.</th>
+                <th class="test-col positive-col">I started a ranking campaign for B0GKR3D7SZ two weeks ago and want to check progress. Pull the campaign stats, show me current position vs baseline, and tell me if I should start the taper protocol or keep the current volume.</th>
+                <th class="test-col negative-col">Help me set up a Shopify store</th>
+                <th class="test-col negative-col">Create a Google Ads campaign for my business</th>
+                <th class="test-col negative-col">What is my website&#x27;s SEO score?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="">
+                <td>1</td>
+                <td><span class="score score-bad">24/51</span></td>
+                <td><span class="score score-ok">9/18</span></td>
+                <td class="description">Invoke for ANY Amazon seller query about organic search ranking or product visibility in Amazon search results. Trigger signals: ASIN (B0...) plus ranking intent, page 1 goals, search position tracking, rank drops or recovery, ranking campaign setup, SFB (search-find-buy) parameters, cost or budget estimates for ranking, new product launch needing visibility, or expanding to international Amazon marketplaces (.co.uk, .de, .co.jp). Covers product assessment, competition analysis, campaign strategy with ramp schedules, cost/ROI projections, execution via Listing Bureau MCP, and rank monitoring. NOT for: PPC/sponsored ads, listing copy rewrites, FBA fees, brand registry, or supplier sourcing.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">1/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>2</td>
+                <td><span class="score score-bad">21/51</span></td>
+                <td><span class="score score-ok">10/18</span></td>
+                <td class="description">Use this skill for Amazon organic ranking via search-find-buy (SFB) and buyer behavior signals — not PPC. Covers the full campaign lifecycle for any ASIN: product readiness checks, competition analysis, keyword targeting, cost estimates, ramp schedules, campaign execution, wallet balance checks and top-ups, rank monitoring, and troubleshooting stalled campaigns. Triggers when a seller wants to climb Amazon search results organically, recover from a rank drop or stockout, launch a new product in its honeymoon window, or understand the cost of ranking for one or more keywords. Also handles budget-backward planning (working from a fixed spend), seasonal timing, and non-US marketplaces (.co.uk, .de, etc.). Not for PPC/sponsored ads, listing copy rewrites, FBA fees, or brand registry.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">1/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="best-row">
+                <td>3</td>
+                <td><span class="score score-bad">25/51</span></td>
+                <td><span class="score score-ok">11/18</span></td>
+                <td class="description">Invoke this skill for Amazon ranking campaigns powered by Listing Bureau — organic product visibility via search-find-buy (SFB), not PPC. Use for: setting up a ranking campaign for any ASIN, checking or topping up wallet balance, troubleshooting a stalled campaign, recovering rank after a stockout or drop, launching in the honeymoon window, comparing keyword cost and ROI, budget-backward planning, or monitoring campaign progress. The skill handles SFB/ATC/PGV ratios, funnel profiles, and ramp schedules across all Amazon marketplaces. Skip for PPC optimization, listing copy rewrites, FBA costs, or brand registry.</td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">2/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>4</td>
+                <td><span class="score score-bad">22/51</span></td>
+                <td><span class="score score-ok">10/18</span></td>
+                <td class="description">If an Amazon seller mentions an ASIN and wants to: rank a product for a keyword, set up or manage a ranking campaign, calculate ranking costs or ROI, recover rank after a stockout or drop, launch a new product for early organic visibility, check or top up campaign wallet balance, troubleshoot why search position isn&#x27;t improving, plan for seasonality, or expand to international marketplaces — use this skill. Covers organic buyer-signal campaigns (not PPC) for any ASIN and marketplace, from initial product assessment through execution and monitoring. Do not use for sponsored ads, listing copy rewrites, FBA logistics, or brand registry.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">1/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>5</td>
+                <td><span class="score score-bad">23/51</span></td>
+                <td><span class="score score-ok">10/18</span></td>
+                <td class="description">Use when an Amazon seller wants to improve organic product rankings, run or manage ranking campaigns, or plan the cost and strategy involved — whether they intend to execute now or just estimate. Invoke for: SFB/ATC/PGV campaign setup, rank recovery after a stockout, new product honeymoon launches, keyword cost breakdowns and ROI projections, multi-keyword comparisons, campaign wallet checks or top-ups, troubleshooting why search position isn&#x27;t moving, seasonal timing, and international marketplace campaigns. Powered by Listing Bureau MCP. Not for PPC/sponsored ads, listing copy rewrites, FBA logistics, or brand registry.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">1/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+</body>
+</html>

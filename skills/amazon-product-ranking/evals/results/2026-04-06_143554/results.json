@@ -1,0 +1,1710 @@
+{
+  "exit_reason": "max_iterations (5)",
+  "original_description": "Invoke for ANY Amazon seller query about organic search ranking or product visibility in Amazon search results. Trigger signals: ASIN (B0...) plus ranking intent, page 1 goals, search position tracking, rank drops or recovery, ranking campaign setup, SFB (search-find-buy) parameters, cost or budget estimates for ranking, new product launch needing visibility, or expanding to international Amazon marketplaces (.co.uk, .de, .co.jp). Covers product assessment, competition analysis, campaign strategy with ramp schedules, cost/ROI projections, execution via Listing Bureau MCP, and rank monitoring. NOT for: PPC/sponsored ads, listing copy rewrites, FBA fees, brand registry, or supplier sourcing.",
+  "best_description": "Invoke this skill for Amazon ranking campaigns powered by Listing Bureau \u2014 organic product visibility via search-find-buy (SFB), not PPC. Use for: setting up a ranking campaign for any ASIN, checking or topping up wallet balance, troubleshooting a stalled campaign, recovering rank after a stockout or drop, launching in the honeymoon window, comparing keyword cost and ROI, budget-backward planning, or monitoring campaign progress. The skill handles SFB/ATC/PGV ratios, funnel profiles, and ramp schedules across all Amazon marketplaces. Skip for PPC optimization, listing copy rewrites, FBA costs, or brand registry.",
+  "best_score": "4/6",
+  "best_train_score": "7/17",
+  "best_test_score": "4/6",
+  "final_description": "Use when an Amazon seller wants to improve organic product rankings, run or manage ranking campaigns, or plan the cost and strategy involved \u2014 whether they intend to execute now or just estimate. Invoke for: SFB/ATC/PGV campaign setup, rank recovery after a stockout, new product honeymoon launches, keyword cost breakdowns and ROI projections, multi-keyword comparisons, campaign wallet checks or top-ups, troubleshooting why search position isn't moving, seasonal timing, and international marketplace campaigns. Powered by Listing Bureau MCP. Not for PPC/sponsored ads, listing copy rewrites, FBA logistics, or brand registry.",
+  "iterations_run": 5,
+  "holdout": 0.3,
+  "train_size": 17,
+  "test_size": 6,
+  "history": [
+    {
+      "iteration": 1,
+      "description": "Invoke for ANY Amazon seller query about organic search ranking or product visibility in Amazon search results. Trigger signals: ASIN (B0...) plus ranking intent, page 1 goals, search position tracking, rank drops or recovery, ranking campaign setup, SFB (search-find-buy) parameters, cost or budget estimates for ranking, new product launch needing visibility, or expanding to international Amazon marketplaces (.co.uk, .de, .co.jp). Covers product assessment, competition analysis, campaign strategy with ramp schedules, cost/ROI projections, execution via Listing Bureau MCP, and rank monitoring. NOT for: PPC/sponsored ads, listing copy rewrites, FBA fees, brand registry, or supplier sourcing.",
+      "train_passed": 7,
+      "train_failed": 10,
+      "train_total": 17,
+      "train_results": [
+        {
+          "query": "My ranking campaign for B004U3Y8OM has been running for 30 days but position hasn't improved. The SFB:ATC:PGV ratio is 1:2:8 on standard profile. Can you run the troubleshooting diagnostic and check if I need to adjust the volume or switch profiles?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Compare the cost of ranking B08CS95K8L for 3 different keywords: \"nonstick frying pan\", \"ceramic frying pan\", and \"best frying pan for eggs\". Give me individual cost breakdowns and a combined multi-keyword campaign estimate. I want to see which keyword gives the best ROI.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My wallet balance is running low and I have an active campaign on B0GKR3D7SZ with 5 days left. Check my current balance, calculate how much I need to finish the campaign, and generate a top-up link if there's a shortfall.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to rank B0CF2DJHFQ for \"fabric shaver rechargeable\" on amazon.co.uk. I know SFB isn't available in the UK so it'll be ATC+PGV only. Set up the campaign with adjusted ratios for the UK marketplace.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm launching a new product B0D3RKXMQJ next week in the supplements category. It's priced at $22 with zero reviews. Run the product assessment and tell me if there are any CRITICAL blockers before I start a ranking campaign, and what funnel profile makes sense.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have a $300 budget for ranking B004U3Y8OM for \"vitamin d3 softgels\". It's a low-price consumable under $15. Work backward from my budget and show me 2-3 campaign options with different volume and duration tradeoffs.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I just launched B0GKR3D7SZ three days ago, it's a leakproof tumbler in the Home & Kitchen category. I need to capitalize on the honeymoon window before it closes. Can you run the full campaign setup with product assessment, competition analysis, and a ramp schedule for \"leakproof tumbler 40oz\"?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My product B085DVHQ57 was on page 1 for \"insulated water bottle with straw\" but dropped to page 4 last month after a stockout. I need a re-ranking campaign, probably conservative profile with the 60-90 day recovery timeline. Walk me through the full assessment and strategy.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell B09XS7JWHH (Sony headphones, ~$250) and want to know what it would cost to rank for \"noise canceling headphones\". Don't execute anything yet, just give me the full cost breakdown with SFB proceeds offset, ROI projection, and payback period.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell a seasonal product B0BXYZ1234 (Christmas ornaments). Peak season is November-December. It's currently April. Should I start a ranking campaign now or wait? I want the full assessment with seasonality analysis and optimal timing recommendation.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I register a brand on Amazon?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Optimize my Amazon PPC advertising spend",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write a blog post about Amazon selling tips",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a social media marketing plan",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Help me write Amazon bullet points for my product",
+          "should_trigger": false,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Analyze my website traffic",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write me a product listing for Amazon",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 3,
+      "test_failed": 3,
+      "test_total": 6,
+      "test_results": [
+        {
+          "query": "I want to expand B085DVHQ57 to a second keyword \"best water bottle for gym\". I already have an active campaign on \"insulated water bottle with straw\". Add this keyword with a separate ramp schedule, maybe weighted allocation since the first keyword is more important.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Quick campaign setup needed: B08CS95K8L, \"nonstick frying pan 10 inch\", 5 SFB per day, aggressive profile, 14 day launch. Skip the assessment and go straight to cost breakdown and execution.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I started a ranking campaign for B0GKR3D7SZ two weeks ago and want to check progress. Pull the campaign stats, show me current position vs baseline, and tell me if I should start the taper protocol or keep the current volume.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me set up a Shopify store",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a Google Ads campaign for my business",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "What is my website's SEO score?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 7,
+      "failed": 10,
+      "total": 17,
+      "results": [
+        {
+          "query": "My ranking campaign for B004U3Y8OM has been running for 30 days but position hasn't improved. The SFB:ATC:PGV ratio is 1:2:8 on standard profile. Can you run the troubleshooting diagnostic and check if I need to adjust the volume or switch profiles?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Compare the cost of ranking B08CS95K8L for 3 different keywords: \"nonstick frying pan\", \"ceramic frying pan\", and \"best frying pan for eggs\". Give me individual cost breakdowns and a combined multi-keyword campaign estimate. I want to see which keyword gives the best ROI.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My wallet balance is running low and I have an active campaign on B0GKR3D7SZ with 5 days left. Check my current balance, calculate how much I need to finish the campaign, and generate a top-up link if there's a shortfall.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to rank B0CF2DJHFQ for \"fabric shaver rechargeable\" on amazon.co.uk. I know SFB isn't available in the UK so it'll be ATC+PGV only. Set up the campaign with adjusted ratios for the UK marketplace.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm launching a new product B0D3RKXMQJ next week in the supplements category. It's priced at $22 with zero reviews. Run the product assessment and tell me if there are any CRITICAL blockers before I start a ranking campaign, and what funnel profile makes sense.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have a $300 budget for ranking B004U3Y8OM for \"vitamin d3 softgels\". It's a low-price consumable under $15. Work backward from my budget and show me 2-3 campaign options with different volume and duration tradeoffs.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I just launched B0GKR3D7SZ three days ago, it's a leakproof tumbler in the Home & Kitchen category. I need to capitalize on the honeymoon window before it closes. Can you run the full campaign setup with product assessment, competition analysis, and a ramp schedule for \"leakproof tumbler 40oz\"?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My product B085DVHQ57 was on page 1 for \"insulated water bottle with straw\" but dropped to page 4 last month after a stockout. I need a re-ranking campaign, probably conservative profile with the 60-90 day recovery timeline. Walk me through the full assessment and strategy.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell B09XS7JWHH (Sony headphones, ~$250) and want to know what it would cost to rank for \"noise canceling headphones\". Don't execute anything yet, just give me the full cost breakdown with SFB proceeds offset, ROI projection, and payback period.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell a seasonal product B0BXYZ1234 (Christmas ornaments). Peak season is November-December. It's currently April. Should I start a ranking campaign now or wait? I want the full assessment with seasonality analysis and optimal timing recommendation.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I register a brand on Amazon?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Optimize my Amazon PPC advertising spend",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write a blog post about Amazon selling tips",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a social media marketing plan",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Help me write Amazon bullet points for my product",
+          "should_trigger": false,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Analyze my website traffic",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write me a product listing for Amazon",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "description": "Use this skill for Amazon organic ranking via search-find-buy (SFB) and buyer behavior signals \u2014 not PPC. Covers the full campaign lifecycle for any ASIN: product readiness checks, competition analysis, keyword targeting, cost estimates, ramp schedules, campaign execution, wallet balance checks and top-ups, rank monitoring, and troubleshooting stalled campaigns. Triggers when a seller wants to climb Amazon search results organically, recover from a rank drop or stockout, launch a new product in its honeymoon window, or understand the cost of ranking for one or more keywords. Also handles budget-backward planning (working from a fixed spend), seasonal timing, and non-US marketplaces (.co.uk, .de, etc.). Not for PPC/sponsored ads, listing copy rewrites, FBA fees, or brand registry.",
+      "train_passed": 7,
+      "train_failed": 10,
+      "train_total": 17,
+      "train_results": [
+        {
+          "query": "Compare the cost of ranking B08CS95K8L for 3 different keywords: \"nonstick frying pan\", \"ceramic frying pan\", and \"best frying pan for eggs\". Give me individual cost breakdowns and a combined multi-keyword campaign estimate. I want to see which keyword gives the best ROI.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to rank B0CF2DJHFQ for \"fabric shaver rechargeable\" on amazon.co.uk. I know SFB isn't available in the UK so it'll be ATC+PGV only. Set up the campaign with adjusted ratios for the UK marketplace.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My ranking campaign for B004U3Y8OM has been running for 30 days but position hasn't improved. The SFB:ATC:PGV ratio is 1:2:8 on standard profile. Can you run the troubleshooting diagnostic and check if I need to adjust the volume or switch profiles?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My wallet balance is running low and I have an active campaign on B0GKR3D7SZ with 5 days left. Check my current balance, calculate how much I need to finish the campaign, and generate a top-up link if there's a shortfall.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm launching a new product B0D3RKXMQJ next week in the supplements category. It's priced at $22 with zero reviews. Run the product assessment and tell me if there are any CRITICAL blockers before I start a ranking campaign, and what funnel profile makes sense.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have a $300 budget for ranking B004U3Y8OM for \"vitamin d3 softgels\". It's a low-price consumable under $15. Work backward from my budget and show me 2-3 campaign options with different volume and duration tradeoffs.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I just launched B0GKR3D7SZ three days ago, it's a leakproof tumbler in the Home & Kitchen category. I need to capitalize on the honeymoon window before it closes. Can you run the full campaign setup with product assessment, competition analysis, and a ramp schedule for \"leakproof tumbler 40oz\"?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell B09XS7JWHH (Sony headphones, ~$250) and want to know what it would cost to rank for \"noise canceling headphones\". Don't execute anything yet, just give me the full cost breakdown with SFB proceeds offset, ROI projection, and payback period.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell a seasonal product B0BXYZ1234 (Christmas ornaments). Peak season is November-December. It's currently April. Should I start a ranking campaign now or wait? I want the full assessment with seasonality analysis and optimal timing recommendation.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My product B085DVHQ57 was on page 1 for \"insulated water bottle with straw\" but dropped to page 4 last month after a stockout. I need a re-ranking campaign, probably conservative profile with the 60-90 day recovery timeline. Walk me through the full assessment and strategy.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I register a brand on Amazon?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a social media marketing plan",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write a blog post about Amazon selling tips",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Help me write Amazon bullet points for my product",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Optimize my Amazon PPC advertising spend",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Analyze my website traffic",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write me a product listing for Amazon",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 3,
+      "test_failed": 3,
+      "test_total": 6,
+      "test_results": [
+        {
+          "query": "I want to expand B085DVHQ57 to a second keyword \"best water bottle for gym\". I already have an active campaign on \"insulated water bottle with straw\". Add this keyword with a separate ramp schedule, maybe weighted allocation since the first keyword is more important.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I started a ranking campaign for B0GKR3D7SZ two weeks ago and want to check progress. Pull the campaign stats, show me current position vs baseline, and tell me if I should start the taper protocol or keep the current volume.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Quick campaign setup needed: B08CS95K8L, \"nonstick frying pan 10 inch\", 5 SFB per day, aggressive profile, 14 day launch. Skip the assessment and go straight to cost breakdown and execution.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me set up a Shopify store",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "What is my website's SEO score?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a Google Ads campaign for my business",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 7,
+      "failed": 10,
+      "total": 17,
+      "results": [
+        {
+          "query": "Compare the cost of ranking B08CS95K8L for 3 different keywords: \"nonstick frying pan\", \"ceramic frying pan\", and \"best frying pan for eggs\". Give me individual cost breakdowns and a combined multi-keyword campaign estimate. I want to see which keyword gives the best ROI.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to rank B0CF2DJHFQ for \"fabric shaver rechargeable\" on amazon.co.uk. I know SFB isn't available in the UK so it'll be ATC+PGV only. Set up the campaign with adjusted ratios for the UK marketplace.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My ranking campaign for B004U3Y8OM has been running for 30 days but position hasn't improved. The SFB:ATC:PGV ratio is 1:2:8 on standard profile. Can you run the troubleshooting diagnostic and check if I need to adjust the volume or switch profiles?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My wallet balance is running low and I have an active campaign on B0GKR3D7SZ with 5 days left. Check my current balance, calculate how much I need to finish the campaign, and generate a top-up link if there's a shortfall.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm launching a new product B0D3RKXMQJ next week in the supplements category. It's priced at $22 with zero reviews. Run the product assessment and tell me if there are any CRITICAL blockers before I start a ranking campaign, and what funnel profile makes sense.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have a $300 budget for ranking B004U3Y8OM for \"vitamin d3 softgels\". It's a low-price consumable under $15. Work backward from my budget and show me 2-3 campaign options with different volume and duration tradeoffs.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I just launched B0GKR3D7SZ three days ago, it's a leakproof tumbler in the Home & Kitchen category. I need to capitalize on the honeymoon window before it closes. Can you run the full campaign setup with product assessment, competition analysis, and a ramp schedule for \"leakproof tumbler 40oz\"?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell B09XS7JWHH (Sony headphones, ~$250) and want to know what it would cost to rank for \"noise canceling headphones\". Don't execute anything yet, just give me the full cost breakdown with SFB proceeds offset, ROI projection, and payback period.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell a seasonal product B0BXYZ1234 (Christmas ornaments). Peak season is November-December. It's currently April. Should I start a ranking campaign now or wait? I want the full assessment with seasonality analysis and optimal timing recommendation.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My product B085DVHQ57 was on page 1 for \"insulated water bottle with straw\" but dropped to page 4 last month after a stockout. I need a re-ranking campaign, probably conservative profile with the 60-90 day recovery timeline. Walk me through the full assessment and strategy.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I register a brand on Amazon?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a social media marketing plan",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write a blog post about Amazon selling tips",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Help me write Amazon bullet points for my product",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Optimize my Amazon PPC advertising spend",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Analyze my website traffic",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write me a product listing for Amazon",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "description": "Invoke this skill for Amazon ranking campaigns powered by Listing Bureau \u2014 organic product visibility via search-find-buy (SFB), not PPC. Use for: setting up a ranking campaign for any ASIN, checking or topping up wallet balance, troubleshooting a stalled campaign, recovering rank after a stockout or drop, launching in the honeymoon window, comparing keyword cost and ROI, budget-backward planning, or monitoring campaign progress. The skill handles SFB/ATC/PGV ratios, funnel profiles, and ramp schedules across all Amazon marketplaces. Skip for PPC optimization, listing copy rewrites, FBA costs, or brand registry.",
+      "train_passed": 7,
+      "train_failed": 10,
+      "train_total": 17,
+      "train_results": [
+        {
+          "query": "My ranking campaign for B004U3Y8OM has been running for 30 days but position hasn't improved. The SFB:ATC:PGV ratio is 1:2:8 on standard profile. Can you run the troubleshooting diagnostic and check if I need to adjust the volume or switch profiles?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Compare the cost of ranking B08CS95K8L for 3 different keywords: \"nonstick frying pan\", \"ceramic frying pan\", and \"best frying pan for eggs\". Give me individual cost breakdowns and a combined multi-keyword campaign estimate. I want to see which keyword gives the best ROI.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to rank B0CF2DJHFQ for \"fabric shaver rechargeable\" on amazon.co.uk. I know SFB isn't available in the UK so it'll be ATC+PGV only. Set up the campaign with adjusted ratios for the UK marketplace.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My wallet balance is running low and I have an active campaign on B0GKR3D7SZ with 5 days left. Check my current balance, calculate how much I need to finish the campaign, and generate a top-up link if there's a shortfall.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm launching a new product B0D3RKXMQJ next week in the supplements category. It's priced at $22 with zero reviews. Run the product assessment and tell me if there are any CRITICAL blockers before I start a ranking campaign, and what funnel profile makes sense.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have a $300 budget for ranking B004U3Y8OM for \"vitamin d3 softgels\". It's a low-price consumable under $15. Work backward from my budget and show me 2-3 campaign options with different volume and duration tradeoffs.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I just launched B0GKR3D7SZ three days ago, it's a leakproof tumbler in the Home & Kitchen category. I need to capitalize on the honeymoon window before it closes. Can you run the full campaign setup with product assessment, competition analysis, and a ramp schedule for \"leakproof tumbler 40oz\"?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My product B085DVHQ57 was on page 1 for \"insulated water bottle with straw\" but dropped to page 4 last month after a stockout. I need a re-ranking campaign, probably conservative profile with the 60-90 day recovery timeline. Walk me through the full assessment and strategy.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell B09XS7JWHH (Sony headphones, ~$250) and want to know what it would cost to rank for \"noise canceling headphones\". Don't execute anything yet, just give me the full cost breakdown with SFB proceeds offset, ROI projection, and payback period.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell a seasonal product B0BXYZ1234 (Christmas ornaments). Peak season is November-December. It's currently April. Should I start a ranking campaign now or wait? I want the full assessment with seasonality analysis and optimal timing recommendation.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I register a brand on Amazon?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write a blog post about Amazon selling tips",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a social media marketing plan",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Optimize my Amazon PPC advertising spend",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Analyze my website traffic",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Help me write Amazon bullet points for my product",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write me a product listing for Amazon",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 2,
+      "test_total": 6,
+      "test_results": [
+        {
+          "query": "I want to expand B085DVHQ57 to a second keyword \"best water bottle for gym\". I already have an active campaign on \"insulated water bottle with straw\". Add this keyword with a separate ramp schedule, maybe weighted allocation since the first keyword is more important.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I started a ranking campaign for B0GKR3D7SZ two weeks ago and want to check progress. Pull the campaign stats, show me current position vs baseline, and tell me if I should start the taper protocol or keep the current volume.",
+          "should_trigger": true,
+          "trigger_rate": 0.6666666666666666,
+          "triggers": 2,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Quick campaign setup needed: B08CS95K8L, \"nonstick frying pan 10 inch\", 5 SFB per day, aggressive profile, 14 day launch. Skip the assessment and go straight to cost breakdown and execution.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me set up a Shopify store",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "What is my website's SEO score?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a Google Ads campaign for my business",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 7,
+      "failed": 10,
+      "total": 17,
+      "results": [
+        {
+          "query": "My ranking campaign for B004U3Y8OM has been running for 30 days but position hasn't improved. The SFB:ATC:PGV ratio is 1:2:8 on standard profile. Can you run the troubleshooting diagnostic and check if I need to adjust the volume or switch profiles?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Compare the cost of ranking B08CS95K8L for 3 different keywords: \"nonstick frying pan\", \"ceramic frying pan\", and \"best frying pan for eggs\". Give me individual cost breakdowns and a combined multi-keyword campaign estimate. I want to see which keyword gives the best ROI.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to rank B0CF2DJHFQ for \"fabric shaver rechargeable\" on amazon.co.uk. I know SFB isn't available in the UK so it'll be ATC+PGV only. Set up the campaign with adjusted ratios for the UK marketplace.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My wallet balance is running low and I have an active campaign on B0GKR3D7SZ with 5 days left. Check my current balance, calculate how much I need to finish the campaign, and generate a top-up link if there's a shortfall.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm launching a new product B0D3RKXMQJ next week in the supplements category. It's priced at $22 with zero reviews. Run the product assessment and tell me if there are any CRITICAL blockers before I start a ranking campaign, and what funnel profile makes sense.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have a $300 budget for ranking B004U3Y8OM for \"vitamin d3 softgels\". It's a low-price consumable under $15. Work backward from my budget and show me 2-3 campaign options with different volume and duration tradeoffs.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I just launched B0GKR3D7SZ three days ago, it's a leakproof tumbler in the Home & Kitchen category. I need to capitalize on the honeymoon window before it closes. Can you run the full campaign setup with product assessment, competition analysis, and a ramp schedule for \"leakproof tumbler 40oz\"?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My product B085DVHQ57 was on page 1 for \"insulated water bottle with straw\" but dropped to page 4 last month after a stockout. I need a re-ranking campaign, probably conservative profile with the 60-90 day recovery timeline. Walk me through the full assessment and strategy.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell B09XS7JWHH (Sony headphones, ~$250) and want to know what it would cost to rank for \"noise canceling headphones\". Don't execute anything yet, just give me the full cost breakdown with SFB proceeds offset, ROI projection, and payback period.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell a seasonal product B0BXYZ1234 (Christmas ornaments). Peak season is November-December. It's currently April. Should I start a ranking campaign now or wait? I want the full assessment with seasonality analysis and optimal timing recommendation.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I register a brand on Amazon?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write a blog post about Amazon selling tips",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a social media marketing plan",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Optimize my Amazon PPC advertising spend",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Analyze my website traffic",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Help me write Amazon bullet points for my product",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write me a product listing for Amazon",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 4,
+      "description": "If an Amazon seller mentions an ASIN and wants to: rank a product for a keyword, set up or manage a ranking campaign, calculate ranking costs or ROI, recover rank after a stockout or drop, launch a new product for early organic visibility, check or top up campaign wallet balance, troubleshoot why search position isn't improving, plan for seasonality, or expand to international marketplaces \u2014 use this skill. Covers organic buyer-signal campaigns (not PPC) for any ASIN and marketplace, from initial product assessment through execution and monitoring. Do not use for sponsored ads, listing copy rewrites, FBA logistics, or brand registry.",
+      "train_passed": 7,
+      "train_failed": 10,
+      "train_total": 17,
+      "train_results": [
+        {
+          "query": "My ranking campaign for B004U3Y8OM has been running for 30 days but position hasn't improved. The SFB:ATC:PGV ratio is 1:2:8 on standard profile. Can you run the troubleshooting diagnostic and check if I need to adjust the volume or switch profiles?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Compare the cost of ranking B08CS95K8L for 3 different keywords: \"nonstick frying pan\", \"ceramic frying pan\", and \"best frying pan for eggs\". Give me individual cost breakdowns and a combined multi-keyword campaign estimate. I want to see which keyword gives the best ROI.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to rank B0CF2DJHFQ for \"fabric shaver rechargeable\" on amazon.co.uk. I know SFB isn't available in the UK so it'll be ATC+PGV only. Set up the campaign with adjusted ratios for the UK marketplace.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My wallet balance is running low and I have an active campaign on B0GKR3D7SZ with 5 days left. Check my current balance, calculate how much I need to finish the campaign, and generate a top-up link if there's a shortfall.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm launching a new product B0D3RKXMQJ next week in the supplements category. It's priced at $22 with zero reviews. Run the product assessment and tell me if there are any CRITICAL blockers before I start a ranking campaign, and what funnel profile makes sense.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have a $300 budget for ranking B004U3Y8OM for \"vitamin d3 softgels\". It's a low-price consumable under $15. Work backward from my budget and show me 2-3 campaign options with different volume and duration tradeoffs.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I just launched B0GKR3D7SZ three days ago, it's a leakproof tumbler in the Home & Kitchen category. I need to capitalize on the honeymoon window before it closes. Can you run the full campaign setup with product assessment, competition analysis, and a ramp schedule for \"leakproof tumbler 40oz\"?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My product B085DVHQ57 was on page 1 for \"insulated water bottle with straw\" but dropped to page 4 last month after a stockout. I need a re-ranking campaign, probably conservative profile with the 60-90 day recovery timeline. Walk me through the full assessment and strategy.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell B09XS7JWHH (Sony headphones, ~$250) and want to know what it would cost to rank for \"noise canceling headphones\". Don't execute anything yet, just give me the full cost breakdown with SFB proceeds offset, ROI projection, and payback period.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell a seasonal product B0BXYZ1234 (Christmas ornaments). Peak season is November-December. It's currently April. Should I start a ranking campaign now or wait? I want the full assessment with seasonality analysis and optimal timing recommendation.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Write a blog post about Amazon selling tips",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I register a brand on Amazon?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a social media marketing plan",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Optimize my Amazon PPC advertising spend",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Analyze my website traffic",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Help me write Amazon bullet points for my product",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write me a product listing for Amazon",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 3,
+      "test_failed": 3,
+      "test_total": 6,
+      "test_results": [
+        {
+          "query": "I want to expand B085DVHQ57 to a second keyword \"best water bottle for gym\". I already have an active campaign on \"insulated water bottle with straw\". Add this keyword with a separate ramp schedule, maybe weighted allocation since the first keyword is more important.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Quick campaign setup needed: B08CS95K8L, \"nonstick frying pan 10 inch\", 5 SFB per day, aggressive profile, 14 day launch. Skip the assessment and go straight to cost breakdown and execution.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I started a ranking campaign for B0GKR3D7SZ two weeks ago and want to check progress. Pull the campaign stats, show me current position vs baseline, and tell me if I should start the taper protocol or keep the current volume.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me set up a Shopify store",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "What is my website's SEO score?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a Google Ads campaign for my business",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 7,
+      "failed": 10,
+      "total": 17,
+      "results": [
+        {
+          "query": "My ranking campaign for B004U3Y8OM has been running for 30 days but position hasn't improved. The SFB:ATC:PGV ratio is 1:2:8 on standard profile. Can you run the troubleshooting diagnostic and check if I need to adjust the volume or switch profiles?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Compare the cost of ranking B08CS95K8L for 3 different keywords: \"nonstick frying pan\", \"ceramic frying pan\", and \"best frying pan for eggs\". Give me individual cost breakdowns and a combined multi-keyword campaign estimate. I want to see which keyword gives the best ROI.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to rank B0CF2DJHFQ for \"fabric shaver rechargeable\" on amazon.co.uk. I know SFB isn't available in the UK so it'll be ATC+PGV only. Set up the campaign with adjusted ratios for the UK marketplace.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My wallet balance is running low and I have an active campaign on B0GKR3D7SZ with 5 days left. Check my current balance, calculate how much I need to finish the campaign, and generate a top-up link if there's a shortfall.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm launching a new product B0D3RKXMQJ next week in the supplements category. It's priced at $22 with zero reviews. Run the product assessment and tell me if there are any CRITICAL blockers before I start a ranking campaign, and what funnel profile makes sense.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have a $300 budget for ranking B004U3Y8OM for \"vitamin d3 softgels\". It's a low-price consumable under $15. Work backward from my budget and show me 2-3 campaign options with different volume and duration tradeoffs.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I just launched B0GKR3D7SZ three days ago, it's a leakproof tumbler in the Home & Kitchen category. I need to capitalize on the honeymoon window before it closes. Can you run the full campaign setup with product assessment, competition analysis, and a ramp schedule for \"leakproof tumbler 40oz\"?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My product B085DVHQ57 was on page 1 for \"insulated water bottle with straw\" but dropped to page 4 last month after a stockout. I need a re-ranking campaign, probably conservative profile with the 60-90 day recovery timeline. Walk me through the full assessment and strategy.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell B09XS7JWHH (Sony headphones, ~$250) and want to know what it would cost to rank for \"noise canceling headphones\". Don't execute anything yet, just give me the full cost breakdown with SFB proceeds offset, ROI projection, and payback period.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell a seasonal product B0BXYZ1234 (Christmas ornaments). Peak season is November-December. It's currently April. Should I start a ranking campaign now or wait? I want the full assessment with seasonality analysis and optimal timing recommendation.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Write a blog post about Amazon selling tips",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I register a brand on Amazon?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a social media marketing plan",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Optimize my Amazon PPC advertising spend",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Analyze my website traffic",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Help me write Amazon bullet points for my product",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write me a product listing for Amazon",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 5,
+      "description": "Use when an Amazon seller wants to improve organic product rankings, run or manage ranking campaigns, or plan the cost and strategy involved \u2014 whether they intend to execute now or just estimate. Invoke for: SFB/ATC/PGV campaign setup, rank recovery after a stockout, new product honeymoon launches, keyword cost breakdowns and ROI projections, multi-keyword comparisons, campaign wallet checks or top-ups, troubleshooting why search position isn't moving, seasonal timing, and international marketplace campaigns. Powered by Listing Bureau MCP. Not for PPC/sponsored ads, listing copy rewrites, FBA logistics, or brand registry.",
+      "train_passed": 7,
+      "train_failed": 10,
+      "train_total": 17,
+      "train_results": [
+        {
+          "query": "Compare the cost of ranking B08CS95K8L for 3 different keywords: \"nonstick frying pan\", \"ceramic frying pan\", and \"best frying pan for eggs\". Give me individual cost breakdowns and a combined multi-keyword campaign estimate. I want to see which keyword gives the best ROI.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to rank B0CF2DJHFQ for \"fabric shaver rechargeable\" on amazon.co.uk. I know SFB isn't available in the UK so it'll be ATC+PGV only. Set up the campaign with adjusted ratios for the UK marketplace.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My ranking campaign for B004U3Y8OM has been running for 30 days but position hasn't improved. The SFB:ATC:PGV ratio is 1:2:8 on standard profile. Can you run the troubleshooting diagnostic and check if I need to adjust the volume or switch profiles?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My wallet balance is running low and I have an active campaign on B0GKR3D7SZ with 5 days left. Check my current balance, calculate how much I need to finish the campaign, and generate a top-up link if there's a shortfall.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm launching a new product B0D3RKXMQJ next week in the supplements category. It's priced at $22 with zero reviews. Run the product assessment and tell me if there are any CRITICAL blockers before I start a ranking campaign, and what funnel profile makes sense.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have a $300 budget for ranking B004U3Y8OM for \"vitamin d3 softgels\". It's a low-price consumable under $15. Work backward from my budget and show me 2-3 campaign options with different volume and duration tradeoffs.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I just launched B0GKR3D7SZ three days ago, it's a leakproof tumbler in the Home & Kitchen category. I need to capitalize on the honeymoon window before it closes. Can you run the full campaign setup with product assessment, competition analysis, and a ramp schedule for \"leakproof tumbler 40oz\"?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My product B085DVHQ57 was on page 1 for \"insulated water bottle with straw\" but dropped to page 4 last month after a stockout. I need a re-ranking campaign, probably conservative profile with the 60-90 day recovery timeline. Walk me through the full assessment and strategy.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell B09XS7JWHH (Sony headphones, ~$250) and want to know what it would cost to rank for \"noise canceling headphones\". Don't execute anything yet, just give me the full cost breakdown with SFB proceeds offset, ROI projection, and payback period.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell a seasonal product B0BXYZ1234 (Christmas ornaments). Peak season is November-December. It's currently April. Should I start a ranking campaign now or wait? I want the full assessment with seasonality analysis and optimal timing recommendation.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I register a brand on Amazon?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a social media marketing plan",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write a blog post about Amazon selling tips",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Help me write Amazon bullet points for my product",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Optimize my Amazon PPC advertising spend",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Analyze my website traffic",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write me a product listing for Amazon",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 3,
+      "test_failed": 3,
+      "test_total": 6,
+      "test_results": [
+        {
+          "query": "I want to expand B085DVHQ57 to a second keyword \"best water bottle for gym\". I already have an active campaign on \"insulated water bottle with straw\". Add this keyword with a separate ramp schedule, maybe weighted allocation since the first keyword is more important.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I started a ranking campaign for B0GKR3D7SZ two weeks ago and want to check progress. Pull the campaign stats, show me current position vs baseline, and tell me if I should start the taper protocol or keep the current volume.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Quick campaign setup needed: B08CS95K8L, \"nonstick frying pan 10 inch\", 5 SFB per day, aggressive profile, 14 day launch. Skip the assessment and go straight to cost breakdown and execution.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me set up a Shopify store",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "What is my website's SEO score?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a Google Ads campaign for my business",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 7,
+      "failed": 10,
+      "total": 17,
+      "results": [
+        {
+          "query": "Compare the cost of ranking B08CS95K8L for 3 different keywords: \"nonstick frying pan\", \"ceramic frying pan\", and \"best frying pan for eggs\". Give me individual cost breakdowns and a combined multi-keyword campaign estimate. I want to see which keyword gives the best ROI.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to rank B0CF2DJHFQ for \"fabric shaver rechargeable\" on amazon.co.uk. I know SFB isn't available in the UK so it'll be ATC+PGV only. Set up the campaign with adjusted ratios for the UK marketplace.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My ranking campaign for B004U3Y8OM has been running for 30 days but position hasn't improved. The SFB:ATC:PGV ratio is 1:2:8 on standard profile. Can you run the troubleshooting diagnostic and check if I need to adjust the volume or switch profiles?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My wallet balance is running low and I have an active campaign on B0GKR3D7SZ with 5 days left. Check my current balance, calculate how much I need to finish the campaign, and generate a top-up link if there's a shortfall.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm launching a new product B0D3RKXMQJ next week in the supplements category. It's priced at $22 with zero reviews. Run the product assessment and tell me if there are any CRITICAL blockers before I start a ranking campaign, and what funnel profile makes sense.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have a $300 budget for ranking B004U3Y8OM for \"vitamin d3 softgels\". It's a low-price consumable under $15. Work backward from my budget and show me 2-3 campaign options with different volume and duration tradeoffs.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I just launched B0GKR3D7SZ three days ago, it's a leakproof tumbler in the Home & Kitchen category. I need to capitalize on the honeymoon window before it closes. Can you run the full campaign setup with product assessment, competition analysis, and a ramp schedule for \"leakproof tumbler 40oz\"?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My product B085DVHQ57 was on page 1 for \"insulated water bottle with straw\" but dropped to page 4 last month after a stockout. I need a re-ranking campaign, probably conservative profile with the 60-90 day recovery timeline. Walk me through the full assessment and strategy.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell B09XS7JWHH (Sony headphones, ~$250) and want to know what it would cost to rank for \"noise canceling headphones\". Don't execute anything yet, just give me the full cost breakdown with SFB proceeds offset, ROI projection, and payback period.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I sell a seasonal product B0BXYZ1234 (Christmas ornaments). Peak season is November-December. It's currently April. Should I start a ranking campaign now or wait? I want the full assessment with seasonality analysis and optimal timing recommendation.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I register a brand on Amazon?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Create a social media marketing plan",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write a blog post about Amazon selling tips",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Help me write Amazon bullet points for my product",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Optimize my Amazon PPC advertising spend",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Analyze my website traffic",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Write me a product listing for Amazon",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    }
+  ]
+}
