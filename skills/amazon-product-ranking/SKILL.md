@@ -128,7 +128,7 @@ Present full strategy to user. Wait for approval before Phase 6.
 
 Ref: `references/cost-and-roi.md`.
 
-**6a. Cost breakdown:** Call `lb_estimate_cost` with proposed schedule. Calculate gross LB spend, SFB sale proceeds (Amazon payout minus referral fee minus FBA fee minus COGS), and adjusted net campaign cost. Ask user for COGS per unit if not provided (or estimate from category).
+**6a. Cost breakdown:** Call `lb_estimate_cost` with proposed schedule. Calculate gross LB spend, SFB sale proceeds (Amazon payout minus referral fee minus FBA fee minus COGS), and adjusted net campaign cost. Ask user for COGS per unit if not provided (or estimate from category). Include SFB lock warning per `references/cost-and-roi.md` -- first 5 days of scheduled SFB are non-cancellable once set. Show lock amount as `[WARNING]`.
 
 **6b. ROI projection:** Estimate monthly organic orders if campaign achieves target position. Use keyword search volume (WebSearch estimate or user input), position-CTR table, category CVR, and product price. Show payback period. Label as estimates.
 
@@ -142,7 +142,7 @@ If cost-only mode: stop here and present the full analysis without executing.
 
 ### Phase 7: Execute Campaign
 
-**Requires explicit user approval.** Show final summary of what will be created.
+**Requires explicit user approval.** Show final summary of what will be created, including SFB lock amount (first 5 days non-cancellable).
 
 On approval:
 1. `lb_projects_create` per keyword (ASIN, keyword, region, expected_retail_price)
@@ -155,7 +155,7 @@ After execution, show stock-out awareness note: running out of stock at a top po
 
 ### Phase 8: Monitoring, Troubleshooting & Campaign Summary
 
-**8a. Monitoring plan:** Show checkpoint schedule (day 7, 14, 30, 60 for re-rank). Explain taper protocol (reduce 20%/week over 3-4 weeks, never stop cold). Tell user how to check: "Check my ranking campaign" or "show campaign stats".
+**8a. Monitoring plan:** Show checkpoint schedule (day 7, 14, 30, 56 for re-rank). Explain taper protocol (reduce 20%/week over 3-4 weeks, never stop cold). Tell user how to check: "Check my ranking campaign" or "show campaign stats".
 
 **8b. Progress framing:** When user checks stats later, frame results contextually:
 - Position improving: show movement, confirm on-track
@@ -164,4 +164,4 @@ After execution, show stock-out awareness note: running out of stock at a top po
 
 **8c. Troubleshooting:** If issues detected, run through the diagnostic tree. Ref: `references/troubleshooting.md`.
 
-**8d. Campaign summary document:** Save a one-page campaign plan to disk with ASIN, keywords, type, profile, schedule, costs, ROI, monitoring plan, and baseline position. The user can reference this later or share with partners.
+**8d. Campaign summary document:** Save to `{ASIN}-{keyword-slug}-{YYYY-MM-DD}.md` in the current working directory. Include ASIN, keywords, type, profile, schedule, costs, ROI, monitoring plan, and baseline position. The user can reference this later or share with partners.

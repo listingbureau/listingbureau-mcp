@@ -6,7 +6,7 @@ The AI-powered Amazon SEO tool that runs organic product ranking campaigns from 
 
 Stop guessing at signal volumes, funnel ratios, and ramp schedules. This skill turns any AI agent into a full Amazon product ranking strategist: from "I want to rank for this keyword" to a running campaign with optimal settings, cost projections, and monitoring.
 
-Whether you need an **Amazon rank tracker**, a **listing optimization audit**, or a complete **Amazon campaign tool**, this skill handles the full workflow. Works for new product launches, re-ranking recovery campaigns, keyword expansion, and international Amazon marketplaces. The complete AI toolkit for Amazon sellers and Amazon FBA tools users.
+Whether you need an **Amazon rank tracker**, an **Amazon listing optimization tool**, or a complete **Amazon campaign tool**, this skill handles the full workflow. Works for new product launches, re-ranking recovery campaigns, keyword expansion, and international Amazon marketplaces. The complete AI toolkit among **Amazon seller tools** and Amazon FBA tools.
 
 ---
 
