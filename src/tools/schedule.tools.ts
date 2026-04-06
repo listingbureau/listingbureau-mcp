@@ -188,7 +188,7 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
         const hasSfb = params.schedule.some((e) => e.sfb > 0);
         if (hasAtcOrPgv && !hasSfb) {
           (augmented as Record<string, unknown>).service_note =
-            "This schedule has ATC/page views but no SFB. " +
+            "This schedule has ATC/PGV but no SFB. " +
             "These services alone rarely move ranking unless the keyword is very uncompetitive. " +
             "They're typically paired with SFB to maintain a healthy organic conversion ratio. " +
             "You can update the schedule to add SFB if needed.";
@@ -254,7 +254,7 @@ export function registerScheduleTools(server: McpServer, client: LBClient) {
         const hasSfb = (params.sfb ?? 0) > 0;
         if (hasAtcOrPgv && !hasSfb) {
           (augmented as Record<string, unknown>).service_note =
-            "This schedule has ATC/page views but no SFB. " +
+            "This schedule has ATC/PGV but no SFB. " +
             "These services alone rarely move ranking unless the keyword is very uncompetitive. " +
             "They're typically paired with SFB to maintain a healthy organic conversion ratio. " +
             "You can update the schedule to add SFB if needed.";
