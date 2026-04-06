@@ -14,8 +14,14 @@ import { validateBaseUrl } from "./utils/validate-url.js";
 import { checkForUpdate } from "./utils/update-check.js";
 import { createRequire } from "node:module";
 
-const require = createRequire(import.meta.url);
-const pkg = require("../package.json") as { version: string };
+let version = "0.0.0";
+try {
+  const require = createRequire(import.meta.url);
+  const pkg = require("../package.json") as { version: string };
+  version = version;
+} catch {
+  // CJS bundle (Smithery scanner) — import.meta.url unavailable, version not needed for scanning
+}
 
 const INSTRUCTIONS = [
   "Listing Bureau provides Amazon organic ranking services: SFB (Search Find Buy), ATC (Add to Cart), and PGV (page views).",
@@ -43,7 +49,7 @@ function buildServer(apiKey: string, baseUrl: string) {
   const client = new LBClient(apiKey, baseUrl);
 
   const server = new McpServer(
-    { name: "listingbureau", version: pkg.version },
+    { name: "listingbureau", version: version },
     { instructions: INSTRUCTIONS },
   );
 
@@ -89,7 +95,7 @@ async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
 
-  checkForUpdate(pkg.version).catch(() => {});
+  checkForUpdate(version).catch(() => {});
 }
 
 main().catch((err) => {
