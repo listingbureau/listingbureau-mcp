@@ -37,6 +37,8 @@ Since SFB is not available, recalibrate the ATC:PGV ratio:
 | Conservative | 1 : 4-5 | Conservative |
 | Standard | 1 : 3-4 | Standard |
 | Aggressive | 1 : 2-3 | Aggressive |
+| Low-Price / Consumable | 1 : 2-3 | Low-Price / Consumable |
+| High-Price / Considered | 1 : 5-6 | High-Price / Considered Purchase |
 
 ### Volume Adjustments
 

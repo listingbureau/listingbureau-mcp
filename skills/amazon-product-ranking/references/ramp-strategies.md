@@ -108,7 +108,17 @@ Existing product with ranking history, targeting a new keyword. Partial honeymoo
 | Days 15-21 | 80% | Taper |
 | Day 22+ | 50% or stop | Maintenance based on results |
 
-**Total for 21-day expansion (5 SFB/day peak, Standard profile):** ~81 SFB, ~162 ATC, ~648 PGV
+**Example: 5 SFB/day peak, Standard profile (1:2:8)**
+
+| Day | SFB | ATC | PGV | Total |
+|-----|:---:|:---:|:---:|:-----:|
+| 1-3 | 2 | 4 | 16 | 22 |
+| 4-7 | 3 | 7 | 28 | 38 |
+| 8-14 | 5 | 10 | 40 | 55 |
+| 15-21 | 4 | 8 | 32 | 44 |
+| 22+ | 3 | 5 | 20 | 28 |
+
+**Total for 21-day expansion (no maintenance):** ~81 SFB, ~162 ATC, ~648 PGV
 
 ---
 
@@ -144,6 +154,6 @@ When generating the actual per-day schedule for `lb_schedule_set`:
 
 1. **Round to whole numbers** -- signal counts must be integers
 2. **Minimum 1 of each type** -- never schedule 0 of any signal on an active day
-3. **Maintain ratio** -- each day's SFB:ATC:PGV should approximate the profile ratio
+3. **Maintain ratio at peak; approximate at reduced volumes** -- at 100% volume, each day's SFB:ATC:PGV matches the profile ratio exactly. At reduced volumes (ramp-up and taper), apply the volume percentage to the peak values of each signal type independently, then round. This produces slightly different daily ratios at non-peak levels, which is acceptable and adds natural variance
 4. **Add natural variance** -- vary daily volumes by +/-10-15% from the calculated amount (e.g., if target is 5 SFB, alternate between 4 and 6). Perfect consistency is itself a pattern.
 5. **Weekend adjustment** -- optionally reduce weekend volume by 10-20% (real shopping patterns show slight weekend dips in many categories). This is a refinement, not a requirement.

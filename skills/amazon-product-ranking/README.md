@@ -41,7 +41,7 @@ Agent:  Campaign live. Project created, schedule set.
 - **Amazon product ranking assessment** -- evaluate any product's readiness for a ranking campaign with severity-labeled findings
 - **Competition analysis** -- assess keyword difficulty from top-10 competitor data to calibrate signal volumes
 - **Amazon listing optimization audit** -- check keyword coverage, pricing, review thresholds. Advisory findings, not copy rewrites
-- **AI-powered campaign strategy** -- select optimal funnel profiles (5 profiles for different product types), calculate volumes, generate progressive ramp schedules
+- **AI-powered campaign strategy** -- the complete AI tools for Amazon seller workflows: select optimal funnel profiles (5 profiles for different product types), calculate volumes, generate progressive ramp schedules
 - **Amazon rank tracker** -- monitor keyword position movement throughout the campaign with contextual progress framing
 - **Cost breakdown with SFB sale proceeds** -- show gross spend AND net cost after accounting for revenue from SFB purchases
 - **ROI projections** -- estimate organic revenue uplift and payback period at target position
@@ -140,9 +140,9 @@ The skill selects from 5 scientifically-calibrated funnel profiles based on prod
 
 ---
 
-## How to Improve Amazon Ranking
+## How to Rank on Amazon
 
-Amazon's A10 algorithm ranks products based on keyword-level sales velocity, conversion rate, and click-through rate. Products that generate consistent purchase signals from keyword searches rank higher than products that don't.
+Amazon's ranking algorithm (commonly called A9, now updated to A10) ranks products based on keyword-level sales velocity, conversion rate, and click-through rate. Products that generate consistent purchase signals from keyword searches rank higher than products that don't.
 
 The challenge: new products have no sales history. Products that lost rank need to overcome negative history. And the signal ratios (how many page views vs add-to-carts vs purchases) need to match natural shopping behavior for the product's category.
 
