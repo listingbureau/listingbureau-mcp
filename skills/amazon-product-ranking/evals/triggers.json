@@ -1,0 +1,94 @@
+[
+  {
+    "query": "Rank my product B0GKR3D7SZ for leakproof tumbler",
+    "should_trigger": true
+  },
+  {
+    "query": "Help me set up a ranking campaign for my Amazon product",
+    "should_trigger": true
+  },
+  {
+    "query": "How much does an Amazon ranking campaign cost?",
+    "should_trigger": true
+  },
+  {
+    "query": "I want to rank this ASIN on Amazon",
+    "should_trigger": true
+  },
+  {
+    "query": "Launch a campaign for my product on Amazon",
+    "should_trigger": true
+  },
+  {
+    "query": "Re-rank my product, it dropped from page 1",
+    "should_trigger": true
+  },
+  {
+    "query": "What's the ROI of an Amazon campaign for B004U3Y8OM?",
+    "should_trigger": true
+  },
+  {
+    "query": "Help me rank on Amazon for noise canceling headphones",
+    "should_trigger": true
+  },
+  {
+    "query": "Set up ranking for my product on amazon.co.uk",
+    "should_trigger": true
+  },
+  {
+    "query": "Amazon product ranking assessment for my ASIN",
+    "should_trigger": true
+  },
+  {
+    "query": "Quick campaign: B08CS95K8L, nonstick frying pan, 4 SFB, standard, 14 days",
+    "should_trigger": true
+  },
+  {
+    "query": "Track my Amazon ranking position",
+    "should_trigger": true
+  },
+  {
+    "query": "Amazon SEO tool for my product listing",
+    "should_trigger": true
+  },
+  {
+    "query": "Write me a product listing for Amazon",
+    "should_trigger": false
+  },
+  {
+    "query": "Help me write Amazon bullet points for my product",
+    "should_trigger": false
+  },
+  {
+    "query": "Create a Google Ads campaign for my business",
+    "should_trigger": false
+  },
+  {
+    "query": "What is my website's SEO score?",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a blog post about Amazon selling tips",
+    "should_trigger": false
+  },
+  {
+    "query": "Help me set up a Shopify store",
+    "should_trigger": false
+  },
+  {
+    "query": "Create a social media marketing plan",
+    "should_trigger": false
+  },
+  {
+    "query": "Optimize my Amazon PPC advertising spend",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I register a brand on Amazon?",
+    "should_trigger": false
+  },
+  {
+    "query": "Analyze my website traffic",
+    "should_trigger": false
+  }
+]

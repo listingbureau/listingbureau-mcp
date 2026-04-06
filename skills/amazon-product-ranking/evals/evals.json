@@ -1,0 +1,105 @@
+{
+  "skill_name": "amazon-product-ranking",
+  "evals": [
+    {
+      "id": 1,
+      "name": "New Launch - Full Guided Flow",
+      "prompt": "Rank my product B0GKR3D7SZ for \"leakproof tumbler 40oz\"",
+      "expected_output": "Full 9-phase campaign assessment for BruMate Era Flip 40oz tumbler (~$48, ~107 reviews). Should detect as NEW LAUNCH (honeymoon available), recommend Aggressive or Standard profile, generate 8-14 day ramp schedule, show cost breakdown with SFB proceeds, and wait for user confirmation before executing.",
+      "expectations": [
+        "Output includes a Product Assessment Card with ASIN B0GKR3D7SZ",
+        "Output identifies the product category (Home & Kitchen, Tumblers, or similar)",
+        "Output includes a competition analysis for the target keyword",
+        "Output includes severity-labeled findings using [PASS], [WARNING], [CRITICAL], or [INFO]",
+        "Campaign type is identified as NEW LAUNCH or new launch with honeymoon phase mentioned",
+        "A funnel profile is selected and the SFB:ATC:PGV ratio is stated",
+        "A ramp schedule is generated with daily signal volumes across multiple day ranges",
+        "Cost breakdown shows gross LB spend and adjusted net cost after SFB proceeds",
+        "Output asks for user confirmation before executing the campaign",
+        "Output mentions the honeymoon phase or honeymoon window"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Re-ranking - Full Guided Flow",
+      "prompt": "My product B085DVHQ57 used to rank on page 1 for \"insulated water bottle with straw\" but dropped to page 4. Help me re-rank it.",
+      "expected_output": "Full 9-phase re-ranking campaign for Owala FreeSip 32oz (~$33, ~115K reviews). Should detect as RE-RANKING (no honeymoon), recommend Conservative profile, generate 60-90 day 3-phase ramp schedule (calibration, acceleration, stabilization), show higher total cost due to longer duration.",
+      "expectations": [
+        "Output includes a Product Assessment Card with ASIN B085DVHQ57",
+        "Campaign type is identified as RE-RANKING or re-rank",
+        "Output mentions that no honeymoon phase is available for re-ranking",
+        "Strategy includes 3 phases: calibration (or signal calibration), acceleration, and stabilization",
+        "Campaign duration is 60-90 days or approximately 12 weeks",
+        "A Conservative or Standard funnel profile is selected",
+        "A ramp schedule shows graduated volume increases across the 3 phases",
+        "Cost breakdown accounts for the longer campaign duration",
+        "Output includes re-ranking specific checkpoints (day 14, 30, 56, or 84)",
+        "Output warns about not stopping the campaign abruptly (taper protocol)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Quick-start Mode",
+      "prompt": "Quick campaign: B08CS95K8L, \"nonstick frying pan 10 inch\", 4 SFB, standard profile, 14 days",
+      "expected_output": "Skip Phases 1-4 (product assessment, competition, listing audit, campaign type). Should still run Phase 0a-0b (connection check + existing campaign check), then go straight to strategy confirmation with the user-specified parameters (4 SFB/day, Standard profile, 14 days), cost breakdown, and execution.",
+      "expectations": [
+        "Output does NOT include a full Product Assessment Card (quick-start skips assessment)",
+        "Output uses 4 SFB per day as specified by the user",
+        "Output uses the Standard profile as specified",
+        "Campaign duration is 14 days as specified",
+        "ATC and PGV volumes are calculated from the Standard ratio (approximately 1:2:8-10)",
+        "Cost breakdown is shown with gross spend and adjusted net cost",
+        "Output asks for user confirmation before executing",
+        "The keyword \"nonstick frying pan 10 inch\" is used in the campaign setup"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Cost-only Exploration",
+      "prompt": "How much would a ranking campaign cost for B09XS7JWHH targeting \"noise canceling headphones\"?",
+      "expected_output": "Full assessment through cost analysis (Phases 0-6) for Sony WH-1000XM5 (~$250, ~19K reviews). Should detect as cost-only mode (no execution). Should select High-Price/Considered profile due to $250 price point. Should show detailed cost breakdown with SFB proceeds and ROI projection, but NOT proceed to execution.",
+      "expectations": [
+        "Output includes product data for ASIN B09XS7JWHH",
+        "The High-Price or Considered Purchase funnel profile is selected (due to price >$50)",
+        "The SFB:ATC:PGV ratio reflects the high-price profile (approximately 1:2-3:10-15)",
+        "Cost breakdown shows gross LB spend, SFB sale proceeds, and adjusted net cost",
+        "ROI projection is included with estimated organic revenue",
+        "Output does NOT ask to execute or create projects (cost-only mode)",
+        "Competition level is assessed as HIGH or VERY HIGH for this keyword",
+        "Output mentions this is a high-consideration purchase category"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Budget-first Mode",
+      "prompt": "I have $300 to spend on ranking B004U3Y8OM for \"vitamin d3 softgels\". What can I do with that budget?",
+      "expected_output": "Budget-first analysis for Nature Made Vitamin D3 1000 IU (~$8.59, ~55K reviews). Should detect budget-first mode from the stated $300 budget. Should select Low-Price/Consumable profile (product under $15). Should present 2-3 campaign options that fit within $300, recommending focused single-keyword approach.",
+      "expectations": [
+        "Output identifies the product as a low-price consumable",
+        "The Low-Price or Consumable funnel profile is selected (product under $15)",
+        "Output works backward from the $300 budget to determine campaign parameters",
+        "At least 2 campaign options are presented within the $300 budget",
+        "A recommendation is made (likely focused single-keyword for best results)",
+        "Daily SFB volumes are calculated to fit within the budget constraint",
+        "Cost breakdown shows how the $300 budget is allocated",
+        "Output notes that SFB proceeds partially offset the cost for this low-price product"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Non-US Region (UK)",
+      "prompt": "Rank my product B0CF2DJHFQ for \"fabric shaver rechargeable\" on amazon.co.uk",
+      "expected_output": "Full campaign flow for Philips 1000 Series Fabric Shaver on Amazon UK. Should detect non-US region and adjust to ATC+PGV only strategy (no SFB available). Should explain the SFB limitation clearly, show adjusted ratios, recommend higher volumes and longer duration, and show simplified cost structure without SFB proceeds.",
+      "expectations": [
+        "Output detects the UK marketplace (amazon.co.uk)",
+        "Output clearly states that SFB is NOT available for UK region",
+        "Campaign uses ATC and PGV signals only (no SFB)",
+        "The ATC:PGV ratio is adjusted for non-US (no SFB component)",
+        "Output recommends higher signal volumes and/or longer duration compared to US equivalent",
+        "Cost breakdown omits SFB proceeds section (no purchases being made)",
+        "Output explains the limitation of non-US campaigns compared to US",
+        "The keyword \"fabric shaver rechargeable\" is used in the campaign"
+      ]
+    }
+  ]
+}
